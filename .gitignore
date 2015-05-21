@@ -1,0 +1,67 @@
+#Movies and image files
+*.avi
+*.mp4
+*.png
+
+#PDF files
+*.pdf
+
+#LaTeX files:
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc0
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.ps
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdy
+*.tdo
+# htlatex:
+*.idv
+*.4ct
+*.4tc
+*.xref
+
+#Python:
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+__pycache__
+
+# R History files
+.Rhistory
+
+# Example code in package build process
+*-Ex.R
+
+# backups
+*~
+*.bak
