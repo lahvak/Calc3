@@ -2,6 +2,7 @@
 *.avi
 *.mp4
 *.png
+*.miff
 
 #PDF files
 *.pdf

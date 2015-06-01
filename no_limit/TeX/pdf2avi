@@ -1,0 +1,3 @@
+#!/bin/sh
+gm convert -background white -colorspace RGB -type TrueColorMatte +adjoin -density 200 -geometry 800x450 $1.pdf  $1_%03d.png
+mencoder "mf://$1*.png" -mf fps=24 -ovc lavc -lavcopTs vcodec=mpeg4:vbitrate=10000 -o $1.avi
