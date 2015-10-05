@@ -8,4 +8,5 @@
 
 Curve(XFun, YFun, ZFun, Black, .01, 0, 4*pi, 300)
 TNBFrame(0.009)
+OscCirc(0.009)
 

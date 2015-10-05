@@ -7,7 +7,7 @@ global_settings {
 camera {
    location CamLoc
    look_at < 0, 0, 0> 
-   angle 35
+   angle 25
 }
 
 light_source {CamLoc color White*0.35 shadowless}

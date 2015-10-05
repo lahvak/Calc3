@@ -1,0 +1,9 @@
+#declare XFun = function(x) {(cos(1.5*x) + 2)*cos(x)};
+#declare YFun = function(x) {sin(1.5*x)};
+#declare ZFun = function(x) {(cos(1.5*x) + 2)*sin(x)};
+#declare XFunp = function(x) {-(cos(1.5*x) + 2)*sin(x) - 1.5*sin(1.5*x)*cos(x)};
+#declare YFunp = function(x) {1.5*cos(1.5*x)};
+#declare ZFunp = function(x) {(cos(1.5*x) + 2)*cos(x) - 1.5*sin(x)*sin(1.5*x)};
+#declare XFunpp = function(x) {-(cos(1.5*x) + 2)*cos(x) + 3.0*sin(x)*sin(1.5*x) - 2.25*cos(x)*cos(1.5*x)};
+#declare YFunpp = function(x) {-2.25*sin(1.5*x)};
+#declare ZFunpp = function(x) {-(cos(1.5*x) + 2)*sin(x) - 2.25*sin(x)*cos(1.5*x) - 3.0*sin(1.5*x)*cos(x)};
