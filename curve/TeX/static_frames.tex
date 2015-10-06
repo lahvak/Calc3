@@ -3,7 +3,7 @@
 \usepackage[romanfamily=casual,lucidasmallscale, nofontinfo]{lucimatx}
 %\usepackage[romanfamily=bright-osf, stdmathdigits=true,lucidasmallscale, nofontinfo]{lucimatx}
 \linespread{1.04} %  this value suits  scale=0.9  or lucidasmallscale
-%\usepackage{tikz}
+\usepackage{tikz}
 %\usepackage{pgfplots}
 %\pgfplotsset{compat=1.10}
 \setbeamertemplate{navigation symbols}{}
@@ -11,8 +11,40 @@
 
 \begin{document}
 \begin{frame}
-    \begin{center}
-        The TNB frame
-    \end{center}
+    The TNB frame consists of three vectors:\pause
+    \begin{itemize}
+        \item The \color{red}unit tangent vector\color{black}, that always points in
+            the direction of the curve.\pause
+        \item The \color{green}unit normal vector\color{black}, that is
+            perpendicular to the tangent vector and always point in the
+            direction the curve is turning.\pause
+        \item The \color{blue}unit binormal vector\color{black}, that is
+            perpendicular to both the tangent vector and the normal vector.
+    \end{itemize}\pause
+    Together they define a local rectangular coordinate system at each point on
+    the curve.\pause
+
+    First let's look at the TNB frame as it moves along the curve.
+\end{frame}
+\begin{frame}
+    Now we will see the same animation again, but this time we will add the
+    \emph{osculating circle} of the curve.  \pause
+    
+    Osculating circle is a circle that has the same TNB frame and the same
+    \emph{curvature} as the curve. \pause
+
+    It is the circle that provides the best approximation of the curve at the
+    given point.
+\end{frame}
+\begin{frame}
+    Finally, we will see the same animation again, however, this time we will
+    take a seat at the roller coaster.\pause
+
+    We will see the animation from a vantage point with coordinates $(-1.1,
+    0.1, 0.1)$ \alert{in the TNB frame}, looking in the general direction of the center
+    of the TNB frame.\pause
+
+    You will see that the TNB frame will be seemingly stationary, while the
+    curve will wind itself around.
 \end{frame}
 \end{document}

@@ -6,6 +6,7 @@
 \usepackage{tikz}
 \setbeamertemplate{navigation symbols}{}
 \usefonttheme{professionalfonts,serif}
+\usepackage[]{amsmath}
 
 \setbeamercolor{normal text}{fg=white,bg=black}
 
@@ -13,8 +14,14 @@
 \begin{frame}[plain]
     \begin{center}
         {\Large The TNB frame}\\[1cm]
-        $\displaystyle f(x,y) = \frac{xy^2}{x^2 + y^4}$\\[1cm]
-        change this to the function we have
+        of the curve
+        \[\left\{
+        \begin{aligned}
+            x(t) &= (2 + \cos(1.5t))\cos(t)\\
+            y(t) &= (2 + \cos(1.5t))\sin(t)\\
+            z(t) &= \sin(1.5t)
+        \end{aligned}
+        \right.\]
     \end{center}
 \end{frame}
 \end{document}
