@@ -45,6 +45,8 @@
 *.4ct
 *.4tc
 *.xref
+# unknown
+*.fls
 
 #Python:
 *.py[cod]
