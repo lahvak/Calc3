@@ -1,25 +1,15 @@
-\documentclass{article}
-\usepackage[landscape,margin=10pt]{geometry}
+\documentclass[margin=0pt]{standalone}
 \usepackage[romanfamily=casual,lucidasmallscale, nofontinfo]{lucimatx}
 %\usepackage[romanfamily=bright-osf, stdmathdigits=true,lucidasmallscale, nofontinfo]{lucimatx}
 \linespread{1.04}	%  this value suits  scale=0.9  or lucidasmallscale
 \usepackage{tikz}
-\usepackage{animate}
+\usepackage[export]{animate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[active,tightpage]{preview}
-\makeatletter
-\renewenvironment{animateinline}[2][]{%
-  \setboolean{@anim@inside}{true}\begin{preview}}{%
-  \end{preview}\setboolean{@anim@inside}{false}}
-\renewcommand{\newframe}[1][]{\end{preview}\begin{preview}}
-\makeatletter
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 \begin{document}
-\begin{animateinline}[autoplay,loop]{2}
+\begin{animateinline}[autoplay,loop]{2}%
     \multiframe{240}{i=0+1}{%
     \begin{tikzpicture}
-        \draw[white] (-8.8,-4.94) rectangle (8.8,4.94);
+        \draw[white] (-8.8,-4.95) rectangle (8.8,4.95);
         \begin{scope}[xshift=-4cm]
             \def\scale{3.5}
             \colorlet{darkgreen}{green!50!black};
@@ -69,13 +59,13 @@
                 \draw[very thick,color=blue] plot[domain={\dom*(240-\i)/240}:\dom,samples=40] ({\scale*\coefa*(\x)^2},\scale*\x);
             \end{scope}
         \end{scope}
-        \node[below] at (4,4) {
+        \node[below] at (4,4) {%
         \begin{minipage}[t]{7cm}
             For example, for $k = 3$, as $y$ approaches $0$, the point $(ky^2,y)$
             approaches the origin following the level curve corresponding to the
             level 
             \[\frac{3}{3^2 + 1} = 0.3\]
-        \end{minipage}
+        \end{minipage}%
         };
     \end{tikzpicture}%
     }%
@@ -83,7 +73,7 @@
 \begin{animateinline}[autoplay,loop]{2}
     \multiframe{240}{i=0+1}{%
     \begin{tikzpicture}
-        \draw[white] (-8.8,-4.94) rectangle (8.8,4.94);
+        \draw[white] (-8.8,-4.95) rectangle (8.8,4.95);
         \begin{scope}[xshift=-4cm]
             \def\scale{3.5}
             \colorlet{darkgreen}{green!50!black};
@@ -137,7 +127,7 @@
                 \draw[very thick,color=red] plot[domain={\dom*(240-\i)/240}:\dom,samples=40] ({\scale*\coefa*(\x)^2},\scale*\x);
             \end{scope}
         \end{scope}
-        \node[below] at (4,4) {
+        \node[below] at (4,4) {%
         \begin{minipage}[t]{7cm}
             For example, for $k = 3$, as $y$ approaches $0$, the point $(ky^2,y)$
             approaches the origin following the level curve corresponding to the
@@ -145,7 +135,7 @@
             \[\frac{3}{3^2 + 1} = 0.3\]
             For $k = 4$ the point follows a different level curve, and the limit
             will be \[\frac{4}{4^2+1} = \frac{4}{17}\]
-        \end{minipage}
+        \end{minipage}%
         };
     \end{tikzpicture}%
     }%

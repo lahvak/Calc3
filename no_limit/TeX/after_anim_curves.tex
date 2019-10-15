@@ -1,9 +1,9 @@
-\documentclass{standalone}
+\documentclass[margin=0pt]{standalone}
 \usepackage[romanfamily=casual,lucidasmallscale, nofontinfo]{lucimatx}
 %\usepackage[romanfamily=bright-osf, stdmathdigits=true,lucidasmallscale, nofontinfo]{lucimatx}
 \linespread{1.04}	%  this value suits  scale=0.9  or lucidasmallscale
 \usepackage{tikz}
-\begin{document}
+\begin{document}%
   \begin{tikzpicture}
       \draw[white] (-8.8,-4.94) rectangle (8.8,4.95);
       \begin{scope}[xshift=-4cm]
@@ -59,7 +59,7 @@
               \draw[very thick,color=red] plot[domain=0:\dom,samples=40] ({\scale*\coefa*(\x)^2},\scale*\x);
           \end{scope}
       \end{scope}
-      \node[below] at (4,4) {
+      \node[below] at (4,4) {%
       \begin{minipage}[t]{7cm}
           For example, for $k = 3$, as $y$ approaches $0$, the point $(ky^2,y)$
           approaches the origin following the level curve corresponding to the
@@ -69,7 +69,7 @@
           will be \[\frac{4}{4^2+1} = \frac{4}{17}\]
 
           We can see the same animation in 3D.
-      \end{minipage}
+      \end{minipage}%
       };
-  \end{tikzpicture}
+  \end{tikzpicture}%
 \end{document}
