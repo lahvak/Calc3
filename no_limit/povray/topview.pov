@@ -2,7 +2,7 @@
 #include "colors.inc"
 #include "functions.inc"
 
-#declare CamLoc = <6*cos(pi/4)*cos(clock*pi/2), 4+2*sin(clock*pi/2), 6*sin(pi/4)*cos(clock*pi/2)>;
+#declare CamLoc = <6*cos(pi/4)*cos(0.99*clock*pi/2), 4+2*sin(0.99*clock*pi/2), 6*sin(pi/4)*cos(0.99*clock*pi/2)>;
 
 #include "setup.inc"
 
