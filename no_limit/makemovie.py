@@ -12,8 +12,8 @@ intro2 = (ImageClip("TeX/static_frames_001.png")
 
 density = [ImageClip("TeX/static_frames_{:03d}.png".format(i)).set_duration(5) for i in [2,3,4]]
 contours = ImageClip("TeX/static_frames_005.png").set_duration(8).fadeout(1)
-limits = [ImageClip("TeX/static_frames_{:03d}.png".format(i)).set_duration(5) for i in [6,7,8,9,10,11]]
-ending = [ImageClip("TeX/static_frames_{:03d}.png".format(i)).set_duration(5) for i in [12,13,14]]
+limits = [ImageClip("TeX/static_frames_{:03d}.png".format(i)).set_duration(6) for i in [6,7,8,9,10,11]]
+ending = [ImageClip("TeX/static_frames_{:03d}.png".format(i)).set_duration(8) for i in [12,13,14]]
 density[0] = density[0].fadein(1)
 limits[0] = limits[0].fadein(1)
 limits[-1] = limits[-1].fadeout(1)
@@ -24,7 +24,9 @@ flyintro = (ImageClip("TeX/static_dark_frames_001.png")
                  .fadein(1)
                  .fadeout(1))
 flyaround = VideoFileClip("povray/flyaround.avi")
-totop = VideoFileClip("povray/topview.avi")
+totop = (VideoFileClip("povray/topview.avi")
+            .fx(vfx.freeze, t = 'end', freeze_duration=2)
+            .fadeout(1))
 twodcont = VideoFileClip("TeX/anim_curves.avi")
 aftertwodcont = (ImageClip("TeX/after_anim_curves_000.png")
                  .set_duration(3)
