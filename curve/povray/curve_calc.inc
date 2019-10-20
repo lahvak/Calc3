@@ -45,7 +45,7 @@
 #declare DDPos = <XFunpp(Time), YFunpp(Time), ZFunpp(Time)>;
 #declare T = vnormalize(DPos);
 #declare N = vnormalize(DDPos - vdot(DDPos,T)*T);
-#declare B = vcross(T,N);
+#declare B = -vcross(T,N);
 #declare Curvature = vlength(vcross(DPos,DDPos))/pow(vlength(DPos),3);
 #declare Rad = 1/Curvature;
 
