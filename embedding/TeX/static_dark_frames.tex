@@ -1,0 +1,27 @@
+\documentclass[aspectratio=169]{beamer}
+\let\digamma\relax
+\usepackage[romanfamily=casual,lucidasmallscale, nofontinfo]{lucimatx}
+%\usepackage[romanfamily=bright-osf, stdmathdigits=true,lucidasmallscale, nofontinfo]{lucimatx}
+\linespread{1.04} %  this value suits  scale=0.9  or lucidasmallscale
+\usepackage{tikz}
+\setbeamertemplate{navigation symbols}{}
+\usefonttheme{professionalfonts,serif}
+\usepackage[]{amsmath}
+
+\setbeamercolor{normal text}{fg=white,bg=black}
+
+\begin{document}
+\begin{frame}[plain]
+    \begin{center}
+        {\Large The TNB frame}\\[1cm]
+        of the curve
+        \[\left\{
+        \begin{aligned}
+            x(t) &= (2 + \cos(1.5t))\cos(t)\\
+            y(t) &= (2 + \cos(1.5t))\sin(t)\\
+            z(t) &= \sin(1.5t)
+        \end{aligned}
+        \right.\]
+    \end{center}
+\end{frame}
+\end{document}
