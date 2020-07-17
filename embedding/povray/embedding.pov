@@ -11,4 +11,4 @@ Axes(-2,3,-2,3,-2,3,0.012,texture{pigment{color Black}})
 
 NumberLine(10, Orange, Black, NLineStart, NLineEnd, .05)
 
-Curve(8, Orange, Black, 0.05, Time)
+Curve(10, Orange, Black, 0.05, Time)

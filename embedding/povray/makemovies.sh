@@ -12,5 +12,5 @@ function mkmovie {
 }
 
 #mkmovie curve trajectory
-#mkmovie curve embedding
+mkmovie curve embedding
 mkmovie curve embedded_motion
