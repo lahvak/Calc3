@@ -1,0 +1,48 @@
+\documentclass[aspectratio=169]{beamer}
+\let\digamma\relax
+\usepackage[romanfamily=casual,lucidasmallscale, nofontinfo]{lucimatx}
+%\usepackage[romanfamily=bright-osf, stdmathdigits=true,lucidasmallscale, nofontinfo]{lucimatx}
+\linespread{1.04} %  this value suits  scale=0.9  or lucidasmallscale
+\usepackage{bm}
+\usepackage{tikz}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=1.10}
+\setbeamertemplate{navigation symbols}{}
+\usefonttheme{professionalfonts,serif}
+\newcommand{\vect}[1]{\mbf{#1}}
+
+\begin{document}
+\begin{frame}
+    In this video we will look at two common interpretation of \emph{vector
+        functions} of a single real variable.\pause
+
+    By a \emph{vector function} we will understand a function $\vect{r}:
+    \mathbb{R}\to\mathbb{R}^3$, that is a function from the number line to the
+    three dimensional space.\pause
+
+    In $\mathbb{R}^3$ we will, as is a common practice, identify each point
+    with its position vector, which will allow us to think of $\mathbb{R}^3$ as
+    a space of points and a vector space, interchangeably. 
+\end{frame}
+\begin{frame}
+    There is nothing special about $\mathbb{R}^3$, the same ideas would work
+    with $\mathbb{R}^n$ for any positive integer $n$ (including 1), except that
+    3 is the highest value of $n$ that makes this easy to visualize.\pause
+
+    Think about how this would look like with $n=2$ and $n=1$ (in which case
+    you just get regular real functions of single real variable).
+\end{frame}
+\begin{frame}{Trajectory of a moving object}
+    Given a continuous function $\vect{r}:\mathbb{R}\to\mathbb{R}^3$, we can
+    interpret the independent variable $t$ as \emph{time}, and the value
+    $\vect{r}(t)$ as the position vector of a moving point in $\mathbb{R}^3$ at
+    the time $t$.\pause
+
+    As the point moves, it traces a trajectory, which is a curve in
+    $\mathbb{R}^3$.\pause
+
+    Each point on the ``time'' line corresponds to at most one point on the
+    curve.  As the value of $t$ increases (time passes), the point
+    $\vect{r}(t)$ traces the curve in $\mathbb{R}^3$.
+\end{frame}
+\end{document}
