@@ -1,0 +1,33 @@
+\documentclass[aspectratio=169]{beamer}
+\let\digamma\relax
+\usepackage[romanfamily=casual,lucidasmallscale, nofontinfo]{lucimatx}
+%\usepackage[romanfamily=bright-osf, stdmathdigits=true,lucidasmallscale, nofontinfo]{lucimatx}
+\linespread{1.04} %  this value suits  scale=0.9  or lucidasmallscale
+\usepackage{bm}
+\usepackage{tikz}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=1.10}
+\setbeamertemplate{navigation symbols}{}
+\usefonttheme{professionalfonts,serif}
+\newcommand{\vect}[1]{\mbf{#1}}
+
+\begin{document}
+\begin{frame}
+    Another way to look at a continuous vector function is a deformation and
+    embedding of a (piece of) number line into the three dimensional
+    space.\pause
+
+    We can think about this as taking a number line (or a piece of a number
+    line) and bending, compressing and stretching it while inserting it into
+    $\mathbb{R}^3$.\pause
+
+    Some parts of the line may get stretched out and some may get compressed
+    during the process.\pause
+
+    It may even happen that several points (or even infinitely many points)
+    will end up at the same location in $\mathbb{R}^3$.
+
+    The location at which a point $t \in \mathbb{R}$ will end up is determined
+    by the vector $\vect{r}(t)$.
+\end{frame}
+\end{document}

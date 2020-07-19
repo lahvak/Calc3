@@ -1,8 +1,27 @@
+import os
 from moviepy.editor import *
 
-#title = (ImageClip("TeX/static_dark_frames_000.png")
-#                 .set_duration(4)
-#                 .fadeout(1))
+title = (ImageClip("TeX/static_dark_frames_000.png")
+                 .set_duration(4)
+                 .fadeout(1))
+
+intro = [ImageClip("TeX/" + fname).set_duration(8)
+         for fname in sorted(os.listdir("TeX"))
+         if fname.startswith("intro") and fname.endswith(".png")]
+intro[0] = intro[0].fadein(1)
+intro[-1] = intro[-1].fadeout(1)
+
+embedding = [ImageClip("TeX/" + fname).set_duration(8)
+         for fname in sorted(os.listdir("TeX"))
+         if fname.startswith("embedding") and fname.endswith(".png")]
+embedding[0] = embedding[0].fadein(1)
+embedding[-1] = embedding[-1].fadeout(1)
+
+motion = [ImageClip("TeX/" + fname).set_duration(8)
+         for fname in sorted(os.listdir("TeX"))
+         if fname.startswith("motion") and fname.endswith(".png")]
+motion[0] = motion[0].fadein(1)
+motion[-1] = motion[-1].fadeout(1)
 
 trajectory_movie = VideoFileClip("povray/trajectory.avi")
 embedding_movie = VideoFileClip("povray/embedding.avi")
@@ -56,6 +75,9 @@ embedding_comp = (CompositeVideoClip([embedding_movie, embedding_insert_1,
 embedding_first = embedding_comp.to_ImageClip(duration=3)
 embedding_last = embedding_comp.to_ImageClip(t=embedding_length-.1, duration=3)
 
-comp = concatenate([trajectory_comp, embedding_first, embedding_comp, embedding_last])
+comp = concatenate([title] + intro +
+                   [trajectory_comp] + embedding +
+                   [embedding_first, embedding_comp, embedding_last] +
+                   motion + [motion_movie])
 
 comp.write_videofile("embedding.mp4")
