@@ -68,3 +68,6 @@ __pycache__
 # backups
 *~
 *.bak
+
+# Asymptote generated html
+asymptote/**/*.html
