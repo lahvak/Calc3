@@ -1,0 +1,88 @@
+---
+title: Dot Product continued
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Projections
+
+One of the main applications of dot product is in calculating a projection of
+one vector onto another
+
+```{r echo=FALSE}
+vembedr::embed_youtube("WMUvFjfHUHw")
+```
+
+The two important formulas are:
+
+\[\begin{aligned}
+\operatorname{comp}_{\vec{b}}\vec{a} &= \frac{\vec{a}\cdot\vec{b}}{\norm{\vec{b}}}\\
+\operatorname{proj}_{\vec{b}}\vec{a} &= \frac{\vec{a}\cdot\vec{b}}{\vec{b}\cdot\vec{b}}\vec{b}
+\end{aligned}\]
+
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart12_3/problem_4.pg",
+        width=800, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/NAU/setCalcII/vector_projections.pg",
+        width=800, height=500
+)
+```
+
+## Direction cosines
+
+One way to describe the _direction_ of a vector $\vec{v}$ in 3d is by giving a unit
+vector with the same direction as $\vec{v}$.  What is the actual meaning of its
+components?
+
+```{r echo=FALSE}
+vembedr::embed_youtube("v3Eyi5jINlE")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/BentleyUniversity/MathematicsOfComputerGraphics/setMoCG-Ch4/4-4-MagnitudeAndDirectionDecimals3D.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/BentleyUniversity/MathematicsOfComputerGraphics/setMoCG-Ch4/4-4-MagnitudeAndDirectionFormulas3D.pg",
+        width=640, height=500
+)
+```
+

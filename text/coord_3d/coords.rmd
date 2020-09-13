@@ -1,0 +1,117 @@
+---
+title: 3d Coordinate System
+---
+
+### Introduction
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JsLqgb1E2c0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Coordinate planes
+
+The following illustration shows the 3d coordinate system with the three
+_coordinate planes_:
+
+*  The $xy$-plane, which contains the $x$-axis and the $y$-axis, and is perpendicular to the $z$-axis
+
+   The points on this plane have $z$-coordinate equal to 0.
+
+*  The $xz$-plane, which contains the $x$-axis and the $z$-axis, and is perpendicular to the $y$-axis
+
+   The points on this plane have $y$-coordinate equal to 0.
+
+*  The $yz$-plane, which contains the $y$-axis and the $z$-axis, and is perpendicular to the $x$-axis
+
+   The points on this plane have $x$-coordinate equal to 0.
+
+```{r, echo=FALSE}
+fname <- "../../asymptote/3dcoords/coordplanes.html"
+copied <- file.copy(fname, ".", overwrite = TRUE)
+htmltools::tags$iframe(title = "Three coordinate planes", src = basename(fname), width=285*2, height=256*2, frameborder="0")
+```
+
+You can interact with the illustration by turning it around and viewing it
+from different angles.
+
+### __Projections__ of a point
+
+A point $P$ with coordinates $(x,y,z)$ in a 3d coordinate system has a number of _projections_.
+
+- First there are the projections to the _coordinate planes_:
+
+    - Its projection to the $xy$ plane is the __nearest__ point to $P$ that lies on
+      the $xy$-plane.  In other words, this is the nearest point to $P$ with zero
+      $z$-coordinate.  Its coordinates are $(x,y,0)$.
+
+    - Its projection to the $xz$ plane is the __nearest__ point to $P$ that lies on
+      the $xz$-plane.  In other words, this is the nearest point to $P$ with zero
+      $y$-coordinate.  Its coordinates are $(x,0,z)$.
+
+    - Its projection to the $yz$ plane is the __nearest__ point to $P$ that lies on
+      the $yz$-plane.  In other words, this is the nearest point to $P$ with zero
+      $x$-coordinate.  Its coordinates are $(0,y,z)$.
+
+- Then there are projections of $P$ to each of the three _coordinate axes_:
+
+    - The projection to the $x$-axis is the point on the $x$-axis that is
+      __nearest__ to $P$.  Since it is on the $x$-axis, the $y$ and $z$
+      coordinates must both be 0.  The coordinates of this projection are
+      $(x,0,0)$.
+
+    - Similarly, the projection of $P$ to the $y$-axis, or the point on the
+      $y$-axis that is __nearest__ to $P$, is $(0,y,0)$.
+
+    - Finally, the projection of $P$ to the $z$-axis, or the point on the
+      $z$-axis that is __nearest__ to $P$, is $(0,0,z)$.
+
+Those 6 projections, together with the point $P$ itself and the _origin_, form a
+rectangular box with the point $P$ and the _origin_ at the directly opposite
+corners:
+
+```{r, echo=FALSE}
+fname <- "../../asymptote/3dcoords/coordbox.html"
+copied <- file.copy(fname, ".", overwrite = TRUE)
+htmltools::tags$iframe(title = "Projections and coordinate box", src = basename(fname), width=285*2, height=256*2, frameborder="0")
+```
+
+If $P$ lies on one of the coordinate planes, axes, or at the origin, this box
+will _degenerate_ into a rectangle, an interval, or a single point.
+
+The following illustration combines both the "coordinate box" and the
+coordinate planes, so you can see the projections on the actual planes:
+
+```{r, echo=FALSE}
+fname <- "../../asymptote/3dcoords/coordplanesbox.html"
+copied <- file.copy(fname, ".", overwrite = TRUE)
+htmltools::tags$iframe(title = "Coordinate box with coordinate planes", src = basename(fname), width=285*2, height=256*2, frameborder="0")
+```
+
+### Try it yourself
+
+<iframe height="500" src="https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=Library/272/setStewart12_1/problem_1.pg
+&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple" width="640">
+</iframe>
+
+### A bit of a stretch
+
+See if you can figure out the answers to these (_Hint:_ the distance from a point
+$P$ to a plane or a line is a distance from $P$ to the point in the plane or
+line that is __nearest__ to $P$.)
+
+<iframe height="700" src="https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=Library/UMN/calculusStewartET/s_12_1_10.pg
+&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple" width="640">
+</iframe>
+

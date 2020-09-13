@@ -1,0 +1,278 @@
+---
+title: Cross Product
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Determinants
+
+Before learning about cross product, it is useful to review some basic
+information about _determinants_:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("reNSHrJclCA")
+```
+
+## In two dimensions
+
+(Note: _According to some texts, the operation of __cross product__ is not
+actually defined in two dimensions, it is only defined in three dimensions.
+The 2d vector operation described here is often called a __perp dot product__
+for reasons described below.)
+
+The __cross product__ of two 2-dimensional vectors $\vec{u} = \v{u_1, u_2}$ and
+$\vec{v} = \v{v_1, v_2}$ is defined as the scalar
+
+\[\vec{u}\times\vec{v} = \norm{\vec{u}}\norm{\vec{v}}\sin\theta\]
+
+where $\theta$ is the angle between $\vec{u}$ and $\vec{v}$.
+
+It is equal to the "signed area" of the parallelogram defined by the two
+vectors:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vectors/2dcross.html", title = "Cross product as an area", width=285, height=256)
+```
+
+(The area of a parallelogram is equal to the base times height.  In the
+parallelogram above, the base is $\norm{\vec{u}}$ and the height is
+$\norm{\vec{v}}\sin\theta$.  If $\theta <0$, we get a "negative" area".)
+
+In components, it turns out the cross product or vectors $\vec{u} = \v{u_1,
+u_2}$ and $\vec{v} = \v{v_1, v_2}$ is
+
+\[\vec{u}\times\vec{v} = u_1v_2 - v_1u_2\]
+
+### Explanation and connection to dot product:
+
+The following illustration shows two vectors: $\vec{u}$ and $\vec{v}$, together
+with a vector $\vec{u}^\perp$, which is a vector of the same magnitude as
+$\vec{u}$, but _perpendicular_ to $\vec{u}$.  If the component form of
+$\vec{u}$ is $\v{u_1,u_2}$, the comoponent form of $\vec{u}^\perp$ is $\v{-u_2,
+u_1}$ (You can also use $\v{u_2, -u+1}$, which would point in the opposite
+direction.  You can verify that you will get the same result in the end.)
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vectors/perpdot.html", title = "Vector perpendicular to u", width=285, height=256)
+```
+
+Then 
+
+\[\begin{aligned}
+\vec{u}^\perp \cdot \vec{v} &= \norm{\vec{u}^\perp}\norm{\vec{v}}\cos\left(\frac{\pi}{2}-\theta\right)\\
+&=\norm{\vec{u}}\norm{\vec{v}}\sin\left(\theta\right)\\
+&=\vec{u}\times\vec{v}
+\end{aligned}\]
+
+In components, $\vec{u}^\perp \cdot \vec{v} = -u_2v_1 + u_1v_2 = u_1v_2
+- u_2v_1$.
+
+This is why the "2d cross product" is sometimes called a _perp dot product_.
+The notation is then $\vec{u}\perp\vec{v}$.  Another term used for this
+operation is the _outer product_.
+
+### Properties
+
+From the definition and the equivalent component formula, we get the following
+properties:
+
+-   __Anti-commutativity:__ $\vec{u}\times\vec{v} = -\vec{v}\times\vec{u}$
+
+-   __Nilpotent property:__ $\vec{u}\times\vec{u} = 0$
+
+-   __Distributive property:__ $\vec{u}\times\left(\vec{v} + \vec{w}\right) =
+  (\vec{u}\times\vec{v}) + (\vec{u}\times\vec{w})$
+
+-   __Associativity with scalar multiple:__ $c(\vec{u}\times\vec{v} =
+  (c\vec{u})\times\vec{v} = \vec{u}\times(c\vec{v})$
+
+-  __Lagrange property:__ $(\vec{u}\times\vec{v})^2 + (\vec{u}\cdot\vec{v})^2 =
+  (\norm{u}\norm{v})^2$
+
+(The last one follows directly from the Pythagorean identity for sine and
+cosine.)
+
+### Calculating using _determinants_
+
+The 2d cross product $\vec{u}\times\vec{v}$ can also be defined as a determinant of a matrix with 
+first row $\vec{u}$ and second row $\vec{v}$:
+
+\[\vec{u}\times\vec{v} =
+\left\lvert
+\begin{matrix}
+u_1 & u_2\\
+v_1 & v_2
+\end{matrix}
+\right\rvert = u_1v_2 - u_2v_1\]
+
+
+### Example
+
+> Find the area of the parallelogram defined by the vectors $\vec{a} = \v{3,2}$
+> and $\vec{b} = \v{1,-5}$.
+
+The _signed_ area of the parallelogram is
+
+\[\vec{a}\times \vec{b} = \left\lvert\begin{matrix}3 & 2\\1 &
+-5\end{matrix}\right\rvert = 3\cdot (-5) - 2\cdot 1 = -17\]
+
+so the area is 17 square units.
+
+### Cross product in 3 dimensions
+
+The true cross product of two vectors is defined when the two vectors are 3d
+vectors.  The _cross product_ of two 3d vectors $\vec{u}$ and $\vec{v}$ (also known as the _vector
+product_ or _outer product_) is a __vector__ with the following properties:
+
+-  It is _perpendicular_ to both $\vec{u}$ and $\vec{v}$.
+-  Its magnitude is equal to the area of the parallelogram defined by the
+  vectors $\vec{u}$ and $\vec{v}$.
+-  The direction is determined by the _right hand rule_.
+
+```{r echo=FALSE}
+illustr("../../asymptote/vectors/cross3d.html", title = "Cross product in 3d",
+        width = 2*285, height = 2*256)
+```
+
+In components, the cross product can be calculated using the following
+determinant:
+
+\[\begin{aligned}
+\vec{u}\times\vec{v} =
+\left\lvert\begin{matrix}
+\vec{i} & \vec{j} & \vec{k}\\
+u_1 & u_2 & u_3\\
+v_1 & v_2 & v_3
+\end{matrix}\right\rvert &= \v{\left\lvert\begin{matrix}u_2 & u_3\\v_2 &
+v_3\end{matrix}\right\rvert, -\left\lvert\begin{matrix}u_1 & u_3\\v_1 &
+v_3\end{matrix}\right\rvert, \left\lvert\begin{matrix}u_1 & u_2\\v_1 &
+v_2\end{matrix}\right\rvert}\\
+&= \v{u_2v_3 - u_3v_2, -(u_1v_3 - u_3v_1), u_1v_2 - u_2v_1}
+\end{aligned}\]
+
+#### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart12_4/problem_1.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Rochester/setVectors3CrossProduct/ur_vc_2_3.pg",
+        width=640, height=500
+)
+```
+
+
+### Properties
+
+-   __Anti-commutativity:__ $\vec{u}\times\vec{v} = -\vec{v}\times\vec{u}$
+
+-   __Nilpotent property:__ $\vec{u}\times\vec{u} = \v{0,0,0} = \vec{O}$
+
+-   __Zero vector product:__ $\vec{O}\times\vec{u} = \vec{u}\times\vec{O} = \vec{O}$
+
+-   __Distributive property:__ $\vec{u}\times\left(\vec{v} + \vec{w}\right) =
+  (\vec{u}\times\vec{v}) + (\vec{u}\times\vec{w})$
+
+-   __Associativity with scalar multiple:__ $c(\vec{u}\times\vec{v} =
+  (c\vec{u})\times\vec{v} = \vec{u}\times(c\vec{v})$
+
+-  __Lagrange property:__ $\norm{\vec{u}\times\vec{v}}^2 + (\vec{u}\cdot\vec{v})^2 =
+  (\norm{u}\norm{v})^t2$
+
+-  __Orthogonality:__ $(\vec{u}\times\vec{v})\cdot\vec{u} = (\vec{u}\times\vec{v})\cdot\vec{v} = 0$
+
+-  __Triple scalar product:__ $\vec{u}\cdot(\vec{v}\times\vec{w}) = (\vec{u}\times\vec{v})\cdot\vec{w}$
+
+The first three properties follow directly from the properties of determinants:
+
+-   Switching two rows in a determinant changes the sign of the determinant
+
+-   Determinant with two equal rows is 0
+
+-   Determinant with a row of zeros is 0
+
+The Lagrange property is a concequence of the Pythagorean identity for sine and
+cosine.  The rest of the properties can be proven by working with components.
+
+For us, the most useful properties will be the __orthogonality__ and the fact
+that $\norm{\vec{u}\times\vec{v}}$ is __the area of the parallelogram__ defined
+by $\vec{u}$ and $\vec{v}$.
+
+#### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/UMN/calculusStewartET/s_12_4_24.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart12_4/problem_3.pg",
+        width=640, height=500
+)
+```
+
+### Triple Scalar Product
+
+The triple scalar product $\vec{u}\cdot(\vec{v}\times\vec{w})$ is related to
+volume on the following way:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("FEPw8PzUKmE")
+```
+
+It also gives another interpretation to a $3\times 3$ determinant.  The
+determinant
+
+\[\left\lvert\begin{matrix}
+a_1 & a_2 & a_3\\
+b_1 & b_2 & b_3\\
+c_1 & c_2 & c_3\\
+\end{matrix}\right\rvert\]
+
+is the _signed volume_ of the parallelepiped determined by the vectors 
+$\vec{a} = \v{a_1, a_2, a_3}$, 
+$\vec{b} = \v{b_1, b_2, b_3}$, and
+$\vec{c} = \v{c_1, c_2, c_3}$,
+where the sign is determined by the order in which the vectors are listed.
+
+
+#### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/UMN/calculusStewartET/s_12_4_prob01.pg",
+        width=640, height=500
+)
+```
+
