@@ -1,0 +1,277 @@
+\documentclass[aspectratio=169]{beamer}
+\let\digamma\relax
+\usepackage[romanfamily=casual,lucidasmallscale, nofontinfo]{lucimatx}
+%\usepackage[romanfamily=bright-osf, stdmathdigits=true,lucidasmallscale, nofontinfo]{lucimatx}
+\linespread{1.04} %  this value suits  scale=0.9  or lucidasmallscale
+%\usepackage{tikz}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=1.10}
+\usepackage{siunitx}
+\setbeamertemplate{navigation symbols}{}
+\usefonttheme{professionalfonts,serif}
+\newcolumntype{T}[1]{S[table-format=#1]}
+
+\begin{document}
+\begin{frame}
+    First let's look at two lines with the following parametric equations:
+    \vspace{1.5\baselineskip}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \[\begin{aligned}
+                    x(t) &= 1 - .6t\\
+                    y(t) &= -1 + t\\
+                    z(t) &= -1 + .8t
+                \end{aligned}\]
+        \end{column}%
+        \begin{column}{0.5\textwidth}
+            \[\begin{aligned}
+                    x(t) &= .2 - .2t\\
+                    y(t) &= 1.6 - .3t\\
+                    z(t) &= -.4 + .5t
+                \end{aligned}\]
+        \end{column}
+    \end{columns}
+    \pause
+    \vspace{1.5\baselineskip}
+    The following animation shows two moving objects with positions given by
+    these equations for $t$ between 1 and 2.5.
+\end{frame}
+\begin{frame}
+    We saw the two objects collide at $t=2$.\pause
+
+    If we set the coordinates of the two objects equal to each other and solve
+    for $t$, this is what happens:\pause
+
+    \begin{columns}
+        \begin{column}{.5\textwidth}
+            The system
+            \[
+                \left\{
+                    \begin{aligned}
+                        1 - .6t &= .2 - .2t\\
+                        -1 + t &= 1.6 - .3t\\
+                        -1 + .8t &= -.4 + .5t
+                    \end{aligned}
+                \right.
+            \]
+        \end{column}\pause%
+        \begin{column}{.5\textwidth}
+            becomes
+            \[
+                \left\{
+                    \begin{aligned}
+                        -.4t &= -.8\\
+                        1.3t &= 2.6\\
+                        .3t &= .6
+                    \end{aligned}
+                \right.
+            \]
+        \end{column}
+    \end{columns}\pause
+    \vspace{1.5\baselineskip}
+    which has a unique solution $t=2$.
+\end{frame}
+\begin{frame}
+    Next let's look at these two lines:
+    \vspace{1.5\baselineskip}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \[\begin{aligned}
+                    x(t) &= 1.3 - .6t\\
+                    y(t) &= -1.5 + t\\
+                    z(t) &= -1.4 + .8t
+                \end{aligned}\]
+        \end{column}%
+        \begin{column}{0.5\textwidth}
+            \[\begin{aligned}
+                    x(t) &= .2 - .2t\\
+                    y(t) &= 1.6 - .3t\\
+                    z(t) &= -.4 + .5t
+                \end{aligned}\]
+        \end{column}
+    \end{columns}
+\end{frame}
+\begin{frame}
+    If we set the coordinates of these two objects equal to each other and solve
+    for $t$, this is what happens:\pause
+
+    \begin{columns}
+        \begin{column}{.5\textwidth}
+            The system
+            \[
+                \left\{
+                    \begin{aligned}
+                        1.3 - .6t &= .2 - .2t\\
+                        -1.5 + t &= 1.6 - .3t\\
+                        -1.4 + .8t &= -.4 + .5t
+                    \end{aligned}
+                \right.
+            \]
+        \end{column}\pause%
+        \begin{column}{.5\textwidth}
+            becomes
+            \[
+                \left\{
+                    \begin{aligned}
+                        -.4t &= -1.1\\
+                        1.3t &= 2.9\\
+                        .3t &= 1
+                    \end{aligned}
+                \right.
+            \]
+        \end{column}
+    \end{columns}\pause
+    \vspace{1.5\baselineskip}
+    This system has no solution.\pause
+
+    The animation looks like this:
+\end{frame}
+\begin{frame}
+    It seems that the two trajectories still pass through the same point, but
+    at different times.  Let's try to solve this system instead:
+    \vspace{1\baselineskip}
+
+    \begin{columns}
+        \begin{column}{.5\textwidth}
+            \[
+                \left\{
+                    \begin{aligned}
+                        1.3 - .6r &= .2 - .2s\\
+                        -1.5 + r &= 1.6 - .3s\\
+                        -1.4 + .8r &= -.4 + .5s
+                    \end{aligned}
+                \right.
+            \]
+        \end{column}\pause%
+        \begin{column}{.5\textwidth}
+            \[\text{or\ \ }
+                \left\{
+                    \begin{aligned}
+                        -.6r + .2s &= -1.1\\
+                        r + .3s &= 3.1\\
+                        .8r - .5s &= 1
+                    \end{aligned}
+                \right.
+            \]
+        \end{column}
+    \end{columns}\pause
+    \vspace{1.5\baselineskip}
+    The augmented matrix of the system is
+    \[
+        \left[
+            \begin{array}{T{-1.1}T{-1.1}|T{-1.1}}
+                -.6 & .2 & -1.1\\
+                1 & .3 & 3.1\\
+                .8 & -.5 & 1
+            \end{array}
+        \right]
+    \]
+\end{frame}
+\begin{frame}
+    \small
+    \begin{columns}
+        \begin{column}{.3\textwidth}
+            Starting with:
+            \[
+                \left[
+                    \begin{array}{T{-1.1}T{-1.1}|T{-1.1}}
+                        -.6 & .2 & -1.1\\
+                        1 & .3 & 3.1\\
+                        .8 & -.5 & 1
+                    \end{array}
+                \right]
+            \]\pause
+            Switching the first and second row:
+            \[
+                \left[
+                    \begin{array}{T{-1.1}T{-1.1}|T{-1.1}}
+                        1 & .3 & 3.1\\
+                        -.6 & .2 & -1.1\\
+                        .8 & -.5 & 1
+                    \end{array}
+                \right]
+            \]\pause
+            Adding .6 times row 1 to row 2:
+            \[
+                \left[
+                    \begin{array}{T{1.1}T{-1.2}|T{1.2}}
+                        1 & .3 & 3.1\\
+                        0 & .38 & .76\\
+                        .8 & -.5 & 1
+                    \end{array}
+                \right]
+            \]
+        \end{column}\pause
+        \begin{column}{.3\textwidth}
+            Adding $-.8$ times row 1 to row 2:
+            \[
+                \left[
+                    \begin{array}{T{1.0}T{-1.2}|T{-1.2}}
+                        1 & .3 & 3.1\\
+                        0 & .38 & .76\\
+                        0 & -.74 & -1.48
+                    \end{array}
+                \right]
+            \]\pause
+            Dividing row 2 by $.38$:
+            \[
+                \left[
+                    \begin{array}{T{1.0}T{-1.2}|T{-1.2}}
+                        1 & .3 & 3.1\\
+                        0 & 1 & 2\\
+                        0 & -.74 & -1.48
+                    \end{array}
+                \right]
+            \]\pause
+            Dividing row 3 by $-.74$:
+            \[
+                \left[
+                    \begin{array}{T{1.0}T{1.1}|T{1.1}}
+                        1 & .3 & 3.1\\
+                        0 & 1 & 2\\
+                        0 & 1 & 2
+                    \end{array}
+                \right]
+            \]
+        \end{column}\pause
+        \begin{column}{.3\textwidth}
+            Subtracting row 2 from row 3:
+            \[
+                \left[
+                    \begin{array}{T{1.0}T{1.1}|T{1.1}}
+                        1 & .3 & 3.1\\
+                        0 & 1 & 2\\
+                        0 & 0 & 0
+                    \end{array}
+                \right]
+            \]\pause
+            Adding $-.3$ times row 2 to row 1:
+            \[
+                \left[
+                    \begin{array}{T{1.0}T{1.0}|T{1.1}}
+                        1 & 0 & 2.5\\
+                        0 & 1 & 2\\
+                        0 & 0 & 0
+                    \end{array}
+                \right]
+            \]\pause
+
+            The solution is
+            \[
+                \begin{aligned}
+                    r &= 2.5\\
+                    s &= 2
+                \end{aligned}
+            \]
+        \end{column}\pause
+    \end{columns}
+\end{frame}
+\begin{frame}
+    The first object, at time $t = 2.5$, will be at the same place the second
+    object passed through at time $t = 2$.\pause
+
+    \vspace{3\baselineskip}
+
+    The two lines will intersect, but the two objects will not collide.\pause
+\end{frame}
+\end{document}

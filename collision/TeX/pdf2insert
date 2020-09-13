@@ -1,0 +1,3 @@
+#!/bin/zsh
+#gm convert -transparent white -background transparent -density 300 $1.pdf $1.png
+gs -sDEVICE=pngalpha -o $1.png -r300 $1.pdf
