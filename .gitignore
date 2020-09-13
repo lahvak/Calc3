@@ -71,3 +71,6 @@ __pycache__
 
 # Asymptote generated html
 asymptote/**/*.html
+
+# Html from markdown or rmarkdown
+text/**/*.html
