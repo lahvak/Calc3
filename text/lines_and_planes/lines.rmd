@@ -1,0 +1,167 @@
+---
+title: Lines in 3d
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Linear motion
+
+Good way to learn about lines in $\mathbb{R}^3$ is by studying trajectories of
+uniformly moving objects.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("nw6zReJkJjs")
+```
+
+## Equations of lines
+
+From the idea of uniform motion of an object in $\mathbb{R}^3$, we obtain the __vector equation__ of a line:
+
+\[\vec{r}(t) = \vec{r}_0 + t\vec{v}\]
+
+where $\vec{r}(t)$ is the _position vector_ of the object at time $t$,
+$\vec{r}_0$ is the _initial position_ of the object (in other words, the
+position at $t=0$), and $\vec{v}$ is the _velocity_ vector of the moving
+object.
+
+If we split this equation into individual components, we get the __parametric
+equations__ of the line:
+
+\[
+\left\{
+\begin{aligned}
+x(t) &= x_0 + v_1t\\
+y(t) &= y_0 + v_2t\\
+z(t) &= z_0 + v_3t
+\end{aligned}
+\right.
+\]
+
+where $x_0$, $y_0$ and $z_0$ are the components of the _initial position
+vector_ $\vec{r}_0 = \v{x_0, y_0, z_0\}$.
+
+Finally, we can solve for $t$ to get the __symmetric equation__ of the line:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("aN4LGicuH84")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Union/setMVlinesplanes/lines-1.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Dartmouth/setStewartCh13S5/problem_3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/UMN/calculusStewartET/s_12_5_8.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Union/setMVlinesplanes/lines-3.pg",
+        width=640, height=500
+)
+```
+
+### Direction vector
+
+The direction (or velocity) vector will tell us the direction of the line.  If the direction
+vectors of two lines are parallel, then the lines are either parallel, or they
+are two different equations of the same line.
+
+The components of the direction vector can tell us something about the line as
+well.  For example:
+
+-  If $v_1 = 0$, the line's distance from the $yz$-plane is constant, in other
+  words, the line is _parallel_ to the $yz$-plane.  If $v_1 \neq 0$, the line is
+  _not_ parallel to the $yz$-plane, and therefore must _intersect it_.
+
+-  If $v_2 = 0$, the line's distance from the $xz$-plane is constant, in other
+  words, the line is _parallel_ to the $xz$-plane.  If $v_2 \neq 0$, the line is
+  _not_ parallel to the $xz$-plane, and therefore must _intersect it_.
+
+-  If $v_3 = 0$, the line's distance from the $xy$-plane is constant, in other
+  words, the line is _parallel_ to the $xy$-plane.  If $v_3 \neq 0$, the line is
+  _not_ parallel to the $xy$-plane, and therefore must _intersect it_.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("dVNS0ku6ePg")
+```
+
+## Intersection of lines
+
+```{r echo=FALSE}
+vembedr::embed_youtube("ZtCtTvTZGGg")
+```
+
+```{r echo=FALSE}
+vembedr::embed_youtube("VqIhRqqmS1g")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/ASU-topics/setCalculus/stef12_5p3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Rochester/setVectors4PlanesLines/ur_vc_2_14.pg",
+        width=640, height=500
+)
+```
+
+## Distance of a point from a line
+
+```{r echo=FALSE}
+vembedr::embed_youtube("YzcsN4f6sEQ")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/UMN/calculusStewartET/s_12_5_prob03.pg",
+        width=640, height=500
+)
+```
+
