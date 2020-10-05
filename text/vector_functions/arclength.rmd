@@ -1,0 +1,71 @@
+---
+title: Arc length
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Calculating arc length
+
+A vector function $\vec{r}:[a,b] \to \mathbb{R}^n$:
+
+$$\vec{r}(t) = \v{r_1(t), r_2(t), \dots}$$
+
+where $a \le t \le b$.  We will assume that the components are
+_differentiable_.
+
+We want to find the _length_ of the curve from $\vec{r}(a)$ to $\vec{r}(b)$.
+
+The idea is to first approximate the curve by a sequence of vectors like in
+this illustration:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vector_functions/length.html", title = "Approximation of a curve by a sequence of vectors", width=600, height=400)
+```
+
+We then calculate the sum of the magnitudes of all the vectors, and let the
+number of vectors go to infinity.  More details and some examples in the
+following video:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("f1EuPPPoM3E")
+```
+
+### Try it yourself
+
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/13_Calculus_of_Vector-Valued_Functions/13.3_Arc_Length_and_Speed/13.3.3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Hope/Multi2/11-06-Scalar-line-integrals/Scalar-line-integral-01.pg",
+        width=640, height=500
+)
+```

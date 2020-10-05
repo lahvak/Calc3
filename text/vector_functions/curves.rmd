@@ -1,0 +1,266 @@
+---
+title: Vector functions
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Vector functions
+
+A vector function $\vec{r}:\mathbb{R} \to \mathbb{R}^n$:
+
+$$\vec{r}(t) = \v{r_1(t), r_2(t), \dots}$$
+
+There are several ways to interpret this.  Two of them are:
+
+-   $\vec{r}(t)$ is a position vector of an object moving through the
+  $n$-dimensional space at time $t$.
+
+-   $\vec{r}$ is a "mapping" that takes points from the number line and places
+  them into the $n$-dimensional space.  The point $t$ is placed at the location
+  given by the position vector $\vec{r}(t)$.
+
+If the function is _continuous_, it will look like this:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("Q0WsJG_Uxik")
+```
+
+## Plotting vector functions and identifying the plots
+
+Consider the following vector function:
+
+$$\vec{r}(t) = \v{1 + \cos 2\pi t, 1 + \sin 2\pi t, t}$$
+
+Let's look at the plot of the function for $0 \le t \le 2$.
+
+One useful tool for studying plots of vector functions is _projecting the curve
+onto the coordinate planes_.
+
+### Projection to the $xy$-plane
+
+We have some curve in the 3d space.  Each point on this curve can be projected
+to the $xy$-plane, simply by setting its $z$-coordinate to 0.  If we do that,
+we get a new vector function 
+
+$$\vec{r_{xy}}(t) = \v{1 + \cos 2\pi t, 1 + \sin 2\pi t, 0}$$
+
+We know that in the $xy$-plane, the equations
+
+$$\begin{aligned}
+x &= \cos(2\pi t)\\
+y &= \sin(2\pi t)
+\end{aligned}$$
+
+form a circle with center at the origin and radius 1, traveled
+counterclockwise, starting at $(1,0)$ for $t = 0$, and going once around the
+whole circle every time $t$ increases by 1. This follows from the very
+definition of _trigonometric functions_ $\cos$ and $\sin$.
+
+Here we have 
+
+$$\begin{aligned}
+x &= 1 + \cos(2\pi t)\\
+y &= 1 + \sin(2\pi t)
+\end{aligned}$$
+
+which will move the circle so that its center is at the point $(1,1)$.
+
+So the projection of our curve onto the $xy$-plane is the circle with radius 1,
+center at $(1,1)$, traveled counterclokwise _twice_ around, starting at the
+point $(2,1)$.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vector_functions/projectionxy.html", title = "Projection onto the xy-plane", width=400, height=400)
+```
+
+### Projection to the $xz$-plane
+
+To project the points on the curve to the $xz$-plane, we set its $y$-coordinate to 0.
+This will give us a vector function 
+
+$$\vec{r_{xz}}(t) = \v{1 + \cos 2\pi t, 0, t}$$
+
+In other words, in the $xz$-plane, we have equations
+
+$$\begin{aligned}
+x &= 1 + \cos(2\pi t)\\
+z &= t
+\end{aligned}$$
+
+The second equation says that $t = z$.  We can plug this into the first
+equation, eliminating the $t$, and getting
+
+$$x = 1 + \cos(2\pi z) \text{ for } 0 \le z \le 2$$.
+
+Here we have $x$ as a function of $z$, a function which we can graph:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vector_functions/projectionxz.html", title = "Projection onto the xz-plane", width=400, height=400)
+```
+
+### Projection to the $yz$-plane
+
+In a silimar way we can see that the projection onto the $yz$-plane will be the
+graph of the function $y = 1 + \sin(2\pi z)$ for $0 \le z \le 2$:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vector_functions/projectionyz.html", title = "Projection onto the yz-plane", width=400, height=400)
+```
+
+### The graph of the vector function with the projections
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vector_functions/projections.html", title = "Graph of the vector function with projections", width=2*285, height=2*256)
+```
+
+### More examples
+
+```{r echo=FALSE}
+vembedr::embed_youtube("ObGDHSH8XP0")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart13_1/problem_3.pg",
+        width=640, height=500
+)
+```
+
+## Domain of a vector function
+
+In order for $\vec{r}(t)$ to be defined, __all of the components__ $r_1(t)$,
+$r_2(t)$, ... $r_n(t)$ must be defined.  For example:
+
+Consider the vector function $\vec{r}(t) = \v{1/t, \sqrt{t+1}, \ln(5-t)}$.
+
+-  The first component is undefined at $t = 0$.
+-  The second component is undefined at $t < -1$.
+-  The third component is undefined at $t \ge 5$.
+
+The domain of the function is then the union of two intervals: $[-1,0) \cup (0,5)$.
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Dartmouth/setStewartCh14S1/problem_1.pg",
+        width=640, height=500
+)
+```
+
+## Limits and continuity
+
+Intuitively, a continuous vector function would correspond to a trajectory of a
+moving object where the object does not do things like sudden jumps through the
+space, does not cease to exist for a moment, does not fly off to an infinite
+distance only to come back from an infinite distance, whether form the same or
+different direction, and so on.
+
+### Examples
+
+1.  The function
+
+    $$\vec{r}(t) = \v{t^2, 2t, \frac{1}{t-1}}$$
+
+    is discontinuous at $t = 1$.  As $t$ approaches 1 from the left, the
+    $x$-coordinate approaches 1, the $y$-coordinate approaches 2, while the
+    $z$-coordinate goes off towards $-\infty$.  As $t$ approaches 1 from the right,
+    the $x$ and $y$-coordinates still approach 1 and 2, respectively, but the
+    $z$-coordinate now goes off to $\infty$.
+
+    On the illustration below, the part of the curve for $t < 1$ is shown in red,
+    while the part for $t>1$ is blue.  The arrows show the direction of increasing
+    $t$.  The view is limited to a finite part of the space, in reality the curve
+    stretches indefinitely down and up.
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/vector_functions/discontinuity1.html", title = "Example of a discontinuous curve with a linear asymptote", width=285, height=256)
+    ```
+
+2.  The function
+
+    $$\vec{r}(t) = \v{2t, \frac{t+1}{(t-1)^2}, \frac{1}{t-1}}$$
+
+    is discontinuous at $t = 1$.  As $t$ approaches 1 from the left, the
+    $x$-coordinate approaches 1, and the $y$-coordinate goes off towards $\infty$
+    and the $z$-coordinate goes off towards $-\infty$.  As $t$ approaches 1 from the right,
+    the $x$ still approaches 1, the $y$-coordinate goes off to $\infty$, and the
+    $z$-coordinate now also goes off to $\infty$.
+
+    On the illustration below, the part of the curve for $t < 1$ is shown in red,
+    while the part for $t>1$ is blue.  The arrows show the direction of increasing
+    $t$.  The view is limited to a finite part of the space, in reality the curve
+    stretches indefinitely down and right and up and right.
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/vector_functions/discontinuity2.html", title = "Example of a discontinuous curve with a parabolic asymptote", width=285, height=256)
+    ```
+
+3.  The function
+
+    $$\vec{r}(t) = \v{\frac{t-1}{\left\lvert t-1\right\rvert} + 2t, t^2 - 1, \frac{1}{t*2+1} - \frac{1}{2}}$$
+
+    is discontinuous at $t = 1$.  As $t$ approaches 1 from the left, the
+    $x$-coordinate approaches 1, the $y$-coordinate approached 0
+    and the $z$-coordinate approaches 0.  As $t$ approaches 1 from the right,
+    the $x$ approaches 3, and the $y$-coordinate and the $z$-coordinate still
+    both approach 0.
+
+    On the illustration below, the part of the curve for $t < 1$ is shown in red,
+    while the part for $t>1$ is blue.  The arrows show the direction of increasing
+    $t$.
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/vector_functions/discontinuity3.html", title = "Example of a discontinuous curve with a jump discontinuity", width=285, height=256)
+    ```
+
+There are many other things that can happen, these are just some simple
+examples that are easy to visualize.
+
+### Limits
+
+```{r echo=FALSE}
+vembedr::embed_youtube("JFRKL5I8Vgw")
+```
+
+#### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/13_Calculus_of_Vector-Valued_Functions/13.2_Calculus_of_Vector-Valued_Functions/13.2.1.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart13_1/problem_2.pg",
+        width=640, height=500
+)
+```
+

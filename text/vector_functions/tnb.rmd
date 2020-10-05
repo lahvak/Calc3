@@ -1,0 +1,75 @@
+---
+title: TNB Frame, Osculating Planes and Circles
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## TNB Frame
+
+At ant point of a regularly parametrized curve, the unit _tangent_ vector, the
+unit _normal_ vector and the unit _binormal_ vector form a local coordinate
+frame called the TNB frame:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("dvOl7bUy9ns")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart13_3/problem_4.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Rochester/setVecFunction2Curvature/ur_vc_4_4.pg",
+        width=640, height=500
+)
+```
+
+## Osculating plane and circle
+
+We already know that a regularly parametrized curve can be locally approximated
+by a line called the _tangent line_.  At points where the curvature is not
+zero, we can get even better approximation by a circle.  The circle that
+provides the _best approximation_ of the curve at a given point is called the
+_osculating circle_ of the curve at that point:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("0lar2hAz_zY")
+```
+## An example of TNB frame and osculating circle:
+
+The following video shows an animation which visualizes a TNB frame and
+osculating circle moving along a curve:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("JZGFcwipHYY")
+```
+

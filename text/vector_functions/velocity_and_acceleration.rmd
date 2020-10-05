@@ -1,0 +1,136 @@
+---
+title: Velocity and Acceleration
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Velocity and acceleration
+
+As we already saw, a vector function $\vec{r}:[a,b] \to \mathbb{R}^3$:
+
+$$\vec{r}(t) = \v{x1(t), y(t), z(t)}$$
+
+for $a \le t \le b$ can be interpreted as a position vector of a moving point
+in $\mathbb{R}^3$ at the time $t$.  As the point moves through the space, it
+traces a trajectory, which is a curve in $\mathbb{R}^3$.  We say that the
+vector function $\vec{r}$ is a __parametrization__ of the curve.
+
+We also already know that the derivative $\vec{r}'(t)$ can be interpreted as
+the _velocity vector_ of the moving point -- it will tell us how fast and in
+which direction is the position changing. The magnitude of the velocity vector
+$\norm{\vec{r}'(t)}$ is the _speed_ of the motion.
+
+The second derivative $\vec{r}''(t)$ will tell us how the velocity changes.  It
+can be interpreted as the _acceleration vector_.
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart13_4/problem_7.pg",
+        width=640, height=500
+)
+```
+
+## Multiple parametrizations
+
+Different vector functions can correspond to the same trajectory in
+$\mathbb{R}^3$. We can think about it as two objects traveling along the same
+curve, but at different times and at possibly different speeds (or even in the
+opposite direction).
+
+We will only consider so called _regular_ parametrizations, which are vector
+functions that are continuous on $[a,b]$, _twice differentiable_ on $(a,b)$, 
+and $\norm{\vec{r}'(t)} \neq 0$ for all $t\in (a,b)$.
+
+The following video explores relations between two regular parametrizations of
+the same curve.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("NSf84jrJP0I")
+```
+
+## Tangential and normal components of acceleration
+
+When the velocity of a motion change, there are two things that can be
+changing:
+
+-  the speed, or magnitude of the velocity
+
+-  the direction of the motion
+
+The following video looks at how an acceleration vector can cause these two
+changes.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("K3iWUK2Wd_o")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Dartmouth/setStewartCh14S2/problem_3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/ASU-topics/setCalculus/stef/stef13_4p2.pg",
+        width=640, height=500
+)
+```
+
+## Curvature
+
+In the previous video we saw that the curvature is defined as
+
+$$\kappa(t) = \frac{\norm{\text{normal component of }
+\vec{r}''(t)}}{\norm{\vec{r}'(t)}^2}$$
+
+and can be calculated as 
+
+$$\kappa(t) = \frac{\norm{\vec{T}'(t)}}{\norm{\vec{r}'(t)}}$$
+
+Most of the time, calculating the derivative of the unit tangent vector is
+hard.  In this video we will derive a formula for curvature that is usually
+easier to use:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("12ZG8j9f0Oo")
+```
+
+### Try it yourself
+
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart13_3/problem_6.pg",
+        width=640, height=500
+)
+```
+
