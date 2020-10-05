@@ -1,0 +1,147 @@
+---
+title: Limits of Functions of Several Variables
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE, messages=FALSE, errors=FALSE, warnings=FALSE}
+library(tidyverse)
+```
+
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Definition of limit
+
+Given a function $f$ of $n$ variables ($f:\mathbb{R}^n \to \mathbb{R}$), and a
+point $A(a_1, a_2, \dots, a_n)$, we say that the limit of $f(x_1, x_2, \dots,
+x_n)$ at $(a_1, a_2, \dots, a_n)$ is a real number $L$, or symbolically
+
+$$\lim_{(x_1,x_2,\dots,x_n)\to(a_1,a_2,\dots,a_n)} f(x_1, x_2, \dots, x_n) = L$$
+
+if for every $\varepsilon > 0$ there exists a $\delta > 0$ such that
+$\norm{f(x_1,x_2,\dots,x_n) - L}< \varepsilon$ whenever $0 < \norm{\v{x_1,
+x_2, \dots, x_n} - \v{a_1, a_2, \dots, a_n}}< \delta$.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("pCbejhh19IQ")
+```
+
+## Examples
+
+Some examples of functions that don't have a limit at some point.
+
+### Example 1
+
+```{r echo=FALSE}
+vembedr::embed_youtube("3JT5dabAxLA")
+```
+
+The surface graph of the function $\displaystyle f(x,y) = \frac{xy}{x^2+y^2}$ from the previous video is
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/limits/nolimit_1_surface.html", title = "Graph of a function with no limit at (0,0).", width=300, height=300)
+```
+
+### Example 2
+
+```{r echo=FALSE}
+vembedr::embed_youtube("6dB7dlxuFc8")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap12Sec6/Q13.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap12Sec6/Q15.pg",
+        width=640, height=500
+)
+```
+
+## Some limits that exist
+
+If a limit exists, we have number of ways to find it and prove that the number
+we found is really the limit.
+
+### Squeeze Theorem
+
+```{r echo=FALSE}
+vembedr::embed_youtube("IqxapaLna6E")
+```
+
+The surface graph of the function $\displaystyle f(x,y) = \frac{xy}{\sqrt{x^2+y^2}}$ from the previous video is
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/limits/limit_squeeze.html", title = "Graph of a function squeezed between |y| and -|y|.", width=300, height=300)
+```
+
+The graph shows the function "squeezed" between $\left\lvert y\right\rvert$ and
+$-\left\lvert y\right\rvert$.
+
+### Replacement Theorem
+
+```{r echo=FALSE}
+vembedr::embed_youtube("97qP_LcHUcA")
+```
+
+The surface graph of the function $\displaystyle f(x,y) = \frac{x^3 - y^3}{x^2 + xy + y^2}$ from the previous video is
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/limits/limit_replacement.html", title = "Graph of a function with limit at (0,0).", width=300, height=300)
+```
+
+You can see that it is really just a linear function, except that it is
+undefined at $(0,0)$ (you cannot see that from the graph, of course).
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart14_2/problem_3.pg",
+        width=640, height=500
+)
+```
+
+## Continuity
+
+```{r echo=FALSE}
+vembedr::embed_youtube("xHEfZ0ju71c")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart14_2/UR_VC_5_3.pg",
+        width=640, height=500
+)
+```
+
