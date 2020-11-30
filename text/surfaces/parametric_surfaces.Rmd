@@ -1,0 +1,263 @@
+---
+title: Parametric Surfaces
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Parametric Surfaces
+
+A _parametric surface_ is defined by a function $\vec{r}:\mathbb{R}^2 \to \mathbb{R}^3$.  The idea is exactly the same as for a _parametric curve_: we are taking a (piece of) plane and inserting it into the space, bending, stretching a compressing in during the process.
+
+Let's look at several examples:
+
+*   $\vec{r}(u,v) = \v{\cos(u), \sin(u), v}$ for $-\pi \le u \le \pi$ and $0 \le v \le 1$.
+
+    This function maps the _rectangle_ $[-\pi,\pi]\times[0,1]$ 
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle1.html", title = "The rectangle [-pi,pi]×[0,1]", width=840, height=210)
+    ```
+
+    to the cylinder:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/cylinder.html", title = "Cylinder with radius 1, centered at z-axis", width=500, height=500)
+    ```
+
+    The horizontal segment at $v = \frac{1}{2}$ (green) gets mapped to the green circle, while the vertical segment at $u = 0$ (blue) gets mapped to the blue vertical segment.
+
+*   $\vec{r}(u,v) = \v{v\cos(u), v\sin(u), v}$ for $-\pi \le u \le \pi$ and $0 \le v \le 1$.
+
+    This function maps the _rectangle_ $[-\pi,\pi]\times[0,1]$ 
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle1.html", title = "The rectangle [-pi,pi]×[0,1]", width=840, height=210)
+    ```
+
+    to the cone:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/cone.html", title = "Cone with radius 1, vertex at the origin, centered at z-axis", width=500, height=500)
+    ```
+
+*   $\vec{r}(u,v) = \v{v^2\cos(u), v^2\sin(u), v}$ for $-\pi \le u \le \pi$ and $0 \le v \le 1$.
+
+    This function maps the _rectangle_ $[-\pi,\pi]\times[0,1]$ 
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle1.html", title = "The rectangle [-pi,pi]×[0,1]", width=840, height=210)
+    ```
+
+    to the following surface:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/cusp.html", title = "A surface with a cusp at the origin", width=500, height=500)
+    ```
+
+*   $\vec{r}(u,v) = \v{v\cos(u), v\sin(u), v^2}$ for $-\pi \le u \le \pi$ and $0 \le v \le 1$.
+
+    This function maps the _rectangle_ $[-\pi,\pi]\times[0,1]$ 
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle1.html", title = "The rectangle [-pi,pi]×[0,1]", width=840, height=210)
+    ```
+
+    to a paraboloid:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/paraboloid.html", title = "A paraboloid facing up, with vertex at the origin", width=500, height=500)
+    ```
+
+*   $\vec{r}(u,v) = \v{\cos(v)\cos(u), \cos(v)\sin(u), v}$ for $-\pi \le u \le \pi$ and $-\frac{\pi}{2} \le v \le \frac{\pi}{2}$.
+
+    This function maps the _rectangle_ $[-\pi,\pi]\times\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$ 
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle2.html", title = "The rectangle [-pi,pi]×[-pi/2,pi/2]", width=840, height=480)
+    ```
+
+    to a lemon:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/lemon.html", title = "A lemon with center at the origin, and tips at (0,0,+-1)", width=500, height=800)
+    ```
+
+*   $\vec{r}(u,v) = \v{\sin(v)\cos(u), \sin(v)\sin(u), v}$ for $-\pi \le u \le \pi$ and $-\frac{\pi}{2} \le v \le \frac{\pi}{2}$.
+
+    This function maps the _rectangle_ $[-\pi,\pi]\times\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$ 
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle2.html", title = "The rectangle [-pi,pi]×[-pi/2,pi/2]", width=840, height=480)
+    ```
+
+    to an hourglass:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/hourglass.html", title = "An hourglass with center at the origin, bottom at at z = -1, and top at z = 1", width=500, height=800)
+    ```
+
+*   The function 
+    
+    $$\begin{aligned} 
+    x(u,v) &= (3 - \cos(v))\cos(u)\\
+    y(u,v) &= (3 - \cos(v))\sin(u)\\
+    z(u,v) &= \sin(v)
+    \end{aligned}$$ 
+
+    for $-\pi \le u \le \pi$ and $-\pi \le v \le \pi$ maps the _rectangle_ $[-\pi,\pi]\times\left[-\pi,\pi\right]$
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle3.html", title = "The rectangle [-pi,pi]×[-pi,pi]", width=480, height=480)
+    ```
+
+    to a _torus_:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/torus.html", title = "A torus", width=600, height=600)
+    ```
+
+*   The function 
+    
+    $$\begin{aligned} 
+    x(u,v) &= u(3 - \cos(v))\cos(u)\\
+    y(u,v) &= u(3 - \cos(v))\sin(u)\\
+    z(u,v) &= u\sin(v) + 6\pi - 2u
+    \end{aligned}$$ 
+
+    for $0 \le u \le 3\pi$ and $-\pi \le v \le \pi$ maps the _rectangle_ $[0,3\pi]\times\left[-\pi,\pi\right]$
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/rectangle4.html", title = "The rectangle [0,3pi]×[-pi,pi]", width=640, height=480)
+    ```
+
+    to this surface:
+
+    ```{r, echo=FALSE}
+    illustr("../../asymptote/surfaces/horn.html", title = "A horn", width=700, height=600)
+    ```
+
+### A video on parametric surfaces
+
+(A part of class recording)
+
+```{r echo=FALSE}
+vembedr::embed_youtube("FbPMSwZCEZw")
+```
+
+### Illustration for an "area unit"
+
+showing how the area of a tiny part of a surface can be approximated by an area of a parallelogram:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/surfaces/area_unit.html", title = "A parallelogram with sides r_u du and r_v dv approximation a part of the area of a surface.", width=700, height=600)
+```
+
+The yellow region is an image of a small rectangle in the $uv$-plane with corner at $(u, v)$ and sides $du$ and $dv$. Its area is approximated by the purple parallelogram with sides $\vec{r}_u\; du$ and $\vec{r}_v\; dv$.  The area of the parallelogram is $\norm{\vec{r}_u)u,v)\times \vec{r}_v(u,v)}\;du\;dv$.
+
+### Normal vector
+
+Suppose $\vec{r}(u,v) = \v{x(u,v), y(u,v), z(u,v)}$ is a vector function of two variables with _differentiable components_ at $(u,v)$, and suppose that $\vec{r}_u(u,v)$ and $\vec{r}_v(u,v)$ are not _zero vectors_.
+
+Then the vectors $\vec{r}_u(u,v)$ and $\vec{r}_v(u,v)$ belong to the _tangent plane_ to the parametric surface at $\vec{r}(u,v)$, and their _cross product_ is a _normal vector_ to this plane. We call this vector a _normal vector to the surface_ at $\vec{r}(u,v)$.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/surfaces/tangents.html", title = "Tangent vectors and a normal vector to a surface.", width=700, height=600)
+```
+
+Dividing a _normal vector_ to a surface by its magnitude, we get a _unit normal vector_. At each point where there is a normal vector to a surface, there are two unit normal vectors, pointing in opposite directions. We can think about these as pointing to _opposite sides_ of the surface.
+
+Suppose a surface has a normal vector at all of its points with possibly finitely many exceptions (for example, the "lemon" surface above has no normal vector at the two "tips"). At each point where a normal vector exists, we can choose one of the two _unit normal vectors_ as the one that points to the _outside_ of the surface.  The question is whether we can do this in a consistent way. One way to define what _consistent_ means is, _can we make the choice of the unit normal vectors in such a way that the resulting vector field is __continuous___?
+
+If we can, we say the surface is _orientable_, and the choice of one of the two continuous unit normal vector fields is called the _orientation_ of the surface.
+
+#### Examples
+
+All the surfaces in the examples above are orientable.  The following surface is orientable, showing one of the two choices of orientation:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/surfaces/orientable.html", title = "An example of an orientable surface", width=700, height=600)
+```
+
+The following is an example of perhaps the most famous non-orientable surface, so called _Mőbius band_. You can make one yourself by taking a strip of paper, twisting one end by $\pi$, and glue it to the other end.  You can see that the unit normal vector field is _discontinuous_ along the blue line segment on the surface:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/surfaces/nonorientable.html", title = "An example of a non-orientable surface (Mőbius band)", width=700, height=600)
+```
+
+Another well known example of non-orientable surface is so called _cross-cap_. This is a _self-intersecting_ surface: there is a segment such that each point on this segment lies on the surface _twice_, for two different values of the parameter $u$. This illustration is colored in such a way that you can see the purple part of the surface crossing the yellow part. Separately, each part has a tangent plane and therefore a normal vector at each point of the intersection segment.  At the "bottom" of the surface, the two parts (purple and yellow) come seamlessly together.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/surfaces/crosscap_novect.html", title = "A cross-cap colored with two colors so that the intersection of the two parts of the surface shows clearly.", width=700, height=600)
+```
+
+The following shows a choice of a unit normal vector field on the cross-cap. The vectors are colored in two colors, red and green, that correspond to the two colors on the coloring of the cross-cap shown above. You can see how the green vectors pointing "out" of the cross-cap point "into" the cross-cap after passing through the intersection.  There is a _discontinuity_ of the field along the blue curve on the surface.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/surfaces/crosscap.html", title = "A cross-cap with a normal vector field.", width=700, height=600)
+```
+
+You can see that the whole region that appears "surrounded" by the surface is in fact _inside_ the surface from the point of view of the field on one half of the surface, but _outside_ of the surface from the point of view of the field on the other half of the surface.  There is no way to choose a _continuous_ unit normal vector field on the surface.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("hEvCFM635X0")
+```
+
+## Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap17Sec5/Q27.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Rochester/setVecFunction3Motion/ur_vc_4_9.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.7.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.11.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/AlfredUniv/anton8e/chapter16/16_5/prob2.pg",
+        width=640, height=500
+)
+```
