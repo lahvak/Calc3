@@ -1,0 +1,229 @@
+---
+title: Limits of Functions of Several Variables
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Directional derivatives
+
+The derivative of a function of one variable will give us the _rate of change_
+of that function:  it will tell us _how many times faster is the output of the
+function changing compared to the input_.
+
+When attempting to extend this to functions of several variables, we face the
+following problem: the way the output changes will depend not only on the
+magnitude of the input change, but also on its direction.
+
+If we want to find the rate of change of a function of several variables, we
+need to specify the direction, which can be done by specifying a _unit vector_.
+
+### Definition
+
+Given a function $f$ of $n$ variables ($f:\mathbb{R}^n \to \mathbb{R}$), a
+point $A(a_1, a_2, \dots, a_n)$, and a _unit vector_ $\vec{u}$, we define the
+__directional derivative__ of $f$ at $A$ in the direction $\vec{u}$ the
+following way:
+
+$$f_{\vec{u}}(a_1, a_2, \dots, a_n) = \lim_{h \to 0} 
+\frac{f(x_1 + hu_1, x_2 + hu_2, \dots, x_n+hu_n) - f(x_1, x_2, \dots,
+x_n)}{h}$$
+
+### Another way to think about it
+
+Suppose we have a line passing through the point $A$ with the velocity vector
+$\vec{u}$ (since this is a unit vector, the speed of the motion is 1).  The
+equation of the line will be
+
+$$\left\{
+\begin{aligned}
+x_1(t) &= a_1 + u_1 t\\
+x_2(t) &= a_2 + u_2 t\\
+&\vdots\\
+x_n(t) &= a_n + u_n t
+\end{aligned}
+\right.$$
+
+If we substitute the $x_i$s into the function $f$, we will get a real function
+of single variable $t$:
+
+$$\begin{aligned}
+g(t) &= f\left(x_1(t), x_2(t), x_3(t), \dots, x_n(t)\right)\\
+&= f\left(a_1 + u_1 t, a_2 + u_2 t, a_3 + u_3 t, \dots, a_n + u_n t\right)
+\end{aligned}$$
+
+The derivative of $g$ at $0$ is then the _directional derivative_ of $f$ at $A$
+in the direction $\vec{u}$.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("HiF3AjuYXoA")
+```
+
+## Partial derivatives
+
+Let's try to calculate a directional derivative of a function $f$ of two
+variables in the direction of the _unit basis vector_ $\vec{i} = \v{1,0}$:
+
+$$f_{\vec{i}}(x,y) = \lim_{h\to 0} \frac{f(x+1h, y + 0h) - f(x,y)}{h}$$
+
+This can be interpreted as a derivative of the function $f(x,y)$ where the
+variable $y$ is __fixed__ and only the variable $x$ changes.
+
+### Partial evaluation and partial functions
+
+Given a function $f:\mathbb{R}^n \to \mathbb{R}$, we can plug in a number for
+one of the variables $x_1$, $x_2$, ..., $x_n$.  The remaining $n-1$ variables
+will still be undetermined, so we will end up with a function that has $n-1$
+variables.  We can repeat this several times, in the end plugging in $k$
+numbers for $k$ of the variables, and ending up with a function of $n-k$
+variables.
+
+This process is called _partial evaluation_, and the resulting function a
+_partial function_ of $f$.
+
+In particular, we can plug in values for _all but one_ of the variables, ending
+with a _partial function_ of one variable.  We can then take a derivative of
+this function.
+
+### Partial derivatives definition:
+
+Given a function $f:\mathbb{R}^n \to \mathbb{R}$, then for every index $i =
+1,2,\dots,n$ we can define the _partial derivative_ with respect to $x_i$:
+
+We will consider all the variables except $x_i$ to be fixed numbers, which will
+turn $f$ into a partial function with only one variable, $x_i$.  Then the
+_partial derivative of $f$ with respect to $x_i$_ is the derivative of this
+partial function.  It is also a _directional derivative_ of $f$ in the
+direction of the $i$-th standard basis vector.
+
+We use the notation $f_{x_i}(x_1, x_2, \dots, x_n)$ or, equivalently,
+
+$$\frac{\partial f}{\partial x_i} (x_1, x_2, \dots, x_n)$$
+
+#### For $n = 2$ we get two partial derivatives:
+
+-  Partial derivative with respect to $x$:
+
+   $$f_x(x,y) = \frac{\partial f}{\partial x}(x,y) = f_{\vec{i}}(x,y) =
+   \lim_{h\to 0}\frac{f(x+h,y) - f(x,y)}{h}$$
+
+-  Partial derivative with respect to $y$:
+
+   $$f_y(x,y) = \frac{\partial f}{\partial y}(x,y) = f_{\vec{j}}(x,y) =
+   \lim_{h\to 0}\frac{f(x,y+h) - f(x,y)}{h}$$
+
+#### For $n = 3$ we get three partial derivatives:
+
+-  Partial derivative with respect to $x$:
+
+   $$f_x(x,y,z) = \frac{\partial f}{\partial x}(x,y,z) = f_{\vec{i}}(x,y,z) =
+   \lim_{h\to 0}\frac{f(x+h,y,z) - f(x,y,z)}{h}$$
+
+-  Partial derivative with respect to $y$:
+
+   $$f_y(x,y,z) = \frac{\partial f}{\partial y}(x,y,z) = f_{\vec{j}}(x,y,z) =
+   \lim_{h\to 0}\frac{f(x,y+h,z) - f(x,y,z)}{h}$$
+
+-  Partial derivative with respect to $z$:
+
+   $$f_z(x,y,z) = \frac{\partial f}{\partial z}(x,y,z) = f_{\vec{k}}(x,y,z) =
+   \lim_{h\to 0}\frac{f(x,y,z+h) - f(x,y,z)}{h}$$
+
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/derivatives/partials.html", title = "Graph showing partial derivatives of a function of two variables.", width=500, height=500)
+```
+
+### Calculating partial derivatives
+
+```{r echo=FALSE}
+vembedr::embed_youtube("VkAGPgLntnM")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.3_Partial_Derivatives/14.3.42.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap14Sec2/Q08.pg",
+        width=640, height=500
+)
+```
+
+## Differentiability and tangent plane
+
+```{r echo=FALSE}
+vembedr::embed_youtube("uYI7VFMk0Bg")
+```
+
+The following graph shows the tangent plane to a surface, together with traces
+that are graphs of the _partial functions_.
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/derivatives/tangent.html", title = "Tangent plane to a surface at a point", width=500, height=500)
+```
+
+## A non-differentiable function
+
+The existence of _partial derivatives_ of $f$ at a point $A$ does not guarantee that $f$ is differentiable at $A$:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("WAtAvC9DQqE")
+```
+
+The following graph shows the function $f(x,y) = \frac{xy}{x^2 + y^2}$ with a
+"tangent plane" at $(0,0)$ which is not actually tangent to the surface:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/derivatives/nodiff.html", title = "Graph of a non-differentiable function at (0,0)", width=500, height=500)
+```
+
+## Directional derivatives of a differentiable function
+
+```{r echo=FALSE}
+vembedr::embed_youtube("wL7_o8ZI2LM")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.5_The_Gradient_and_Directional_Derivatives/14.5.25.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap14Sec5/Q19.pg",
+        width=640, height=500
+)
+```

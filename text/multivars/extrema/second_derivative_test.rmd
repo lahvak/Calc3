@@ -1,0 +1,180 @@
+---
+title: Second derivative test.
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## First derivatives and critical points
+
+Suppose $f$ is a __differentiable function__ at a point $A(a,b)$.  It means that
+locally, the graph of the function looks like a plane with equation
+
+$$z = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b)$$
+
+The _normal vector_ of the plane is $\v{-f_x(a,b), -f_y(a,b), 1}$.
+The gradient vector $\vec{\nabla} f(a,b) = \v{f_x(a,b), f_y(a,b)}$ points in
+the direction in which $f$ _increases_ the fastest.  And the _directional
+derivative_ in the direction of the gradient vector at $(a,b)$ is equal to the
+_magnitude_ of the gradient vector.  If the magnitude of the gradient is
+positive, the function $f$ is _increasing_ in the direction of the gradient,
+and _decreasing_ in the opposite direction.
+
+Now suppose that the point $A$ is the point of local _maxima_ or _minima_ of
+$f$.  That means the function _cannot_ be increasing (if it is the maximum) or decreasing (if it is the minimum)
+in any direction, and the tangent plane cannot be _slanted_.  It must be
+_horizontal_, with _normal vector_ parallel to $\vec{k}$.
+
+From this we can conclude that _if a function is differentiable at a point of
+local maxima or minima, the gradient vector at that point must be the zero
+vector_.
+
+This is very similar to the one-variable situation:  If $f'(a)$ exists at a
+point $a$ that is a point of local maxima or minima, it must be 0.
+
+Note that just like in the one-variable case, the [converse](https://en.wikipedia.org/wiki/Converse_(logic)) is
+not true:  It is possible to find points where the function is differentiable
+and the gradient is the zero vector, but the function does not have a local maximum or minimum at the point.
+We will see examples of that.
+
+Other way this is often formulated is by saying that for a function
+_differentiable_ at $A$, zero gradient vector is _necessary_ but _not
+sufficient_ condition for the existence of local maximum or minimum at the point.
+
+Just like in the single variable case, the usefulness of this is based on the
+[contrapositive](https://en.wikipedia.org/wiki/Contrapositive):
+
+> If the gradient vector of a differentiable function at $A$ is _not zero_,
+> then the function _cannot_ have a _local maximum_ or _local minimum_ at $A$.
+
+The way we use this to find local maxima and minima is by first finding the
+points where a differentiable function has _zero gradient vector_ (called _critical points_), and then
+further testing those points.
+
+### Examples of finding critical points
+
+```{r echo=FALSE}
+vembedr::embed_youtube("")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "",
+        width = 640, height = 500
+)
+```
+
+## Second derivatives
+
+In the single variable case, the _second derivative test_ is very simple:  if
+$a$ ia a point such that $f'(a) = 0$, and $f''(a) > 0$, then $f$ is _concave
+up_ at $a$, and therefore must have a _local minimum_ at $a$.  Similarly, if
+$f''(a) < 0$, then $f$ is _concave down_ at $a$, and the function has a _local
+maximum_ at $a$.
+
+The situation is more complicated in two variables.
+
+### Quadratic functions
+
+We looked at several examples of _quadratic functions_ in class:
+
+-  $f(x,y) = x^2 + xy + y^2$
+-  $f(x,y) = x^2 - xy + y^2$
+-  $f(x,y) = x^2 + 3xy + y^2$
+
+All of these functions have a _critical point_ at $(0,0)$.  In class, you
+looked at _traces_ of these functions through the origin, in the direction of a
+vector $\vec{v}$:  you defined a single variable function
+
+$$g(t) = f(0 + v_1 t, 0 + v_2 t)$$
+
+Almost all such functions are a quadratic functions (for the third function,
+there are 8 directions in which we get a constant zero function).
+
+When we explored the three functions in class, we saw that for the first and
+second function, all the traces we looked at were concave up, with positive
+second derivative, while for the third function, we saw some traces concave up
+and some concave down.
+
+The contour plots of the three functions look like this:
+
+#### $f(x,y) = x^2 + xy + y^2$
+
+```{r, echo=FALSE}
+expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
+    mutate(`f(x,y)` = x^2 + x*y + y^2) %>%
+    ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=after_stat(level))) + coord_fixed()
+```
+
+Here the contours indicate a relative minimum: 
+
+```{r, echo=FALSE}
+expand.grid(x = seq(-2,2,length.out=40), y = seq(-2,2,length.out=40)) %>%
+    mutate(dx = 2*x + y, dy = x + 2*y, gradient_length = sqrt(dx^2 + dy^2)) %>%
+    ggplot(aes(x,y)) + geom_segment(aes(xend = x+0.02*dx, yend = y+0.02*dy, color=gradient_length), arrow = arrow(length=unit(0.1,"cm"))) + coord_fixed()
+```
+
+#### $f(x,y) = x^2 - xy + y^2$
+
+```{r, echo=FALSE}
+expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
+    mutate(`f(x,y)` = x^2 - x*y + y^2) %>%
+    ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=after_stat(level))) + coord_fixed()
+```
+
+#### $f(x,y) = x^2 + 3xy + y^2$
+
+```{r, echo=FALSE}
+expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
+    mutate(`f(x,y)` = x^2 + 3*x*y + y^2) %>%
+    ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=after_stat(level))) + coord_fixed()
+```
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/plots/graph_one_var.html", title = "Graph of a function of single variable.", width=300, height=300)
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/12-2-Multivariable-graphs/HGM4-12-2-14c-Multivariable-functions-graphs/HGM4-12-2-14c-Multivariable-functions-graphs.pg",
+        width=640, height=500
+)
+```
+
+
+```{r, echo=FALSE}
+expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
+    mutate(`f(x,y)` = x*y*exp(-x^2 - y^2)) %>%
+    ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=..level..))
+```

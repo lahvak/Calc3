@@ -1,0 +1,171 @@
+---
+title: Gradient vector, higher derivatives, ...
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Review
+
+For a function of several variables, we have defined the _directional
+derivative_ in the direction of a _unit vector_ $\vec{u}$ as
+
+$$f_{\vec{u}}(a_1, a_2, \dots, a_n) = \lim_{h \to 0} 
+\frac{f(x_1 + hu_1, x_2 + hu_2, \dots, x_n+hu_n) - f(x_1, x_2, \dots,
+x_n)}{h}$$
+
+We then defined _partial derivatives_ of $f$ as directional derivatives in the
+direction of one of the _standard basis vectors_, that is unit vectors in the
+directions of the coordinate axes.
+
+In two dimensions, these are the vectors $\vec{i}$ and $\vec{j}$, leading to
+the partial derivative _with respect to $x$_:
+
+$$\frac{\partial f}{\partial x}(x,y) = f_x(x,y) = f_{\vec{i}}(x,y) = D_{\vec{i}} f(x,y)$$
+
+and 
+
+$$\frac{\partial f}{\partial y}(x,y) = f_y(x,y) = f_{\vec{j}}(x,y) = D_{\vec{j}} f(x,y)$$
+
+In three dimensions we also add the partial derivative with respect to $z$,
+corresponding to the vector $\vec{k}$.
+
+We also learned what it means for a function of several variables to be
+_differentiable_:  It is not enough to just have all the partial derivatives.
+A function $f:\mathbb{R}^n \to \mathbb{R}$ is _differentiable at a point $A =
+(a_1, a_2, \dots, a_n)$_ if it can be well approximated near $A$ by a linear
+function $L:\mathbb{R}^n \to \mathbb{R}$.  Formally. $f$ is differentiable at
+$A$ if there exists a linear function $L$ such that 
+
+$$\lim_{(x_1,x_2,\dots, x_n)\to (a_1,a_2,\dots,a_n)}\frac{f(x_1,x_2,\dots,x_n) -
+L(x_1,x_2,\dots,x_n)}{\norm{\v{x_1,x_2,\dots,x_n} - \v{a_1,a_2,\dots,a_n}}} =
+0$$
+
+In two variables, it simply means that the surface graph of the function has a
+_tangent plane_.
+
+For example, the following surface graph shows a function that has _all
+directional derivatives_ at the origin, but is not differentiable there:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/derivatives/nodiff1.html", title = "A surface graph of a function that has all directional derivatives at (0,0) but is nit differentiable there", width=500, height=500)
+```
+
+Finally, we learned that for a _differentiable_ function, the __gradient
+vector__ defined as
+
+$$\vec{\nabla}f(x_1,x_2,\dots,x_n) = \v{
+\frac{\partial f}{\partial x_1}(x_1, x_2,\dots,x_n),
+\frac{\partial f}{\partial x_2}(x_1, x_2,\dots,x_n),
+\dots,
+\frac{\partial f}{\partial x_n}(x_1, x_2,\dots,x_n)
+}$$
+
+is very useful.  For example, _if $f$ is a differentiable function at $A$_,
+then for any unit vector $\vec{u}$ the _directional derivative_ of $f$ at $A$
+in the direction $\vec{u}$ can be calculated as
+
+$$D_\vec{u} f(a_1,a_2,\dots,a_n) = \vec{\nabla}f(a_1,a_2,\dots,a_n)\cdot
+\vec{u}.$$
+
+The next video talks a bit more about the gradient vector:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("7ecWqIYcvB0")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart14_6/problem_9.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-34-Gradients-etc.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap17Sec1/Q55.pg",
+        width=640, height=500
+)
+```
+
+## The Chain Rule
+
+```{r echo=FALSE}
+vembedr::embed_youtube("l8twSna0AO0")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap14Sec6/Q06.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.6_The_Chain_Rule/14.6.13.pg",
+        width=640, height=500
+)
+```
+
+## Higher order derivatives
+
+```{r echo=FALSE}
+vembedr::embed_youtube("Sby_4al4zzE")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart14_3/UR_VC_5_14.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.3_Partial_Derivatives/14.3.67.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap14Sec7/Q15.pg",
+        width=640, height=500
+)
+```
