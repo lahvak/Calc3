@@ -36,6 +36,14 @@ uniformly moving objects.
 vembedr::embed_youtube("nw6zReJkJjs")
 ```
 
+This 3d illustration shows a line with its _direction vector_ $\vec{v}$ through points $P$ and $Q$,
+together with positions corresponding to times $t = -1$, $t=0$, $t=\frac{2}{3}$, $t=1$ and $t=2$:
+
+
+```{r, echo=FALSE}
+illustr("../../asymptote/lines_and_planes/line.html", title = "A line through P and Q", width=840, height=420)
+```
+
 ## Equations of lines
 
 From the idea of uniform motion of an object in $\mathbb{R}^3$, we obtain the __vector equation__ of a line:
@@ -126,13 +134,28 @@ vembedr::embed_youtube("dVNS0ku6ePg")
 
 ## Intersection of lines
 
+Two examples of equations of intersecting lines:
+
 ```{r echo=FALSE}
 vembedr::embed_youtube("ZtCtTvTZGGg")
 ```
 
+Examples of different ways how two lines can exist in $\mathbb{R}^3$:
+
 ```{r echo=FALSE}
 vembedr::embed_youtube("VqIhRqqmS1g")
 ```
+
+Illustrations of intersecting and non-intersecting lines in $\mathbb{R}^3$:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/lines_and_planes/intersecting.html", title = "Two intersecting lines", width=840, height=210)
+```
+
+```{r, echo=FALSE}
+illustr("../../asymptote/lines_and_planes/skew.html", title = "Two non-intersecting lines", width=840, height=210)
+```
+
 
 ### Try it yourself
 
@@ -151,6 +174,9 @@ webwork(
 ```
 
 ## Distance of a point from a line
+
+In one of our class activities, you calculated the distance from a given point to a given line segment.  Let's look
+at this in more details:
 
 ```{r echo=FALSE}
 vembedr::embed_youtube("YzcsN4f6sEQ")
