@@ -1,0 +1,159 @@
+---
+title: Equations of Planes
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Parametric equations
+
+So far we have learned the following:
+
+*  In $\mathbb{R}^2$, given two _non-parallel_ vectors $\vec{u}$ and $\vec{v}$, any vector can be written as $r\vec{u} + s\vec{v}$
+   for some scalars $r$ and $s$.
+
+*  Any point on a line passing through a point $P$ with position vector $\vec{r}_0$ in the direction given
+    by a vector $\vec{v}$ in $\mathbb{R}^3$ can be written as $\vec{r}_0 + t\vec{v}$ for some scalar $t$.
+
+*  A line is $\mathbb{R}^3$ can be given by two points $P$ and $Q$.  An equation of such line can be written in _vector form_ as
+  $\vec{r} = \vec{r}_0 + t\vec{v}$ where $\vec{r} = \v{x,y,z}$, $\vec{r}_0 = \v{x_0, y_0, z_0}$ is the position vector of $P$,
+  and $\vec{v} = \v{v_1,v_2,v_3} = \overrightarrow{PQ}$.
+
+*  We can split the vector equation into components to get _parametric equations_ of the line:
+  $$\left\{\begin{aligned}x &= x_0 + tv_1\\y &= y_0 + tv_2\\z &= z_0 + tv_3\end{aligned}\right.$$
+
+Suppose we have to find an equation of the plane containing three points $P$, $Q$ and $R$. We can start by finding
+the vectors $\vec{u} = \v{u_1,u_2,u_3} = \overrightarrow{PQ}$ and $\vec{v} = \v{v_1,v_2,v_3} = \overrightarrow{PR}$.
+Then any point on the plane can be written as $\vec{r}_0 + r\vec{u} + s\vec{v}$ for some scalars $r$ and $s$, where
+$\vec{r}_0 = \v{x,y,z}$ is the position vector of $P$:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/lines_and_planes/plane_param.html", title = "A plane through P, Q and R", width=640, height=420)
+```
+
+This will give us a _parametric vector equation_ of the plane: $$\vec{r} = \vec{r}_0 + r\vec{u} + s\vec{v}.$$
+
+This we can split into components to get the _parametric equations_:
+
+$$\left\{\begin{aligned}x &= x_0 + r u_1 + s v_1\\y &= y_0 + r u_2 + s v_2\\z &= z_0 + r u_3 + s v_3\end{aligned}\right.$$
+
+Each pair of values for the scalars $r$ and $s$ corresponds to exactly one point in the plane. We can think about it
+as _mapping_ the two-dimensional $rs$-plane onto our plane in $\mathbb{R}^3$ such that the _origin_ maps to $P$,
+the point $(1,0)$ maps to $Q$, the point $(0,1)$ maps to $R$, the $r$-axis maps to the line $PQ$, and the $s$-axis maps
+to the line $PR$:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/lines_and_planes/plane_param_coordsys.html", title = "An image of the rs-plane", width=640, height=420)
+```
+
+### An example
+
+```{r echo=FALSE}
+vembedr::embed_youtube()
+```
+
+## Implicit equations
+
+There is another way to describe a plane: instead of giving a point and two "direction" vectors, we can instead
+give a point and one vector that is _perpendicular_ to the plane.  We call this vector a _normal vector_ of the plane.
+
+Suppose we have a point $P$ with position vector $\vec{r}_0 = \v{x_0, y_0, z_0}$ and a _normal vector_ $\vec{n} = \v{n_1,n_2,n_3}$.
+Then for any point $Q(x,y,z)$ with the position vector $\vec{r} = \v{x,y,z}$, the point belongs to the plane if and only if
+the vector $\overrightarrow{PQ}$ is _orthogonal_ to $\vec{n}$. Two vectors are orthogonal if and only if their dot product is zero,
+which gives us the _implicit vector equation_ of the plane:
+
+$$\vec{n}\cdot (\vec{r} - \vec{r}_0) = 0.$$
+
+Writing this in components and reorganizing will give us the _implicit equation_ of the plane:
+
+$$n_1 x + n_2 y + n_3 z - (n_1 x_0 + n_2 y_0 + n_3 z_0) = 0.$$
+
+```{r, echo=FALSE}
+illustr("../../asymptote/lines_and_planes/plane_implicit.html", title = "Plane defined by a point and a normal vector", width=640, height=420)
+```
+
+### An example
+
+```{r echo=FALSE}
+vembedr::embed_youtube()
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap17Sec5/Q15.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap17Sec5/Q19.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap13Sec4/Q13.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/12_Vector_Geometry/12.5_Planes_in_Three-Space/12.5.19.pg",
+        width=640, height=500
+)
+```
+
+### Angle between planes, parallel planes
+
+Two planes are parallel when their normal vectors are scalar multiples of each other.
+
+If two planes are not parallel, they intersect, and the _angle_ between them is the same as
+the angle between their normal vectors.
+
+
+```{r echo=FALSE}
+vembedr::embed_youtube()
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/UMN/calculusStewartET/s_12_5_50.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Rochester/setVectors4PlanesLines/ur_vc_2_18.pg",
+        width=640, height=500
+)
+```
