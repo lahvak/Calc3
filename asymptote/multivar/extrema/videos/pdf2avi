@@ -1,0 +1,6 @@
+#!/bin/zsh
+pdfseparate "$1.pdf" "$1-%03d.pdf"
+for file in "$1"-*.pdf(:r); do
+  gm convert -background white -colorspace RGB -type TrueColor +matte -density 200 -geometry 800x800 "${file}.pdf" "${file}.png";
+done
+mencoder "mf://$1*.png" -mf fps=24 -ovc lavc -lavcopTs vcodec=mpeg4:vbitrate=10000 -o "$1.avi"
