@@ -71,7 +71,7 @@ illustr("../../asymptote/lines_and_planes/plane_param_coordsys.html", title = "A
 ### An example
 
 ```{r echo=FALSE}
-vembedr::embed_youtube()
+vembedr::embed_youtube("N3Y8Xde-BwE")
 ```
 
 ## Implicit equations
@@ -97,7 +97,7 @@ illustr("../../asymptote/lines_and_planes/plane_implicit.html", title = "Plane d
 ### An example
 
 ```{r echo=FALSE}
-vembedr::embed_youtube()
+vembedr::embed_youtube("cdgHV3G9h1k")
 ```
 
 ### Try it yourself
@@ -139,7 +139,7 @@ the angle between their normal vectors.
 
 
 ```{r echo=FALSE}
-vembedr::embed_youtube()
+vembedr::embed_youtube("FbGGJuE0lHM")
 ```
 
 ### Try it yourself
