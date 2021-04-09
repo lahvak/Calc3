@@ -1,5 +1,5 @@
 ---
-title: Limits of Functions of Several Variables
+title: Derivatives of Functions of Several Variables
 ---
 
 \renewcommand{\vec}[1]{\mathbf{#1}}
@@ -77,6 +77,49 @@ g(t) &= f\left(x_1(t), x_2(t), x_3(t), \dots, x_n(t)\right)\\
 The derivative of $g$ at $0$ is then the _directional derivative_ of $f$ at $A$
 in the direction $\vec{u}$.
 
+### An example
+
+Given the function 
+
+$$f(x,y) = x^2 + 2y^3 - xy$$
+
+find the _directional derivative_ in the direction of the unit vector $\v{\frac{\sqrt{3}}{2},\frac{1}{2}}$
+at the point $(1,1)$.
+
+_Solution:_
+
+The equation of the line passing through the point $(1,1)$ in the direction $\v{\frac{\sqrt{3}}{2},\frac{1}{2}}$
+is
+
+\[\left\{
+\begin{aligned}
+x &= 1 + \frac{\sqrt{3}}{2}t\\
+y &= 1 + \frac{1}{2}t
+\end{aligned}
+\right.\]
+
+Plug in $x = 1 + \frac{\sqrt{3}}{2}t$ and $y = 1 + \frac{1}{2}t$ into $f(x,y)$ to get a
+function of $t$:
+
+\[\begin{aligned}
+f(t) &= f\left(1 + \frac{\sqrt{3}}{2}t, 1 + \frac{1}{2}t\right)\\
+     &= \left(1 + \frac{\sqrt{3}}{2}t\right)^2 + 2\left(1 + \frac{1}{2}t\right)^3 - \left(1 + \frac{\sqrt{3}}{2}t\right)\left(1 + \frac{1}{2}t\right)
+\end{aligned}\]
+
+Then the required directional derivative is the derivative of this function at $t=0$.
+\[\begin{aligned}
+f'(t) &= 2\left(1 + \frac{\sqrt{3}}{2}t\right)\frac{\sqrt{3}}{2}\\ 
+&\phantom{= {}} + 6\left(1 + \frac{1}{2}t\right)^2\frac{1}{2}\\
+&\phantom{= {}} - \frac{\sqrt{3}}{2}\left(1 + \frac{1}{2}t\right) - \left(1 + \frac{\sqrt{3}}{2}t\right)\frac{1}{2}
+\end{aligned}\]
+
+\[\begin{aligned}
+f'(0) &= 2\frac{\sqrt{3}}{2} + 6\frac{1}{2} - \frac{\sqrt{3}}{2} - \frac{1}{2}\\
+&= \frac{\sqrt{3} + 5}{2}
+\end{aligned}\]
+
+The directional derivative of $f$ in the direction $\v{\frac{\sqrt{3}}{2},\frac{1}{2}}$ is $\frac{\sqrt{3} + 5}{2}$.
+
 ```{r echo=FALSE}
 vembedr::embed_youtube("HiF3AjuYXoA")
 ```
@@ -86,7 +129,8 @@ vembedr::embed_youtube("HiF3AjuYXoA")
 Let's try to calculate a directional derivative of a function $f$ of two
 variables in the direction of the _unit basis vector_ $\vec{i} = \v{1,0}$:
 
-$$f_{\vec{i}}(x,y) = \lim_{h\to 0} \frac{f(x+1h, y + 0h) - f(x,y)}{h}$$
+$$f_{\vec{i}}(x,y) = \lim_{h\to 0} \frac{f(x+1h, y + 0h) - f(x,y)}{h}
+= \lim_{h\to 0} \frac{f(x+h, y) - f(x,y)}{h}$$
 
 This can be interpreted as a derivative of the function $f(x,y)$ where the
 variable $y$ is __fixed__ and only the variable $x$ changes.
@@ -180,6 +224,74 @@ webwork(
 
 ## Differentiability and tangent plane
 
+## Example
+
+Given the function 
+
+$$f(x,y) = x^2 + 2y^3 - xy$$
+
+1.  Calculate the two _partial derivatives_ of $f$ at $(1,1)$:
+
+    $f_x(x,y) = 2x - y$, so $f_x(1,1) = 2 - 1 = 1$.
+
+    $f_y(x,y) = 6y^2 - x$ so $f_y(1,1) = 6 - 1 = 5$.
+
+2.  Define two _vector functions_ $\vec{r}(t) = \v{t, 1, f(t,1)}$ and $\vec{s}(t) = \v{1, t, f(1,t)}$.
+
+    $\vec{r}(t) = \v{t, 1, t^2 + 2 - t}$
+
+    $\vec{s}(t) = \v{1, t, 1 + 2t^3 - t}$
+
+    1.  Find the equation of the _tangent line_ to the graph of $\vec{r}(t)$ at $t = 1$.
+
+        The line has to go through the point $\vec{r}(1)$, with the direction vector $\vec{r}'(1)$.
+
+        $\vec{r}(1) = \v{1, 1, 1^2 + 2 - 1} = \v{1, 1, 2}$
+
+        $\vec{r}'(t) = \v{1, 0, 2t - 1}$ so $\vec{r}'(1) = \v{1,0,1}$.
+
+        The equation of the line is
+
+        \[\left\{\begin{aligned}
+        x &= 1 + t\\
+        y &= 1\\
+        z &= 2 + t
+        \end{aligned}\right.\]
+
+    1.  Find the equation of the _tangent line_ to the graph of $\vec{s}(t)$ at $t = 1$.
+
+        The line has to go through the point $\vec{s}(1)$, with the direction vector $\vec{s}'(1)$.
+
+        $\vec{s}(1) = \v{1, 1, 1 + 2\cdot 1^3 - 1} = \v{1, 1, 2}$
+
+        $\vec{s}'(t) = \v{0, 1, 6t^2 - 1}$ so $\vec{s}'(1) = \v{0,1,5}$.
+
+        The equation of the line is
+
+        \[\left\{\begin{aligned}
+        x &= 1\\
+        y &= 1 + t\\
+        z &= 2 + 5t
+        \end{aligned}\right.\]
+
+    1.  Find en equation of the plane that contains the two tangent lines.
+
+        Both lines pass through the point $(1,1,2)$, so the plane will contain that point. To find its _normal vector_, 
+        we can take the _cross product_ of the direction vectors of the two lines:
+
+        \[\vec{n} = \v{1, 0, 1}\times \v{0, 1, 5} = \v{-1, -5, 1}\]
+
+        The equation of the plane is then $-1(x - 1) - 5(y - 1) + 1(z - 2) = 0$. Simplifying and solving for $z$ gives us
+
+        \[z = x + 5y - 4\]
+
+    The following graph shows the graph of $f$, the graphs of the two vector functions, the tangent lines, and the plane that contains them:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/derivatives/tangent1.html", title = "Plane that contains the two tangent lines.", width=500,  height=500)
+    ```
+
+
 ```{r echo=FALSE}
 vembedr::embed_youtube("uYI7VFMk0Bg")
 ```
@@ -190,6 +302,7 @@ that are graphs of the _partial functions_.
 ```{r, echo=FALSE}
 illustr("../../../asymptote/multivar/derivatives/tangent.html", title = "Tangent plane to a surface at a point", width=500, height=500)
 ```
+
 
 ## A non-differentiable function
 
@@ -207,6 +320,35 @@ illustr("../../../asymptote/multivar/derivatives/nodiff.html", title = "Graph of
 ```
 
 ## Directional derivatives of a differentiable function
+
+If a function $f:\mathbb{R}^2 - \mathbb{R}$ is _differentiable_ at $(a,b)$ with tangent plane at $(a,b,f(a,b))$ given by a linear function $L$, then for every
+unit vector $\vec{u}$, the directional derivative of $f$ at $(a,b)$ in the direction $\vec{u}$ is the same as the directional derivative
+of $L$ at $(a,b)$ in the direction $\vec{u}$.
+
+### Example
+
+The function 
+
+$$f(x,y) = x^2 + 2y^3 - xy$$
+
+is differentiable at $(1,1)$ with tangent plane at $(1,1,2)$ given by
+
+$$L(x,y) = x + 5y - 4$$
+
+To find the directional derivative of $L$ in the direction of the unit vector $\v{\frac{\sqrt{3}}{2},\frac{1}{2}}$
+at the point $(1,1)$, plug in $x = 1 + \frac{\sqrt{3}}{2}t$ and $y = 1 + \frac{1}{2}t$ into $f(x,y)$ to get a
+function of $t$:
+
+\[\begin{aligned}
+L(t) &= 1 + \frac{\sqrt{3}}{2}t + 5\left(1 + \frac{1}{2}t\right) - 4\\
+&= 1 + \frac{\sqrt{3}}{2}t + 5 + \frac{5}{2}t - 4\\
+&= \frac{\sqrt{3} + 5}{2}t + 2
+\end{aligned}\]
+
+The derivative of this function is $\frac{\sqrt{3} + 5}{2}$.
+
+Earlier we calculated the directional derivative of $f$ at the same point in the same direction,
+and it was the same.
 
 ```{r echo=FALSE}
 vembedr::embed_youtube("wL7_o8ZI2LM")

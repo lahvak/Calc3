@@ -1,0 +1,155 @@
+---
+title: Absolute Maxima and Minima
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Functions of One Variable
+
+In Calc I you have learned about _absolute maxima and minima_ of function. Two principles were
+important for finding those:
+
+1.  A _continuous function_ on a _closed interval_ has both absolute maximum and absolute minimum.
+
+2.  An absolute extrema (a maximum or minimum) on a closed interval can be attained either
+   at a _critical point_ inside the interval, or at an _end point_ of the interval.
+
+To find the absolute maximum or minimum of a _continuous function_ on a _closed interval_, one
+has to find all the critical points _inside_ the interval, and plug all those points _and the endpoints_
+or the interval to the function, to see at which of the points the function will have the highest
+or the lowest value.
+
+## Functions of several variables
+
+The same principles apply in several variables:
+
+Given a set $A$ of points in $\mathbb{R}^n$:
+
+*   A point $p \in \mathbb{R}^n$ is a _boundary point_ of a set $A \subseteq \mathbb{R}^n$ if
+    any ball centered at $p$ contains points that are in $A$ as well as points that
+    are not in $A$. A point that belongs to $A$ but is not a boundary point is called an
+    _interior point_ of $A$.  A point $p \in A$ is an _interior point_ of $A$ if there
+    exists a ball $B$ centered at $p$ such that $B \subseteq A$.
+
+*   A set $A \subseteq \mathbb{R}^n$ is __closed__ if it contains _all of its boundary points_.
+
+*   A set $A \subseteq \mathbb{R}^n$ is __open__ if it contains _none of its boundary points_.
+
+### Examples
+
+Take for example the sets $G = \left\{(x,y) \in \mathbb{R}^n \mid x^2 + y^2 < 1\right\}$ and 
+$F = \left\{(x,y) \in \mathbb{R}^n \mid x^2 + y^2 \le 1\right\}$. The boundary of each of the set
+is the _unit circle_ $\left\{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 = 1\right\}.
+The set $F$ contains all the boundary points, so it is _closed_, while the set $G$ does not contain any
+of the boundary points, so it is _open_.
+
+### The two principles
+
+1.  A _continuous function_ on a _bounded closed set_ in $\mathbb{R}^n$ has both absolute maximum and absolute minimum.
+
+2.  An absolute extrema (a maximum or minimum) of a continuous function on a bounded closed set in $\mathbb{R}^n$
+   can be attained either at a _critical point_ that is an interior point of the set, or at a _boundary point_ of the set.
+
+
+### The procedure
+
+Given a continuous function $f:\mathbb{R}^n \to \mathbb{R}$ defined on a bounded closed set $A \subseteq \mathbb{R}^n$, the task is to find
+points in $A$ where $f$ has absolute maximum or absolute minimum. We do it by first finding all the _candidate points_
+where an absolute maximum or minimum are possible, then plugging all those points into the function to see which of them will give the highest or lowest value.
+
+The set of _candidate points_ will consist of
+
+1.  Critical points in the interior of the set
+2.  _Candidate points_ on the boundary.
+
+Finding candidate points on the boundary can generally be very hard, but if the set $A$ is nice and the boundary consists of one or more
+parts that can be _parametrized_ using $n-1$ variables, then it will be reduced to $n-1$ dimensional version of the same problem.  The
+following video shows an example for $n=3$, with the set $A$ being a cube.  The example is very long, because the boundary of the three-dimensional cube consists of
+6 squares, and each square in turn has 4 boundary segments. Altogether, critical points must be found inside one cube, six squares, and twelve
+intervals, and the intervals have eight endpoints among them.  You may want to watch it with higher speed, or fast forward through some of the calculations.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("AH16GJQAnNE")
+```
+
+The following illustration shows the cube with all the candidate points for maxima or minima: the critical point inside the cube
+(<span style="color:red;">red</span>),
+the six critical points inside the sides
+(<span style="color:green;">green</span>),
+the twelve critical points on the edges
+(<span style="color:magenta;">magenta</span>),
+and the eight corners
+(<span style="color:blue;">blue</span>):
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/cube.html", title = "A cube from the video example", width=500, height=500)
+```
+
+### Simpler examples
+
+The following two examples show finding absolute maxima and minima of two variable functions. You may find them familiar.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("umVQepsFykk")
+```
+
+The graph of the function looks like this:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/Max_Min-6.html", title = "An example on a square", width=500, height=500)
+```
+
+```{r echo=FALSE}
+vembedr::embed_youtube("hAgD6Ef0GvQ")
+```
+
+The graph of the function looks like this:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/Max_Min-7.html", title = "An example on a disk", width=500, height=500)
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart14_7/problem_12.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart14_7/problem_14.pg",
+        width=640, height=500
+)
+```
+

@@ -8,7 +8,7 @@ size (8cm,8cm);
 
 real f (real x, real y)
 {
-return (2x^3 + y^4);
+return (2x^3 - y^4);
 }
 
 real fz(pair z)
@@ -45,8 +45,8 @@ vertmark (1,0);
 vertmark (-1,0);
 vertmark (0,1);
 vertmark (0,-1);
-vertmark (.5,sqrt(3)/2);
-vertmark (.5,-sqrt(3)/2);
+vertmark (-.5,sqrt(3)/2);
+vertmark (-.5,-sqrt(3)/2);
 
 draw(Label("$y$",1),(0,-1.5,0)--(0,1.5,0),red,Arrow3);
 draw(Label("$x$",1),(-1.5,0,0)--(1.5,0,0),red,Arrow3);

@@ -81,16 +81,7 @@ further testing those points.
 ### Examples of finding critical points
 
 ```{r echo=FALSE}
-vembedr::embed_youtube("")
-```
-
-### Try it yourself
-
-```{r, echo=FALSE}
-webwork(
-        "",
-        width = 640, height = 500
-)
+vembedr::embed_youtube("u6yeHRO5lS8")
 ```
 
 ## Second derivatives
@@ -105,29 +96,26 @@ The situation is more complicated in two variables.
 
 ### Quadratic functions
 
-We looked at several examples of _quadratic functions_ in class:
+Let's look at several examples of _quadratic functions_:
 
 -  $f(x,y) = x^2 + xy + y^2$
 -  $f(x,y) = x^2 - xy + y^2$
 -  $f(x,y) = x^2 + 3xy + y^2$
 
-All of these functions have a _critical point_ at $(0,0)$.  In class, you
-looked at _traces_ of these functions through the origin, in the direction of a
-vector $\vec{v}$:  you defined a single variable function
+All of these functions have a _critical point_ at $(0,0)$.  Let's
+look at _traces_ of these functions through the origin, in the direction of a
+unit vector $\vec{u}$:  define a single variable function
 
-$$g(t) = f(0 + v_1 t, 0 + v_2 t)$$
+$$g(t) = f(0 + u_1 t, 0 + u_2 t)$$
 
 Almost all such functions are a quadratic functions (for the third function,
-there are 8 directions in which we get a constant zero function).
+there are 8 directions in which we get a constant zero function), so the graphs are parabolas.
+Some of them may be concave up, some may be concave down.
 
-When we explored the three functions in class, we saw that for the first and
-second function, all the traces we looked at were concave up, with positive
-second derivative, while for the third function, we saw some traces concave up
-and some concave down.
-
-The contour plots of the three functions look like this:
 
 #### $f(x,y) = x^2 + xy + y^2$
+
+Here is the contour plot of the function:
 
 ```{r, echo=FALSE}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
@@ -135,7 +123,19 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=after_stat(level))) + coord_fixed()
 ```
 
-Here the contours indicate a relative minimum: 
+Here is a video that shows an animation of three plots:
+
+*   The contour plot of the function together with the line $\vec{r}(t) = \v{0 + u_1 t, 0 + u_2 t}$
+    as the vector $\vec{u}$ spins around a full circle.
+*   The plot of the corresponding single variable function $g$.
+*   The surface plot of $f$, with the _trace_ showing the plot of $g$ embedded in the surface.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("7HEXmaLuz0c")
+```
+
+From all these plots we can see that there is a _minimum_ at the point $(0,0)$. For completeness, here is the
+_gradient plot_ of the function $f$:
 
 ```{r, echo=FALSE}
 expand.grid(x = seq(-2,2,length.out=40), y = seq(-2,2,length.out=40)) %>%
@@ -145,13 +145,33 @@ expand.grid(x = seq(-2,2,length.out=40), y = seq(-2,2,length.out=40)) %>%
 
 #### $f(x,y) = x^2 - xy + y^2$
 
+Here is the contour plot of the function:
+
 ```{r, echo=FALSE}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`f(x,y)` = x^2 - x*y + y^2) %>%
     ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=after_stat(level))) + coord_fixed()
 ```
 
+Here is the animation of the three plots:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("PqEXCqkOJvU")
+```
+
+and here is the gradient plot:
+
+```{r, echo=FALSE}
+expand.grid(x = seq(-2,2,length.out=40), y = seq(-2,2,length.out=40)) %>%
+    mutate(dx = 2*x - y, dy = -x + 2*y, gradient_length = sqrt(dx^2 + dy^2)) %>%
+    ggplot(aes(x,y)) + geom_segment(aes(xend = x+0.02*dx, yend = y+0.02*dy, color=gradient_length), arrow = arrow(length=unit(0.1,"cm"))) + coord_fixed()
+```
+
+Again, all plots indicate a _minimum_ at $(0,0)$.
+
 #### $f(x,y) = x^2 + 3xy + y^2$
+
+This is a contour plot of $f$:
 
 ```{r, echo=FALSE}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
@@ -159,22 +179,200 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=after_stat(level))) + coord_fixed()
 ```
 
+Here is the animation of the three plots:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("WXfNS0Dl0q0")
+```
+
+and here is the gradient plot:
+
 ```{r, echo=FALSE}
-illustr("../../../asymptote/multivar/plots/graph_one_var.html", title = "Graph of a function of single variable.", width=300, height=300)
+expand.grid(x = seq(-2,2,length.out=40), y = seq(-2,2,length.out=40)) %>%
+    mutate(dx = 2*x + 3*y, dy = 3*x + 2*y, gradient_length = sqrt(dx^2 + dy^2)) %>%
+    ggplot(aes(x,y)) + geom_segment(aes(xend = x+0.02*dx, yend = y+0.02*dy, color=gradient_length), arrow = arrow(length=unit(0.1,"cm"))) + coord_fixed()
+```
+
+This time, the plots indicate a _saddle point_ at $(0,0)$.
+
+#### A general quadratic function
+
+Let's look at a general quadratic function $f(x,y) = ax^2 + bxy + cy^2$. This function has zero first derivatives at $(0,0)$ and
+$f(0,0) = 0$.
+
+Then for a unit vector $\vec{u} = \v{u_1, u_2}$, the corresponding function $g$ is
+
+$$g(t) = f(0 + u_1 t, 0 + u_2 t) = a(u_1 t)^2 + b u_1 u_2 t^2 + c (u_2 t)^2 = (a u_1^2 + b u_1 u_2 + c u_2^2) t^2$$
+
+This is either a quadratic function or a constant zero function. If it is a quadratic function, its graph will be a parabola, that
+is concave up when $a u_1^2 + b u_1 u_2 + c u_2^2 > 0$ and concave down when $a u_1^2 + b u_1 u_2 + c u_2^2 < 0$.
+
+*   If for all unit vectors $\vec{u}$ the coefficient $a u_1^2 + b u_1 u_2 + c u_2^2$ is _positive_, then $f$ has a _minimum_ at $(0,0)$.
+*   If for all unit vectors $\vec{u}$ the coefficient $a u_1^2 + b u_1 u_2 + c u_2^2$ is _negative_, then $f$ has a _maximum_ at $(0,0)$.
+*   If for some unit vectors $\vec{u}$ the coefficient $a u_1^2 + b u_1 u_2 + c u_2^2$ _positive_ and for some it is _negative_, then $f$ has a _saddle point_ at $(0,0)$.
+*   If there are are exactly two (parallel) unit vectors $\vec{u}$ such that $a u_1^2 + b u_1 u_2 + c u_2^2 = 0$ and $a u_1^2 + b u_1 u_2 + c u_2^2$ is positive in all other directions (or negative in all other directions), then there is a whole line of maxima (or minima) passing through the origin:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/extrema/maxline.html", title = "A quadratic function with infinitely many maximum points", width=500, height=500)
+    ```
+
+To distinguish between these cases, we want to know _how many solutions_ $(u_1, u_2)$ such that $\vec{u} = \v{u_1, u_2}$ is a _unit vector_ does the equation $a u_1^2 + b u_1 u_2 + c u_2^2 = 0$ have.
+
+To make this easier, let's split it into two cases:
+
+1.  __Case $a = 0$__: In that case we have a solution $u_2 = 0$ and, since we need a unit vector, $u_1 = \pm 1$. On the other hand, assuming $u_2 \neq 0$, we can divide by $u_2^2$ and get $$b \frac{u_1}{u_2} + c = 0$$ and if $b \neq 0$ we get $$\frac{u_1}{u_2} = -\frac{c}{b}.$$
+   In that case we have another pair of solutions:
+
+   $$\vec{u} = \v{u_1, u_2} = \frac{\pm1 1}{\sqrt{b^2 + c^2}}\v{c, b}$$
+
+   So if $a = 0$, we have at least two (if $b = 0$), possibly four, unit vectors such that $a u_1^2 + b u_1 u_2 + c u_2^2 = 0$.
+
+2.  __Case $a \neq 0$__:  In that case we cannot have a solution with $u_2 = 0$, because the only two unit vectors with $u_2 = 0$ are $\v{\pm 1, 0\}, and plugging these into $a u_1^2 + b u_1 u_2 + c u_2^2$ will not give us 0.
+
+    That means we can _divide by $u_2^2$_, getting $$a\left(\frac{u_1}{u_2}\right)^2 + b\frac{u_1}{u_2} + c = 0$$ and substituting
+    $s = \frac{u_1}{u_2}$ we get the quadratic equation $as^2 + bs + c = 0$.
+
+    This has _no real solution_ if $b^2 - 4ac < 0$, _exactly one_ real solution if $b^2 - 4ac = 0$ and _two distinct_ real solutions if $b^2 - 4ac > 0$.
+
+    For each value of $t$ there are _two unit vectors_ $\vec{u} = \v{u_1, u_2}$ such that $\frac{u_1}{u_2} = t$.
+
+Note that id $a = 0$, then $b^2 - 4ac = b^2$ which is _positive_ if $b\neq 0$ and 0 if $b = 0$, so we can combine both cases together:
+
+__Conclusion:__ If $f(x,y) = ax^2 + bxy + cy^2$ and for a unit vector $\vec{u} = \v{u_1, u_2}$, $g(t) = f(0 + u_1 t, 0 + u_2 t)$, then:
+
+1.  If $4ac - b^2 > 0$, than the graphs of the functions $g$ are either all parabolas concave up or all parabolas concave down.  In that case
+    the function $f$ has either a _maximum_ or a _minimum_ at $(0,0)$.
+
+2.  If $4ac - b^2 = 0$, then there are exactly _two directly opposite direction_ in which the function $g$ is a constant 0, and in all the other directions, either all the graphs of $g$ are parabolas concave down or all the graphs of $g$ are parabolas concave up. In that case
+   the function $f$ has infinitely many maxima or minima, that form a line passing through the origin.
+
+3.  If $4ac - b^2 < 0$ than there are _four directions_ in which the $g$ is a constant zero, and in some of the other directions, the graph of $g$ is a parabola _concave down_, while in other directions the graph of $g$ is a parabola _concave up_. In that case the function $f$ has a _saddle point_ at $(0,0)$.
+
+
+### Second derivative test
+
+Let $f:\mathbb{R}^2 \to \mathbb{R}$ be a function with a critical point $(x_0,y_0)$ such that $f$ is at least _twice continuously differentiable_ on some disk centered at $(x_0,y_0)$.  According to the Taylor's Theorem, if $(x,y)$ is close to $(x_0,y_0)$, $f(x,y)$ can be approximated by
+
+$$f(x_0,y_0) + f_x(x_0,y_0)(x - x_0) + f_y(x_0,y_0)(y - y_0) + \frac{1}{2}\left(f_{xx}(x_0,y_0)(x - x_0)^2 + 2f_{xy}(x_0,y_0)(x-x_0)(y-y_0) + f_{yy}(x_0,y_0)(y-y_0)^2\right)$$
+
+with the approximation error _smaller that_ $C\sqrt{(x-x_0)^2 + (y-y_0)^2}^3$ for some positive constant $C$.
+
+Since $(x_0,y_0)$ is a _critical point_ of $f$, $f_x(x_0,y_0) = f_y(x_0,y_0) = 0$, so the above becomes
+
+$$f(x_0,y_0) + \frac{1}{2}\left(f_{xx}(x_0,y_0)(x - x_0)^2 + 2f_{xy}(x_0,y_0)(x-x_0)(y-y_0) + f_{yy}(x_0,y_0)(y-y_0)^2\right) = 
+f(x_0, y_0) + \frac{1}{2}\left({\color{red}a(x-x_0)^2 + b(x-x_0)(y-y_0) + c(y-y_0)^2}\right)$$
+
+where $a = f_{xx}(x_0,y_0)$, $b = 2f_{xy}(x_0,y_0)$ and $c = f_{yy}(x_0,y_0)$. The expression in the parentheses is a _quadratic function_ of two variables, like the ones we discussed above, and
+
+1.  has a _minimum_ or _maximum_ at $(x_0, y_0)$ if $4ac - b^2 > 0$,
+2.  is _constant 0_ on a _line passing through_ $(x_0,y_0)$ if $4ac - b^2 = 0$,
+3.  has a _saddle point_ at $(x_0,y_0)$ if $4ac - b^2 < 0$.
+
+In the case 1 or 3 happens, the approximation error will be too small to affect this behavior for $(x,y)$ close to $(x_0, y_0)$, and so
+the function $f$ itself will have a maximum or minimum or saddle point, as indicated by $4ac - b^2$, at $(x_0, y_0)$.
+
+If 2 happens, however, the approximation error can change the _horizontal line_ passing through $(x_0,y_0)$ in such a way that the point $(x_0, y_0)$ is no longer a maximum or a minimum.  In that case _it is impossible to tell whether $f$ has a maximum or minimum or saddle point_ just by looking at second derivatives.  Similarly, if $a = b = c = 0$, that is all the second partial derivatives are zero, the behavior of $f$ cannot be determined from the second partial derivatives alone.
+
+Finally,
+
+$$4ac - b^2 = 4f_{xx}(x_0, y_0)f_{yy}(x_0, y_0) - \left(2f_{xy}(x_0, y_0)\right)^2 = 4\left(f_{xx}(x_0,y_0)f_{yy}(x_0,y_0) - \left(f_{xy}(x_0,y_0)\right)^2\right)$$ 
+
+#### Conclusion
+
+__The Second Derivative Test__: Let $f:\mathbb{R}^2 \to \mathbb{R}$ be _differentiable_ at $(x_0, y_0)$, with $(x_0, y_0)$ being a _critical point_ of $f$, such that the _second partial derivatives_ of $f$ are _continuous_ on some disk centered at $(x_0, y_0)$.
+
+Define the _discriminant_ $D = f_xx(x_0,y_0)f_{yy}(x_0, y_0) - \left(f_{xy}(x_0,y_0)\right)^2$
+
+1.  If $D > 0$, then $f$ has a local _maximum_ (if $f_{xx}$ and $f_{yy}$ are negative) or local _minimum_ (if $f_{xx}$ and $f_{yy}$ are both positive) at $(x_0, y_0)$.
+2.  If $D < 0$ than $f$ has a _saddle point_ at $(x_0, y_0)$.
+3.  If $D = 0$, the second derivative test is _inconclusive_, and further investigation is needed to determine what is happening at $(x_0, y_0)$.
+
+_Note:_ Under the assumption of the test, $f_{xy}(x_0, y_0) = f_{yx}(x_0, y_0)$. We can also write the discriminant as
+
+$$D = f_{xx}(x_0, y_0) f_{yy}(x_0, y_0) - f_{xy}(x_0, y_0)f_{yx}(x_0, y_0)$$
+
+however, the difference is purely cosmetic.
+
+We can also write the discriminant as a _determinant_:
+
+$$D = \left\lvert
+\begin{matrix}
+f_{xx}(x_0, y_0) & f_{xy}(x_0, y_0)\\
+f_{yx}(x_0, y_0) & f_{yy}(x_0, y_0)
+\end{matrix}
+\right\rvert$$
+
+#### Examples
+
+Example of a function with $f_{xx}(0,0) = 2.1$, $f_{yy}(0,0) = 1.2$ and $f_{xy}(0,0) = .6$:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/directional_double_1.html", title = "A function with relative minimum at (0,0)", width=500, height=500)
+```
+
+Example of a function with $f_{xx}(0,0) = 2.1$, $f_{yy}(0,0) = .7$ and $f_{xy}(0,0) = 3.3$:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/directional_double_2.html", title = "A function with saddle point at (0,0)", width=500, height=500)
+```
+
+Example of a function with $f_{xx}(0,0) = 2.1$, $f_{yy}(0,0) = .6$ and $f_{xy}(0,0) = -1.2$:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/directional_double_3.html", title = "A function with saddle point at (0,0)", width=500, height=500)
+```
+
+Example of a function with $f_{xx}(0,0) = 2.4$, $f_{yy}(0,0) = .6$ and $f_{xy}(0,0) = 1.2$.  Here the second derivative test is inconclusive:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/directional_double_4.html", title = "A function with inconclusive second derivative test", width=500, height=500)
+```
+
+## Other examples of saddle points
+
+### $f(x,y) = x^2 y - xy^2 + 2$
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/Max_Min-1.html", title = "A function with saddle point at (0,0)", width=500, height=500)
+```
+
+### $f(x,y) = x^3 y - xy^3 + 2$
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/Max_Min-2.html", title = "A function with saddle point at (0,0)", width=500, height=500)
+```
+
+### $f(x,y) = x^7y - 7x^5y^3 + 7x^3y^5 - xy^7 + 3$
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/extrema/Max_Min-3.html", title = "A function with saddle point at (0,0)", width=500, height=500)
+```
+
+### Examples of second derivative test
+
+```{r echo=FALSE}
+vembedr::embed_youtube("4YzeP-cafyE")
 ```
 
 ### Try it yourself
 
 ```{r, echo=FALSE}
 webwork(
-        "Library/FortLewis/Calc3/12-2-Multivariable-graphs/HGM4-12-2-14c-Multivariable-functions-graphs/HGM4-12-2-14c-Multivariable-functions-graphs.pg",
+        "Library/272/setStewart14_7/problem_3.pg",
         width=640, height=500
 )
 ```
 
+```{r, echo=FALSE}
+webwork(
+        "Library/Dartmouth/setStewartCh15S7/problem_7.pg",
+        width=640, height=500
+)
+```
 
 ```{r, echo=FALSE}
-expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
-    mutate(`f(x,y)` = x*y*exp(-x^2 - y^2)) %>%
-    ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=..level..))
+webwork(
+        "Library/Michigan/Chap15Sec1/Q05.pg",
+        width=640, height=500
+)
 ```

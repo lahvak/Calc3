@@ -1,0 +1,189 @@
+---
+title: Integrals of Functions of Two Variables
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Double Integral
+
+Given a function $f:\mathbb{R}^2 \to \mathbb{R}$ defined on a region $R \subset \mathbb{R}^2$, we
+define the _double integral_ of $f$ over the region $R$
+
+$$\iint_R f(x,y)\;dA$$
+
+as the _signed_ volume of the solid between the $xy$-plane and the graph of $f$ over the region $R$.
+
+By _signed volume_ we mean that the parts of the solid that are _below_ the $xy$-plane are considered
+_negative_.
+
+The region $R$ can be a _rectangle_:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/integrals/rectangle.html", title = "Double integral over a rectangle", width=500, height=500)
+```
+
+or some other shape. There are some requirements on the region, namely that the boundary of the region is a continuous piecewise smooth simple 
+closed curve: the boundary is a curve that can be parametrized by a vector function $\vec{r}(t)$, $a \le t \le b$ such that
+
+1.  $\vec{r}(a) = \vec{r}(b)$
+2.  $\vec{r}(t_0) \neq \vec{r}(t_1)$ for any $t_0 \in [a,b)$, $t_1 \in [a,b)$, $t_0 \neq t_1$.
+3.  $\vec{r}$ is continuous on $[a,b]$.
+4.  $\vec{r}$ has a continuous and bounded derivative except at at most finitely many points on $[a,b]$.
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/integrals/floor.html", title = "A region bounded by a simple smooth closed curve.", width=500, height=500)
+```
+
+A double integral of a function $f$ over such region will be the _signed_ volume of a solid like this:
+
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/integrals/general.html", title = "A region bounded by a simple smooth closed curve.", width=500, height=500)
+```
+
+## Partial Integrals
+
+Given a function $f:\mathbb{R}^2 \to \mathbb{R}$ and two real numbers $a_0$ and $a_1$, we can define a _partial integral_ of $f$ _with respect to $x$_ from $a_0$ to $a_1$:
+
+$$\int_{a_0}^{a_1} f(x,y)\; dx$$
+
+The integration variable is $x$, and $y$ is considered to be _a constant parameter_. As a result, we get a _function of $y$_.
+It will be the _signed area_ of a region in the plane parallel to the $xz$-plane, passing through the point $(0,y,0)$, between
+the $xy$-plane and the graph of $f$, from $x=a_0$ to $x = a_1$:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/integrals/partial_Y.html", title = "A partial integral with respect to x", width=500, height=500)
+```
+
+Similarly, we can define a _partial integral_ of $f$ _with respect to $y$_ from $c_0$ to $c_1$:
+
+$$\int_{c_0}^{c_1} f(x,y)\; dy$$
+
+This time the integration variable is $y$, and $x$ is considered to be _a constant parameter_. As a result, we get a _function of $x$_.
+It will be the _signed area_ of a region in the plane parallel to the $yz$-plane, passing through the point $(x,0,0)$, between
+the $xy$-plane and the graph of $f$, from $y=c_0$ to $y = c_1$:
+
+```{r, echo=FALSE}
+illustr("../../../asymptote/multivar/integrals/partial_X.html", title = "A partial integral with respect to y", width=500, height=500)
+```
+
+## Iterated integrals
+
+### Rectangular regions
+
+Suppose we have a _double integral_ over a _rectangular region_ $R = \{(x,y) \in \mathbb{R}^2 \mid a \le x \le b \text{ and } c \le y \le d\}$.
+We can write two _iterated integrals_:
+
+1.  We can calculate the _partial integral with respect to $x$_ from $a$ to $b$, and then integrate the resulting function
+    of $y$ from $c$ to $d$:
+
+    $$\int_c^d \int_a^b f(x,y)\;dx\;dy$$
+
+    The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
+    to the _iterated integral_ with respect to $x$ for one of the $y$ values between $c$ and $d$:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/integrals/rectangle_Y.html", title = "A partial integral with respect to x together with the double integral", width=500, height=500)
+    ```
+
+1.  We can calculate the _partial integral with respect to $y$_ from $c$ to $d$, and then integrate the resulting function
+    of $x$ from $a$ to $b$:
+
+    $$\int_a^b \int_c^d f(x,y)\;dy\;dx$$
+
+    The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
+    to the _iterated integral_ with respect to $y$ for one of the $x$ values between $a$ and $b$:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/integrals/rectangle_X.html", title = "A partial integral with respect to y together with the double integral", width=500, height=500)
+    ```
+
+### Non-rectangular regions
+
+
+Things can get more complicated with a _non-rectangular region_ $R$. The problem is that the _limits_ of the _partial integral_ will also depend on the free variable:
+
+1.  We can calculate the _partial integral with respect to $x$_ from $a(y)$ to $b(y)$, and then integrate the resulting function
+    of $y$ from $c$ to $d$:
+
+    $$\int_c^d \int_{a(y)}^{b(y)} f(x,y)\;dx\;dy$$
+
+    This shows one of the slices in the for a specific value of $y$ in the region $R$:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/integrals/floor_Y.html", title = "A slice for a particular value of y", width=500, height=500)
+    ```
+
+    The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
+    to the _iterated integral_ with respect to $x$ for one of the $y$ values between $c$ and $d$:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/integrals/general_Y.html", title = "A partial integral with respect to x together with the double integral", width=500, height=500)
+    ```
+
+1.  We can calculate the _partial integral with respect to $y$_ from $c(x)$ to $d(x)$, and then integrate the resulting function
+    of $x$ from $a$ to $b$:
+
+    $$\int_a^b \int_{c(x)}^{d(x)} f(x,y)\;dy\;dx$$
+
+    This shows one of the slices in the for a specific value of $x$ in the region $R$:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/integrals/floor_X.html", title = "A slice for a particular value of x", width=500, height=500)
+    ```
+
+    The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
+    to the _iterated integral_ with respect to $y$ for one of the $x$ values between $a$ and $b$:
+
+    ```{r, echo=FALSE}
+    illustr("../../../asymptote/multivar/integrals/general_X.html", title = "A partial integral with respect to y together with the double integral", width=500, height=500)
+    ```
+
+Note that some regions can be easily sliced in only one of the two ways, and some of them cannot be easily sliced in either of the two ways, and must instead be divided into several smaller regions.
+
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart15_2/problem_5.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap16Sec2/Q17.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/ASU-topics/setCalculus/stef/stef15_3p5.pg",
+        width=640, height=500
+)
+```
