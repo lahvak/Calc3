@@ -1,0 +1,235 @@
+---
+title: "\"Line\" Integrals if Functions"
+---
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\v}[1]{\left\langle #1\right\rangle}
+\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+
+```{r, echo=FALSE}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
+
+## Integrals in one variable (Riemann Integrals)
+
+In Calc 1 you learn the definition of the _definite integral_ of a function $f:\mathbb{R} \to \mathbb{R}$ over an
+interval from $a$ to $b$:
+
+$$\int_a^b f(x)\; dx$$
+
+is defined as the _signed area_ between the graph of $f$ and the $x$-axis, starting at $x=a$ and going to $x = b$.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/riemann_flat.html", title = "Riemann integral of a function of one variable", width=500, height=500)
+```
+
+We can visualize the same region embedded into $\mathbb{R}^3$, in the $xz$-plane:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/riemann.html", title = "Riemann integral of a function of one variable embedded in the 3d space", width=500, height=500)
+```
+
+## "Line" integrals of function of two variables
+
+We are now very close to the idea of a "line" integral in two variables.  The Riemann integral above was defined as the area of the _vertical surface_ between the $x$-axis and the graph of the function $f$, with the surface intersection the $x$-axis forming the interval $[a,b]$.
+
+Now suppose we have a _planar curve_ $C$ inside the $xy$-plane, and a function $f:\mathbb{R}^2 \to \mathbb{R}$ whose _domain_ contains the curve $C$. We can now form a _vertical surface_ whose intersection with the $xy$-plane will be the curve $C$, and which will extend between the $xy$-plane and the surface $z=f(x,y)$. The _signed_ area (the parts of the area under the $xy$-plane will be negative) of the surface will be the _line integral_ of the function $f$ over the curve $C$:
+
+$$\int_C f(x,y)\;ds$$
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/linefun.html", title = "The line integral of f over the curve C", width=500, height=500)
+```
+
+The $ds$ indicates that this is a _line integral with respect to the arc length_. There are also to other types of line integrals: with respect to $x$ and with respect to $y$.
+
+### Line integral with respect to $x$
+
+The basic idea of a line integral with respect to $x$ is simple: we are still looking at the area of the same surface as before,
+but now we perceive the surface as if we saw it from a direction parallel to the $y$-axis: we ignore any changes in the "depth" of the surface, or the $y$ coordinate, and only look at the changes in $x$. It is almost like an area of the _projection_ of the surface onto the
+$xz$-plane, with one complication -- if you imagine a point traveling along the curve $C$ from one end to the other, and just watch the $x$-coordinate, it may happen that for some parts of the curve, as the point travels, the $x$-coordinate will _decrease_.
+
+The illustration below shows a curve where the parts of the curve where the $x$-coordinate increases are shown in <span style="color:blue;">blue</span>, while the part where the $x$-coordinate decreases are shown in <span style="color:red;">red</span>.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/dx_curve.html", title = "A curve in the xy-plane with arcs of decreasing x-coordinate colored red", width=500, height=500)
+```
+
+(Of course it depends on the direction in which the curve is traveled.  If we change the direction, the pieces of curve will get switched, the red ones will be blue and the blue ones will be red.)
+
+The following illustration shows the projection of the line integral surface onto the $xz$-plane, with the areas with decreasing $x$-coordinate colored red, and areas with increasing $x$-coordinate colored blue.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/dx.html", title = "A projection of a line integral surface onto the xz-plane", width=500, height=500)
+```
+
+If we add all the blue areas and subtract all the red areas, we get the _line integral of $f$ over the curve $C$ with respect to $x$_:
+
+$$\int_C f(x,y)\; dx$$
+
+Of course these areas are again _signed_ areas, which means that for areas under the $xy$-plane, the sign will be switched. Also, the integral
+depends on the direction in which the curve is traversed.  If we take the same curve and travel through it in the opposite direction, we will get the opposite integral. A curve that is the same as $C$ but traveled in the opposite direction is sometimes denoted as $-C$.  With this notation,
+
+$$\int_{-C} f(x,y)\;dx = - \int_C f(x,y)\; dx$$
+
+This is unlike the integral with respect to the _arc length_ which does not depend on the direction:
+
+$$\int_{-C} f(x,y)\;ds = \int_C f(x,y)\; ds$$
+
+### Line integral with respect to $y$
+
+Instead of projecting the line integral surface onto the $xz$-plane, we can instead project it onto the $yz$-plane, and get the _line integral with respect to $y$_.  The idea is exactly the same as for the integrals with respect to $x$, except for the direction of projection. The areas projected onto the $yz$-plane are added or subtracted depending on whether the $y$-coordinate is increasing or decreasing.
+
+In the illustration below, the $y$-coordinate is always increasing, and the line integral is simply the area of the projection in the $yz$-plane.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/dy.html", title = "A projection of a line integral surface onto the yz-plane", width=500, height=500)
+```
+
+## Line integrals over parametric curves
+
+Suppose the curve $C$ is _parametrized_ by a _vector function_ $\vec{r}(t) = \v{x(t), y(t)}$, $a \le t \le b$, where $\vec{r}$ is a _differentiable_ vector function such that $\norm{\vec{r}'(t)} \neq 0$ for any $t \in (a,b)$. Then we can use the following _substitution_ to convert the _line integral_ into a _single variable_ integral over the interval $[a,b]$:
+
+$$\begin{aligned}
+x &= x(t)\\
+y &= y(t)\\
+dx &= x'(t)\;dt\\
+dy &= y'(t)\;dt\\
+ds &= \norm{\vec{r}'(t)}dt = \sqrt{(x'(t))^2 + (y'(t))^2}\;dt
+\end{aligned}$$
+
+Then we get
+
+$$\begin{aligned}
+\int_C f(x,y)\; ds &= \int_a^b f\left(\vec{r}(t)\right)\norm{\vec{r}'(t)}dt = \int_a^b f\left(x(t), y(t)\right)\sqrt{(x'(t))^2 + (y'(t))^2}\;dt\\
+\int_C f(x,y)\;dx &= \int_a^b f\left(x(t), y(t)\right)x'(t)\;dt\\
+\int_C f(x,y)\;dy &= \int_a^b f\left(x(t), y(t)\right)y'(t)\;dt\\
+\end{aligned}$$
+
+### Examples
+
+#### A line integral with respect to the arc length:
+
+Calculate
+
+$$\int_C x\;ds$$
+
+where $C$ is the curve parametrized by $\vec{r}(t) = \v{t,t^2}$ for $0 \le t \le 1$.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/ex1.html", title = "Line integral example", width=500, height=500)
+```
+
+We will substitute $x = t$, $y = t^2$ and 
+$$ds = \norm{\vec{r}'(t)}dt = \sqrt{1 + 4t^2}\;dt$$
+which will give us
+
+$$\begin{aligned}
+\int_C x\;ds &= \int_0^1 t\sqrt{1 + 4t^2}\;dt\\
+\color{green}{\text{substitute: }}
+& \color{green}{u = 1 + 4t^2, \quad du = 8t\;dt}\\
+&= \frac{1}{8}\int_1^4 \sqrt{u}\;du\\
+&= \frac{1}{8}\left(\left.\frac{3}{2}\sqrt{u^3}\right\rvert_{1}^{4}\right)\\
+&= \frac{3}{16}\left(8 - 1\right)\\
+&= \frac{21}{16}
+\end{aligned}$$
+
+### A line integral with respect to $x$
+
+Calculate
+
+$$\int_C x^2 + y^2\;dx$$
+
+where the curve $C$ is parametrized by $\vec{r}(t) = \v{\sin(t), 1-\cos(t)}$ for $0 \le t \le \pi$.
+
+```{r, echo=FALSE}
+illustr("../../asymptote/line_integrals/ex2.html", title = "Line integral example", width=500, height=500)
+```
+
+
+Here
+
+$$\begin{aligned}
+x &= \sin(t)\\
+y &= 1 - \cos(t)\\
+dx &= \cos(t)\;dt
+\end{aligned}$$
+
+and so
+
+$$\begin{aligned}
+\int_C x^2 + y^2\;dx &= \int_0^{\pi} (\sin^2(t) + 1 - 2\cos(t) + \cos^2(t))\cos(t)\;dt\\
+&= 2\int_0^\pi \cos(t) - \cos^2(t)\;dt\\
+&= 2\int_0^\pi \cos(t)\;dt - 2\int_0^\pi \cos^2(t)\;dt\\
+&= 0 - 2\int_0^\pi \frac{1 + \cos(2t)}{2}\;dt\\
+&= 0 - \int_0^\pi \;dt - \int_0^\pi \cos(2t)\;dt\\
+&= 0 - \pi - 0\\
+&= -\pi
+\end{aligned}$$
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Hope/Multi2/11-06-Scalar-line-integrals/Scalar-line-integral-04.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "SVSU/math261/line_integrals/line_integral_function_dx.pg",
+        width=640, height=500
+)
+```
+
+## Line integrals in three variables
+
+Given a function of _three variables_ $f:\mathbb{R}^3 \to \mathbb{R}$ and a curve $C \subset \mathbb{R}^3$, we can define line integrals of $f$ over the curve $C$ the same way as in $\mathbb{R}^2$.  We will end up with four different line integrals:
+
+*  Integral with respect to the arc length: $\displaystyle\int_C f(x,y,z)\;ds$
+
+*  Integral with respect to $x$: $\displaystyle\int_C f(x,y,z)\;dx$
+
+*  Integral with respect to $y$: $\displaystyle\int_C f(x,y,z)\;dy$
+
+*  Integral with respect to $z$: $\displaystyle\int_C f(x,y,z)\;dz$
+
+Suppose the curve $C$ is _parametrized_ by a _vector function_ $\vec{r}(t) = \v{x(t), y(t), z(t)}$, $a \le t \le b$, where $\vec{r}$ is a _differentiable_ vector function such that $\norm{\vec{r}'(t)} \neq 0$ for any $t \in (a,b)$. Then we can use the following _substitution_ to convert the _line integral_ into a _single variable_ integral over the interval $[a,b]$:
+
+$$\begin{aligned}
+x &= x(t)\\
+y &= y(t)\\
+z &= z(t)\\
+dx &= x'(t)\;dt\\
+dy &= y'(t)\;dt\\
+dz &= z'(t)\;dt\\
+ds &= \norm{\vec{r}'(t)}dt = \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2}\;dt
+\end{aligned}$$
+
+Then we get
+
+$$\begin{aligned}
+\int_C f(x,y,z)\; ds &= \int_a^b f\left(\vec{r}(t)\right)\norm{\vec{r}'(t)}dt = \int_a^b f\left(x(t), y(t), z(t)\right)\sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2}\;dt\\
+\int_C f(x,y,z)\;dx &= \int_a^b f\left(x(t), y(t), z(t)\right)x'(t)\;dt\\
+\int_C f(x,y,z)\;dy &= \int_a^b f\left(x(t), y(t), z(t)\right)y'(t)\;dt\\
+\int_C f(x,y,z)\;dz &= \int_a^b f\left(x(t), y(t), z(t)\right)z'(t)\;dt\\
+\end{aligned}$$
+
