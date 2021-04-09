@@ -50,11 +50,11 @@ vembedr::embed_youtube("Q0WsJG_Uxik")
 
 ## Plotting vector functions and identifying the plots
 
-Consider the following vector function:
+As an example, consider the following vector function:
 
 $$\vec{r}(t) = \v{1 + \cos 2\pi t, 1 + \sin 2\pi t, t}$$
 
-Let's look at the plot of the function for $0 \le t \le 2$.
+Let's try to figure out how the curve defined by this function for $0 \le t \le 2$ looks like.
 
 One useful tool for studying plots of vector functions is _projecting the curve
 onto the coordinate planes_.
@@ -91,6 +91,7 @@ which will move the circle so that its center is at the point $(1,1)$.
 So the projection of our curve onto the $xy$-plane is the circle with radius 1,
 center at $(1,1)$, traveled counterclokwise _twice_ around, starting at the
 point $(2,1)$.
+
 
 ```{r, echo=FALSE}
 illustr("../../asymptote/vector_functions/projectionxy.html", title = "Projection onto the xy-plane", width=400, height=400)
