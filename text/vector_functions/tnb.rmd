@@ -64,6 +64,7 @@ _osculating circle_ of the curve at that point:
 ```{r echo=FALSE}
 vembedr::embed_youtube("0lar2hAz_zY")
 ```
+
 ## An example of TNB frame and osculating circle:
 
 The following video shows an animation which visualizes a TNB frame and
@@ -71,5 +72,11 @@ osculating circle moving along a curve:
 
 ```{r echo=FALSE}
 vembedr::embed_youtube("JZGFcwipHYY")
+```
+
+The following illustration shows the curve from the above video with several of the TNB frames:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vector_functions/tnb_pic.html", title = "A curve with several TNB frames", width=600, height=400)
 ```
 
