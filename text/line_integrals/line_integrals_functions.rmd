@@ -184,6 +184,13 @@ $$\begin{aligned}
 &= -\pi
 \end{aligned}$$
 
+## Video on line integrals of functions
+
+```{r echo=FALSE}
+vembedr::embed_youtube("-lChv8QLPVs")
+```
+
+
 ### Try it yourself
 
 ```{r, echo=FALSE}
