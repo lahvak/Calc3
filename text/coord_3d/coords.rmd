@@ -101,7 +101,7 @@ htmltools::tags$iframe(title = "Coordinate box with coordinate planes", src = ba
 ### A bit of a stretch
 
 See if you can figure out the answers to these (_Hint:_ the distance from a point
-$P$ to a plane or a line is a distance from $P$ to the point in the plane or
+$P$ to a plane or a line is a distance from $P$ to the point on the plane or
 line that is __nearest__ to $P$.)
 
 <iframe height="700" src="https://webwork.svsu.edu/webwork2/html2xml?
