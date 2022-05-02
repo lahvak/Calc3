@@ -74,3 +74,6 @@ asymptote/**/*.html
 
 # Html from markdown or rmarkdown
 text/**/*.html
+
+# Quarto generated files
+*_files/

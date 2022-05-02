@@ -1,10 +1,37 @@
 ---
 title: 3d Coordinate System
+format: html
+knitr:
+  opts_chunk: 
+    echo: false
 ---
+
+```{r}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
 
 ### Introduction
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JsLqgb1E2c0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+```{r}
+vembedr::embed_youtube("JsLqgb1E2c0")
+```
 
 ### Coordinate planes
 
@@ -23,10 +50,8 @@ _coordinate planes_:
 
    The points on this plane have $x$-coordinate equal to 0.
 
-```{r, echo=FALSE}
-fname <- "../../asymptote/3dcoords/coordplanes.html"
-copied <- file.copy(fname, ".", overwrite = TRUE)
-htmltools::tags$iframe(title = "Three coordinate planes", src = basename(fname), width=285*2, height=256*2, frameborder="0")
+```{r}
+illustr("../../asymptote/3dcoords/coordplanes.html", title = "Three coordinate planes", width=285*2, height=256*2)
 ```
 
 You can interact with the illustration by turning it around and viewing it
@@ -67,10 +92,8 @@ Those 6 projections, together with the point $P$ itself and the _origin_, form a
 rectangular box with the point $P$ and the _origin_ at the directly opposite
 corners:
 
-```{r, echo=FALSE}
-fname <- "../../asymptote/3dcoords/coordbox.html"
-copied <- file.copy(fname, ".", overwrite = TRUE)
-htmltools::tags$iframe(title = "Projections and coordinate box", src = basename(fname), width=285*2, height=256*2, frameborder="0")
+```{r}
+illustr("../../asymptote/3dcoords/coordbox.html", title = "Projections and coordinate box", width=285*2, height=256*2)
 ```
 
 If $P$ lies on one of the coordinate planes, axes, or at the origin, this box
@@ -79,24 +102,15 @@ will _degenerate_ into a rectangle, an interval, or a single point.
 The following illustration combines both the "coordinate box" and the
 coordinate planes, so you can see the projections on the actual planes:
 
-```{r, echo=FALSE}
-fname <- "../../asymptote/3dcoords/coordplanesbox.html"
-copied <- file.copy(fname, ".", overwrite = TRUE)
-htmltools::tags$iframe(title = "Coordinate box with coordinate planes", src = basename(fname), width=285*2, height=256*2, frameborder="0")
+```{r}
+illustr("../../asymptote/3dcoords/coordplanesbox.html", title = "Coordinate box with coordinate planes", width=285*2, height=256*2)
 ```
 
 ### Try it yourself
 
-<iframe height="500" src="https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=Library/272/setStewart12_1/problem_1.pg
-&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple" width="640">
-</iframe>
+```{r}
+webwork("Library/272/setStewart12_1/problem_1.pg", width=640, height=500)
+```
 
 ### A bit of a stretch
 
@@ -104,14 +118,7 @@ See if you can figure out the answers to these (_Hint:_ the distance from a poin
 $P$ to a plane or a line is a distance from $P$ to the point on the plane or
 line that is __nearest__ to $P$.)
 
-<iframe height="700" src="https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=Library/UMN/calculusStewartET/s_12_1_10.pg
-&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple" width="640">
-</iframe>
+```{r}
+webwork("Library/UMN/calculusStewartET/s_12_1_10.pg", width=640, height=500)
+```
 

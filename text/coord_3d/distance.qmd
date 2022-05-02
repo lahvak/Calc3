@@ -1,27 +1,57 @@
 ---
 title: Distance in 3d
+format: html
+knitr:
+  opts_chunk: 
+    echo: false
 ---
+
+```{r}
+webwork <- function(path, width, height)
+{
+    htmltools::tags$iframe(title = "Exercise", 
+                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
+&answersSubmitted=0
+&sourceFilePath=", path, "&problemSeed=123
+&displayMode=MathJax
+&courseID=daemon_course
+&userID=daemon
+&course_password=daemon
+&outputformat=simple"), width=width, height=height, frameborder="0")
+}
+
+illustr <- function(fname, title, width, height)
+{
+    copied <- file.copy(fname, ".", overwrite = TRUE)
+    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
+}
+```
 
 ### Distance in 2d
 
 We all know the _distance formula_ in plane.  It is based on the Pythagorean
 Theorem.  If you draw a rectangle whose opposite corners are the two points
-$(x_1,y_1)$ and $(x_2,y_2)$ and whise sides are parallel to the coordinate
+$(x_1,y_1)$ and $(x_2,y_2)$ and whose sides are parallel to the coordinate
 axes, the distance between the two points is the length of the diagonal:
 
-```{r, echo=FALSE}
-fname <- "../../asymptote/distance/2ddistance.html"
-copied <- file.copy(fname, ".", overwrite = TRUE)
-htmltools::tags$iframe(title = "Rectangle with corners at the two given points", src = basename(fname), width=385, height=256, frameborder="0")
+```{r}
+illustr("../../asymptote/distance/2ddistance.html", title = "Rectangle with corners at the two given points", width=385, height=256)
 ```
 
 Applying the Pythagorean Theorem on one of the right triangles in the picture
 will tell us that the distance between $(x_1, y_1)$ and $(x_2,y_2)$ is
-\[\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\]
+$$\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
 
-#### A study hint
+:::{.callout-tip}
+#### A study tip
 
-In order to fully understand a mathematical idea such as a definition, a theorem or a formula, it is often useful to think about the _special cases_.  In the distance formula, what would happen if the two points have the same $x$-coordinate or $y$-coordinate?  How would the "rectangle" look like in that case?  What would the formula say?  What about _both_ coordinates being the same?
+In order to fully understand a mathematical idea such as a definition, a
+theorem or a formula, it is often useful to think about _special cases_.
+In the distance formula, what would happen if the two points have the same
+$x$-coordinate or $y$-coordinate?  What would the "rectangle" look like in that
+case?  What would the formula say?  What about _both_ coordinates being the
+same?
+:::
 
 ### "Lifting" this to 3d
 
@@ -31,13 +61,11 @@ $P_2$ with coordinates $(x_2,y_2,z_2)$.  Instead of a rectangle, we will now
 have a rectangular box with directly opposite corners at $P_1$ and $P_2$, and
 with sides parallel to the three coordinate planes, and edges parallel to the
 three coordinate axes.  _(Again, think about special cases when one, two or
-evan all three of the coordinates of the two points are equal.  How would the
+even all three of the coordinates of the two points are equal.  How would the
 "box" look like then?)_
 
-```{r, echo=FALSE}
-fname <- "../../asymptote/distance/3ddistance.html"
-copied <- file.copy(fname, ".", overwrite = TRUE)
-htmltools::tags$iframe(title = "Rectangular box with opposite corners at P1 and P2", src = basename(fname), width=285*2, height=256*2, frameborder="0")
+```{r}
+illustr("../../asymptote/distance/3ddistance.html", title = "Rectangular box with opposite corners at P1 and P2", width=285*2, height=256*2)
 ```
 
 The distance between $P_1$ and $P_2$ is then the length of the diagonal
@@ -54,7 +82,7 @@ where the hypotenuse is the diagonal $P_1Q$, and the sides have lengths
 $\left\lvert x_2 - x_1\right\rvert$ and
 $\left\lvert y_2 - y_1\right\rvert$.  From the Pythagorean Theorem we get the
 length of the diagonal as
-\[\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\]
+$$\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
 (Compare that with the 2d distance formula above! What is going on here?)
 
 Now we have another triangle, with corners $P_1(x_1, y_1, z_1)$, $Q(x_2, y_2,
@@ -65,11 +93,14 @@ trying to find! Applying the Pythagorean Theorem to this triangle will give us
 the 3d distance formula.  Try it yourself and see if you can come up with the
 following:
 
-\[d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}\]
+$$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$$
 
 ### Example
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ld0iOipaKos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+```{r}
+vembedr::embed_youtube("Ld0iOipaKos")
+```
 
 ### A bit of a stretch
 
@@ -84,21 +115,21 @@ pattern.  In fact, this pattern extends even to the 1d case:
     you have probably also learned that the absolute value of a number can be
     written using square root of a square.  For any real number $a$, 
 
-    \[\left\lvert a\right\rvert = \sqrt{a^2}\]
+    $$\left\lvert a\right\rvert = \sqrt{a^2}$$
 
     We can then rewrite the 1d distance formula as
 
-    \[\left\lvert x_2 - x_1\right\rvert = \sqrt{(x_2 - x_1)^2}\]
+    $$\left\lvert x_2 - x_1\right\rvert = \sqrt{(x_2 - x_1)^2}$$
 
 -   __In two dimensions__, the distance between two points $(x_1, y_1)$ and
     $(x_2, y_2)$ is
 
-    \[\sqrt{(x_2 - x_1)^2 + (y_2 - y_2)^2}\]
+    $$\sqrt{(x_2 - x_1)^2 + (y_2 - y_2)^2}$$
 
 -   __In three dimensions__, the distance between two points $(x_1, y_1, z_1)$ and
     $(x_2, y_2, z_2)$ is
 
-    \[\sqrt{(x_2 - x_1)^2 + (y_2 - y_2)^2 + (z_2 - z_2)^2}\]
+    $$\sqrt{(x_2 - x_1)^2 + (y_2 - y_2)^2 + (z_2 - z_2)^2}$$
 
 
 Can you make a conjecture how a distance between two points in a
@@ -108,5 +139,11 @@ For a real stretch, what about infinitely dimensional space? (Think for example
 about infinite sequences and series.  Things will get tricky, because you will
 run into issues with convergence.  Not every infinite sequence will be useable
 in that case.  This is way beyond the scope of this class, but you can look up
-$\ell^2$ space, or even $L^2$ spaces if you are curious about this.)
+$\ell^2$ spaces, or even $L^2$ spaces if you are curious about this.)
+
+### Try it yourself
+
+```{r}
+webwork("SVSU/math261/coordinates/distance_formula.pg", width=640, height=500)
+```
 
