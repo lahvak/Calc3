@@ -1,0 +1,106 @@
+---
+title: Vectors
+format: html
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../_common.qmd >}}
+
+### Vectors as "Arrows"
+
+```{r}
+vembedr::embed_youtube("lR0H7JwK98o")
+```
+
+### Addition of 3d vectors
+
+The following illustration shows the addition of two vectors in 3d space
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vectors/addition.html", title = "Addition of two vectors", width=285*2, height=256*2)
+```
+
+You can interact with the illustration by turning it around and viewing it
+from different angles.
+
+### Try it yourself
+
+
+```{r}
+webwork("Library/Hope/Multi1/01-02-Vector-operations/Graphical_vector_ops_04.pg",
+width=640, height=500)
+```
+
+### Vectors in components
+
+```{r}
+vembedr::embed_youtube("IGZKRmgFlhs")
+```
+
+Components of a 3d vector:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vectors/components.html", title = "Addition of two vectors", width=285*2, height=256*2)
+```
+
+Addition in components:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vectors/addition_boxes.html", title = "Addition of two vectors", width=285*2, height=256*2)
+```
+
+### Try it yourself
+
+```{r}
+webwork(
+"Library/BentleyUniversity/MathematicsOfComputerGraphics/setMoCG-Ch2/2-6-VectorFromOriginToPoint2D.pg",
+width=640, height=500)
+```
+
+```{r}
+webwork(
+"Library/Hope/Multi1/01-01-Vectors-in-Rn/Vectors-18a.pg",
+width=640, height=500)
+```
+
+```{r}
+webwork(
+"Library/Hope/Multi1/01-01-Vectors-in-Rn/Vectors-02.pg",
+width=640, height=500)
+```
+
+
+```{r}
+webwork(
+"Library/272/setStewart12_2/problem_1a.pg",
+width=640, height=500)
+```
+
+### Unit vectors and bases
+
+```{r}
+vembedr::embed_youtube("Tkki_kHnnmc")
+```
+
+Components using bases vectors
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vectors/component2.html", title = "Components of a vector", width=285*2, height=256*2)
+```
+
+```{r}
+webwork(
+"Library/272/setStewart12_2/problem_2a.pg",
+width=640, height=500)
+```
+
+
+```{r}
+webwork(
+"Library/Michigan/Chap13Sec1/Q17.pg",
+width=640, height=500)
+```
+
+
