@@ -1,0 +1,101 @@
+---
+title: Equations in 3 (or more) variables
+format: html
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../_common.qmd >}}
+
+### Equations in 1 or 2 variables
+
+From algebra, you know that a solution set of an equation in one variable is
+a set of points on the number line $\mathbb{R}$. For example, the equation $x^2
+- 3x + 2 = 0$ has solution set $\left\{1, 2\right\}$.
+
+Similarly, a solution set of an equation in two variables is a set of points in
+the plane $\mathbb{R}^2$. For example, the solutions set of the equation $x^2 +
+y^2 = 1$ is the set of all points that form the circle with center $(0,0)$ and
+radius 1.
+
+```{r}
+illustr("../../asymptote/equations/circle.html", title = "Circle with center (0,0) and radius 1", width=385, height=256)
+```
+
+Sometimes the same equation can be interpreted as an equation in one variable
+or two variables: for example the equation $x = 2$ as an equation in one
+variable has a single solution 2, while as an equation in two variables its set
+of solutions consists of all the points in the form $(2,y)$ for any real $y$.
+These points form a vertical line.
+
+```{r}
+illustr("../../asymptote/equations/line.html", title = "Vertical line through (2,0)", width=385, height=256)
+```
+
+### Equations in 3 variables
+
+Each solution of an equation in three variables is a point in
+the space $\mathbb{R}^3$. For example, one of the solutions of the equation $x
++ y + z = 2$ is the point $(1,1,0)$, another is $(\frac{1}{2}, \frac{1}{2},
+1)$.
+
+As another example, consider the equation $x^2 + y^2 + z^2 = 1$. We can rewrite
+the equation as $$(x - 0)^2 + (y - 0)^2 + (z - 0)^2 = 1.$$
+
+Taking the square root of both sides will produce $$\sqrt{(x-0)^2 + (y-0)^2 + (z-0)^2} = 1.$$
+
+::: {.column-margin}
+Why is it OK to take the square root of both sides? How do we know that the new equation is equivalent to the old one?
+:::
+
+The left hand side of the equation can be recognized as the _distance formula_
+$$\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$$
+with $(x_2, y_2, z_2) = (x,y,z)$ and $(x_1, y_1, z_1) = (0,0,0)$. In other
+words, the left hand side of the equation is __the distance of the point
+$(x,y,z)$ from the origin__, and the equation says that this distance must be
+equal to 1.
+
+Therefore the solution set of the equation $x^2 + y^2 + z^2 = 1$ is the set of
+all points in $\mathbb{R}^3$ that are exactly one unit away from the origin.
+These points form the _sphere with center in the origin and radius 1_:
+
+```{r}
+illustr("../../asymptote/equations/sphere.html", title = "Sphere with center (0,0,0) and radius 1", width=385, height=256)
+```
+
+As another example, let's think about the equation $x = 2$ again, this time as
+an equation in _three variables_. Any solution of this equation must look like
+$(2, y, z)$, where $y$ and $z$ can be any real numbers (the equation does not
+put any requirements on them at all).  The set of all such points form a
+_plane_ that is parallel to the $yz$-plane (or, which is the same,
+_perpendicular_ to the $x$-axis), passing through the point $(2,0,0)$:
+
+```{r}
+illustr("../../asymptote/equations/plane.html", title = "Vertical plane through (2,0,0)", width=385, height=256)
+```
+
+### Plotting equations using Sage
+
+```{r}
+#vembedr::embed_youtube("Ld0iOipaKos")
+```
+
+### Try it yourself
+
+```{r}
+webwork("Library/BentleyUniversity/MathematicsOfComputerGraphics/setMoCG-Ch7/7-1-EquationOfASphere2.pg", width=640, height=500)
+```
+
+```{r}
+webwork("Library/BentleyUniversity/MathematicsOfComputerGraphics/setMoCG-Ch7/7-1-EquationOfASphere.pg", width=640, height=500)
+```
+
+```{r}
+webwork("Library/Michigan/Chap12Sec1/Q11.pg", width=640, height=500)
+```
+
+```{r}
+webwork("Library/Dartmouth/setStewartCh13S1/problem_3.pg", width=640, height=500)
+```
+
