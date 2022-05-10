@@ -1,31 +1,15 @@
 ---
 title: Equations of Planes
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+{{< include ../_common.qmd >}}
 
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
 
 ## Parametric equations
 
@@ -49,7 +33,7 @@ the vectors $\vec{u} = \v{u_1,u_2,u_3} = \overrightarrow{PQ}$ and $\vec{v} = \v{
 Then any point on the plane can be written as $\vec{r}_0 + r\vec{u} + s\vec{v}$ for some scalars $r$ and $s$, where
 $\vec{r}_0 = \v{x,y,z}$ is the position vector of $P$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/lines_and_planes/plane_param.html", title = "A plane through P, Q and R", width=640, height=420)
 ```
 
@@ -64,13 +48,13 @@ as _mapping_ the two-dimensional $rs$-plane onto our plane in $\mathbb{R}^3$ suc
 the point $(1,0)$ maps to $Q$, the point $(0,1)$ maps to $R$, the $r$-axis maps to the line $PQ$, and the $s$-axis maps
 to the line $PR$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/lines_and_planes/plane_param_coordsys.html", title = "An image of the rs-plane", width=640, height=420)
 ```
 
 ### An example
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("N3Y8Xde-BwE")
 ```
 
@@ -90,40 +74,40 @@ Writing this in components and reorganizing will give us the _implicit equation_
 
 $$n_1 x + n_2 y + n_3 z - (n_1 x_0 + n_2 y_0 + n_3 z_0) = 0.$$
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/lines_and_planes/plane_implicit.html", title = "Plane defined by a point and a normal vector", width=640, height=420)
 ```
 
 ### An example
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("cdgHV3G9h1k")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap17Sec5/Q15.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap17Sec5/Q19.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap13Sec4/Q13.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/12_Vector_Geometry/12.5_Planes_in_Three-Space/12.5.19.pg",
         width=640, height=500
@@ -138,20 +122,20 @@ If two planes are not parallel, they intersect, and the _angle_ between them is 
 the angle between their normal vectors.
 
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("FbGGJuE0lHM")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/UMN/calculusStewartET/s_12_5_50.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Rochester/setVectors4PlanesLines/ur_vc_2_18.pg",
         width=640, height=500

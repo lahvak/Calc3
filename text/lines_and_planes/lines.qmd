@@ -1,38 +1,21 @@
 ---
 title: Lines in 3d
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../_common.qmd >}}
 
 ## Linear motion
 
 Good way to learn about lines in $\mathbb{R}^3$ is by studying trajectories of
 uniformly moving objects.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("nw6zReJkJjs")
 ```
 
@@ -40,7 +23,7 @@ This 3d illustration shows a line with its _direction vector_ $\vec{v}$ through 
 together with positions corresponding to times $t = -1$, $t=0$, $t=\frac{2}{3}$, $t=1$ and $t=2$:
 
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/lines_and_planes/line.html", title = "A line through P and Q", width=840, height=420)
 ```
 
@@ -48,7 +31,7 @@ illustr("../../asymptote/lines_and_planes/line.html", title = "A line through P 
 
 From the idea of uniform motion of an object in $\mathbb{R}^3$, we obtain the __vector equation__ of a line:
 
-\[\vec{r}(t) = \vec{r}_0 + t\vec{v}\]
+$$\vec{r}(t) = \vec{r}_0 + t\vec{v}$$
 
 where $\vec{r}(t)$ is the _position vector_ of the object at time $t$,
 $\vec{r}_0$ is the _initial position_ of the object (in other words, the
@@ -58,7 +41,7 @@ object.
 If we split this equation into individual components, we get the __parametric
 equations__ of the line:
 
-\[
+$$
 \left\{
 \begin{aligned}
 x(t) &= x_0 + v_1t\\
@@ -66,41 +49,41 @@ y(t) &= y_0 + v_2t\\
 z(t) &= z_0 + v_3t
 \end{aligned}
 \right.
-\]
+$$
 
 where $x_0$, $y_0$ and $z_0$ are the components of the _initial position
 vector_ $\vec{r}_0 = \v{x_0, y_0, z_0\}$.
 
 Finally, we can solve for $t$ to get the __symmetric equation__ of the line:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("aN4LGicuH84")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Union/setMVlinesplanes/lines-1.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Dartmouth/setStewartCh13S5/problem_3.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/UMN/calculusStewartET/s_12_5_8.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Union/setMVlinesplanes/lines-3.pg",
         width=640, height=500
@@ -128,7 +111,7 @@ well.  For example:
   words, the line is _parallel_ to the $xy$-plane.  If $v_3 \neq 0$, the line is
   _not_ parallel to the $xy$-plane, and therefore must _intersect it_.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("dVNS0ku6ePg")
 ```
 
@@ -136,37 +119,37 @@ vembedr::embed_youtube("dVNS0ku6ePg")
 
 Two examples of equations of intersecting lines:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("ZtCtTvTZGGg")
 ```
 
 Examples of different ways how two lines can exist in $\mathbb{R}^3$:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("VqIhRqqmS1g")
 ```
 
 Illustrations of intersecting and non-intersecting lines in $\mathbb{R}^3$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/lines_and_planes/intersecting.html", title = "Two intersecting lines", width=840, height=210)
 ```
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/lines_and_planes/skew.html", title = "Two non-intersecting lines", width=840, height=210)
 ```
 
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/ASU-topics/setCalculus/stef12_5p3.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Rochester/setVectors4PlanesLines/ur_vc_2_14.pg",
         width=640, height=500
@@ -175,16 +158,13 @@ webwork(
 
 ## Distance of a point from a line
 
-In one of our class activities, you calculated the distance from a given point to a given line segment.  Let's look
-at this in more details:
-
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("YzcsN4f6sEQ")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/UMN/calculusStewartET/s_12_5_prob03.pg",
         width=640, height=500

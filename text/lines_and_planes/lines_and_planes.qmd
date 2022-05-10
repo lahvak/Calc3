@@ -1,31 +1,15 @@
 ---
 title: Lines and Planes
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+{{< include ../_common.qmd >}}
 
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
 
 ## Intersection of two planes
 
@@ -33,7 +17,7 @@ If two distinct planes in $\mathbb{R}^3$ are not parallel, they intersect, and t
 is to find an equation of that line.
 
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/lines_and_planes/planes_intersect.html", title = "An intersection of two planes", width=640, height=420)
 ```
 
@@ -42,13 +26,13 @@ its direction vector must be _orthogonal_ to both of the normal vectors. Let's l
 
 ### Couple of examples
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("KBlQu1vMnIA")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 # Intersection of two planes
 webwork(
         "Library/Michigan/Chap17Sec1/Q47.pg",
@@ -63,13 +47,13 @@ If a line is not _parallel_ to a plane, it will intersect it at a single point. 
 to find the time at which the coordinates of a moving object described by the parametric equations of the line satisfy
 the equation of the plane:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("eRbbMlP3QFY")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 # Intersection of line and plane
 webwork(
         "Library/272/setStewart12_5/problem_14.pg",
@@ -79,13 +63,13 @@ webwork(
 
 ## Equation of a plane containing a given line and a given point.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("M1dQrdeTVrA")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 # Plane by line and point
 webwork(
         "Library/UMN/calculusStewartET/s_12_5_34.pg",
@@ -95,13 +79,13 @@ webwork(
 
 ## Equation of a plane _perpendicular to_ a given line, containing a given point.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("5X3UMrmKrR4")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 # Plane perpendicular to a line
 webwork(
         "Library/CSUN/Calculus/Lines_planes_2.pg",
