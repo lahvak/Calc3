@@ -1,31 +1,14 @@
 ---
 title: Cross Product
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../_common.qmd >}}
 
 ## Determinants
 
@@ -41,12 +24,12 @@ vembedr::embed_youtube("reNSHrJclCA")
 (Note: _According to some texts, the operation of __cross product__ is not
 actually defined in two dimensions, it is only defined in three dimensions.
 The 2d vector operation described here is often called a __perp dot product__
-for reasons described below.)
+for reasons described below._)
 
 The __cross product__ of two 2-dimensional vectors $\vec{u} = \v{u_1, u_2}$ and
 $\vec{v} = \v{v_1, v_2}$ is defined as the scalar
 
-\[\vec{u}\times\vec{v} = \norm{\vec{u}}\norm{\vec{v}}\sin\theta\]
+$$\vec{u}\times\vec{v} = \norm{\vec{u}}\norm{\vec{v}}\sin\theta$$
 
 where $\theta$ is the angle between $\vec{u}$ and $\vec{v}$.
 
@@ -64,7 +47,7 @@ $\norm{\vec{v}}\sin\theta$.  If $\theta <0$, we get a "negative" area".)
 In components, it turns out the cross product or vectors $\vec{u} = \v{u_1,
 u_2}$ and $\vec{v} = \v{v_1, v_2}$ is
 
-\[\vec{u}\times\vec{v} = u_1v_2 - v_1u_2\]
+$$\vec{u}\times\vec{v} = u_1v_2 - v_1u_2$$
 
 ### Explanation and connection to dot product:
 
@@ -72,7 +55,7 @@ The following illustration shows two vectors: $\vec{u}$ and $\vec{v}$, together
 with a vector $\vec{u}^\perp$, which is a vector of the same magnitude as
 $\vec{u}$, but _perpendicular_ to $\vec{u}$.  If the component form of
 $\vec{u}$ is $\v{u_1,u_2}$, the comoponent form of $\vec{u}^\perp$ is $\v{-u_2,
-u_1}$ (You can also use $\v{u_2, -u+1}$, which would point in the opposite
+u_1}$ (You can also use $\v{u_2, -u_1}$, which would point in the opposite
 direction.  You can verify that you will get the same result in the end.)
 
 ```{r, echo=FALSE}
@@ -81,11 +64,11 @@ illustr("../../asymptote/vectors/perpdot.html", title = "Vector perpendicular to
 
 Then 
 
-\[\begin{aligned}
+$$\begin{aligned}
 \vec{u}^\perp \cdot \vec{v} &= \norm{\vec{u}^\perp}\norm{\vec{v}}\cos\left(\frac{\pi}{2}-\theta\right)\\
 &=\norm{\vec{u}}\norm{\vec{v}}\sin\left(\theta\right)\\
 &=\vec{u}\times\vec{v}
-\end{aligned}\]
+\end{aligned}$$
 
 In components, $\vec{u}^\perp \cdot \vec{v} = -u_2v_1 + u_1v_2 = u_1v_2
 - u_2v_1$.
@@ -120,13 +103,7 @@ cosine.)
 The 2d cross product $\vec{u}\times\vec{v}$ can also be defined as a determinant of a matrix with 
 first row $\vec{u}$ and second row $\vec{v}$:
 
-\[\vec{u}\times\vec{v} =
-\left\lvert
-\begin{matrix}
-u_1 & u_2\\
-v_1 & v_2
-\end{matrix}
-\right\rvert = u_1v_2 - u_2v_1\]
+$$\vec{u}\times\vec{v} = \left\lvert \begin{matrix} u_1 & u_2\\ v_1 & v_2 \end{matrix} \right\rvert = u_1v_2 - u_2v_1$$
 
 
 ### Example
@@ -136,8 +113,8 @@ v_1 & v_2
 
 The _signed_ area of the parallelogram is
 
-\[\vec{a}\times \vec{b} = \left\lvert\begin{matrix}3 & 2\\1 &
--5\end{matrix}\right\rvert = 3\cdot (-5) - 2\cdot 1 = -17\]
+$$\vec{a}\times \vec{b} = \left\lvert\begin{matrix}3 & 2\\1 &
+-5\end{matrix}\right\rvert = 3\cdot (-5) - 2\cdot 1 = -17$$
 
 so the area is 17 square units.
 
@@ -160,7 +137,7 @@ illustr("../../asymptote/vectors/cross3d.html", title = "Cross product in 3d",
 In components, the cross product can be calculated using the following
 determinant:
 
-\[\begin{aligned}
+\begin{aligned}
 \vec{u}\times\vec{v} =
 \left\lvert\begin{matrix}
 \vec{i} & \vec{j} & \vec{k}\\
@@ -171,7 +148,7 @@ v_3\end{matrix}\right\rvert, -\left\lvert\begin{matrix}u_1 & u_3\\v_1 &
 v_3\end{matrix}\right\rvert, \left\lvert\begin{matrix}u_1 & u_2\\v_1 &
 v_2\end{matrix}\right\rvert}\\
 &= \v{u_2v_3 - u_3v_2, -(u_1v_3 - u_3v_1), u_1v_2 - u_2v_1}
-\end{aligned}\]
+\end{aligned}
 
 #### Try it yourself
 
@@ -219,7 +196,7 @@ The first three properties follow directly from the properties of determinants:
 
 -   Determinant with a row of zeros is 0
 
-The Lagrange property is a concequence of the Pythagorean identity for sine and
+The Lagrange property is a consequence of the Pythagorean identity for sine and
 cosine.  The rest of the properties can be proven by working with components.
 
 For us, the most useful properties will be the __orthogonality__ and the fact
@@ -254,13 +231,9 @@ vembedr::embed_youtube("FEPw8PzUKmE")
 It also gives another interpretation to a $3\times 3$ determinant.  The
 determinant
 
-\[\left\lvert\begin{matrix}
-a_1 & a_2 & a_3\\
-b_1 & b_2 & b_3\\
-c_1 & c_2 & c_3\\
-\end{matrix}\right\rvert\]
+$$\left\lvert\begin{matrix} a_1 & a_2 & a_3\\ b_1 & b_2 & b_3\\ c_1 & c_2 & c_3\\ \end{matrix}\right\rvert$$
 
-is the _signed volume_ of the parallelepiped determined by the vectors 
+is the _signed volume_ of the _parallelepiped_ determined by the vectors 
 $\vec{a} = \v{a_1, a_2, a_3}$, 
 $\vec{b} = \v{b_1, b_2, b_3}$, and
 $\vec{c} = \v{c_1, c_2, c_3}$,

@@ -1,0 +1,280 @@
+---
+title: Dot Product
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Two ways to define
+
+### Vectors as "Arrows"
+
+The _angle between vectors $\vec{u}$ and $\vec{v}$_ in $\mathbb{R}^2$ or
+$\mathbb{R}^3$ is simply the angle,
+between $-\pi$ and $\pi$, one would need to rotate the vector $\vec{u}$ by so that
+it would become parallel to the vector $\vec{v}$:
+
+```{r, echo=FALSE}
+illustr("../../asymptote/vectors/angle.html", title = "Angle between two vectors", width=285, height=256)
+```
+
+On the diagram above, $\theta$ is the angle between $\vec{u}$ and $\vec{v}$.
+
+The __dot product__ (also called _scalar product_ or _inner product_) of two vectors $\vec{u}$ and
+$\vec{v}$ in $\mathbb{R}^2$ or $\mathbb{R}^3$ is the scalar quantity
+
+$$\vec{u}\cdot\vec{v} = \norm{\vec{u}}\norm{\vec{v}}\cos\theta$$
+
+where $\theta$ is the angle between $\vec{u}$ and $\vec{v}$.
+
+#### Some properties
+
+-   The dot product is _commutative_: $\vec{u}\cdot\vec{v} =
+    \vec{v}\cdot\vec{u}$.  This follows from the fact that $\cos$ is an _even_
+    function, so $\cos(-\theta) = \cos(\theta)$.
+
+-   The dot product $\vec{u}\cdot\vec{v}$ is _zero_ if and only if at least one
+    of the following is true:
+
+    -   $\vec{u}$ is the zero vector
+    -   $\vec{v}$ is the zero vector
+    -   $\vec{u}$ and $\vec{v}$ are _perpendicular_ to each other.
+
+    This means that the dot product does not satisfy the _zero product
+    property_: dot product of two vectors can be zero even when none of the two
+    vectors are zero!
+
+-   The dot product $\vec{u}\cdot\vec{v}$ is _positive_ if and only if the angle
+    between the two vectors is _acute_, that is between $-\frac{\pi}{2}$ and
+    $\frac{\pi}{2}$.
+
+-   The dot product $\vec{u}\cdot\vec{v}$ is _negative_ if and only if the angle
+    between the two vectors is _obtuse_.
+
+*   For any scalar^[This is true even for a _negative_ $c$! Think about what happens to an
+    angle between two vectors when one of the vectors is multiplied by a
+    negative scalar!] $c$, $(c\vec{u})\cdot\vec{v} = \vec{u}\cdot(c\vec{v}) =
+    c(\vec{u}\cdot\vec{v})$
+
+-   $\vec{u}\cdot\vec{v} = \frac{1}{2}\left(\norm{\vec{u}}^2 + \norm{\vec{v}}^2 - \norm{\vec{u} - \vec{v}}^2\right)$
+
+    This is a consequence of the _law of cosines_.  Applying the law of cosines
+    on the following triangle:
+
+    ```{r}
+    illustr("../../asymptote/vectors/cosines.html", title = "Triangle defined by vectors u and v", width=285, height=256)
+    ```
+
+    will give us $\norm{\vec{u} - \vec{v}}^2 = \norm{\vec{u}}^2 +
+    \norm{\vec{v}}^2 - 2\norm{\vec{u}}\norm{\vec{v}}\cos\theta$.
+
+-   $\vec{u}\cdot\vec{u} = \norm{\vec{u}}^2$.
+
+
+#### Try it yourself
+
+```{r}
+webwork("Library/Rochester/setVectors2DotProduct/UR_VC_1_11.pg", width=640, height=500)
+```
+
+### Vectors in components
+
+If $\vec{u}$ and $\vec{v}$ are two vectors in $\mathbb{R}^2$ or $\mathbb{R}^3$,
+we know that (as a consequence of the law of cosines)
+
+$$\vec{u}\cdot\vec{v} = \frac{1}{2}\left(\norm{\vec{u}}^2 + \norm{\vec{v}}^2 - \norm{\vec{u} - \vec{v}}^2\right).$$
+
+Writing $\vec{u} = \v{u_1, u_2, u_3}$ and $\vec{v} = \v{v_1, v_2, v_3}$ in
+$\mathbb{R}^3$ (or similarly with just two components in $\mathbb{R}^2$), the
+identity becomes
+$$\begin{aligned}
+\vec{u}\cdot\vec{v} &= \frac{1}{2}\left(\norm{\vec{u}}^2 + \norm{\vec{v}}^2 -
+\norm{\vec{u} - \vec{v}}^2\right)\\
+&= \frac{1}{2}\left(u_1^2 + u_2^2 + u_3^2 + v_1^2 + v_2^2 + v_3^2 - (u_1 - v_1)^2 - (u_2 - v_2)^2 - (u_3 - v_3)^2\right)\\
+\end{aligned}$$
+Expanding the squares and combining like terms will turn this into
+$$\frac{1}{2}\left(2u_1v_1 + 2u_2v_2 + 3u_3v_3\right) = u_1v_1 + u_2v_2 + u_3v_3$$
+which gives us an easy way to calculate a dot product of $\vec{u}$ and
+$\vec{v}$ using their components.
+
+#### Dot product in any finite dimension
+
+In light of this, we can now define dot product between two vectors $\vec{u}$
+and $\vec{v}$ in $\mathbb{R}^n$ for any integer $n > 0$:
+
+Given
+$$\vec{u} = \v{u_1, u_2, \dots, u_n} \in \mathbb{R}^n$$
+and
+$$\vec{v} = \v{v_1, v_2, \dots, v_n} \in \mathbb{R}^n$$
+define
+$$\vec{u}\cdot\vec{v} = u_1v_1 + u_2v_2 + \cdots + u_nv_n = \sum_{i=1}^n u_iv_i.$$
+
+:::{.column-margin}
+Again, just as with the norm, this can be extended to infinitely dimensional
+vectors, such as sequences or functions, as long as one takes care of
+convergence issues in some way.
+:::
+
+*   If $n = 1$, this just becomes a regular product of two numbers.
+*   As we have just shown, if $n = 2$ or $n = 3$, this agrees with the earlier
+    definition of dot product using an angle between vectors.
+*   In higher dimensions, it gives us a way to define a dot product even if
+    there is no intuitive geometrical concept of an angle between vectors.
+
+##### Example:
+
+If $\vec{u} = \v{1,-2,4,3}$ and $\vec{v} = \v{2,5,-1,2}$ then
+$$\vec{u}\cdot\vec{v} = 1\cdot 2 + (-2)\cdot 5 + 4\cdot (-1) + 3\cdot 2 = 2 - 10 - 4 + 6 = -6.$$
+
+#### Try it yourself
+
+```{r}
+webwork("Library/Union/setMVvectors/vectors-6.pg", width=640, height=500)
+```
+
+### Properties of dot product
+
+Earlier we saw several properties of dot product in $\mathbb{R}^2$ and
+$\mathbb{R}^3$ that followed easily from the
+geometric definition. Most of these properties are still true in any
+dimension, and can be proved by rewriting vectors using components and
+manipulating the resulting expressions using rules of algebra.  In addition to
+that, there are also some other properties that are very hard to prove from the
+geometric definition, but became relatively easy when using components. Here is
+a list with some important properties of dot product:
+
+-   The dot product is _commutative_: $\vec{u}\cdot\vec{v} =
+    \vec{v}\cdot\vec{u}$.
+
+-   Dot product does __not__ satisfy the _zero product
+    property_: dot product of two vectors can be zero even when none of the two
+    vectors are zero!
+
+-   Dot product _distributes_^[The distributive property is hard to prove geometrically, but very easy to prove using
+    components! Give it a try!] over vector addition: $\vec{u}\cdot(\vec{v} +
+    \vec{w}) = \vec{u}\cdot\vec{v} + \vec{u}\cdot\vec{w}$.
+
+
+*   For any scalar $c$, $(c\vec{u})\cdot\vec{v} = \vec{u}\cdot(c\vec{v}) =
+    c(\vec{u}\cdot\vec{v})$
+
+-   $\vec{u}\cdot\vec{v} = \frac{1}{2}\left(\norm{\vec{u}}^2 + \norm{\vec{v}}^2 - \norm{\vec{u} - \vec{v}}^2\right)$
+
+-   $\vec{u}\cdot\vec{u} = \norm{\vec{u}}^2$.
+
+-   __Cauchy--Schwartz inequality__: ^[A nice simple proof of this version of Cauchy--Schwartz inequality can be found
+    for example on
+    [Wikipedia](https://en.wikipedia.org/w/index.php?title=Cauchy%E2%80%93Schwarz_inequality&oldid=1085897952#Rn_-_n-dimensional_Euclidean_space).] for any two vectors $\vec{u}$ and
+    $\vec{v}$ in $\mathbb{R}^n$, $\abs{\vec{u}\cdot\vec{v}} \le
+    \norm{\vec{u}}\norm{\vec{v}}$.
+
+### Angles between vectors
+
+In $\mathbb{R}^2$ and $\mathbb{R}^3$, we have two equivalent ways to calculate
+the dot product of two vectors: one using components and one using the angle
+between the vectors. If we know the components of the two vectors, we can use
+this to calculate the angle, or at least its absolute value!
+
+Starting with the equation $\vec{u}\cdot\vec{v} =
+\norm{\vec{u}}\norm{\vec{v}}\cos\theta$ and solving for $\cos\theta$, we get
+
+$$\cos\theta = \frac{\vec{u}\cdot\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}}$$
+
+Using the inverse cosine we get
+
+$$\abs{\theta} = \cos^{-1}\left(\frac{\vec{u}\cdot\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}}\right)$$
+
+for any angle $\theta$ between $-\pi$ and $\pi$.
+
+#### Example
+
+Let's take two vectors, $\vec{u} = \v{1,3,2}$ and $\vec{v} = \v{2,-2,1}$.
+We get
+
+$$\begin{aligned}
+\norm{\vec{u}} &= \sqrt{1^2 + 3^2 + 2^2} = \sqrt{14}\\
+\norm{\vec{v}} &= \sqrt{2^2 + (-2)^2 + 1^2} = \sqrt{9} = 3\\
+\vec{u}\cdot\vec{v} &= 1\cdot 2 + 3\cdot(-2) + 2\cdot 1 = 1 - 6 + 1 = -4
+\end{aligned}$$
+
+so
+
+$$\cos\theta = \frac{\vec{u}\cdot\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}} = \frac{-4}{3\sqrt{14}}$$
+
+That means that either
+
+$$\theta = \cos^{-1}\left(-\frac{4}{3\sqrt{14}}\right)$$
+
+or
+
+$$\theta = -\cos^{-1}\left(-\frac{4}{3\sqrt{14}}\right)$$
+
+Either way, $\theta$ is an _obtuse_ angle.
+
+:::{.column-margin}
+Note that while in $\mathbb{R}^2$, the sign of an angle is always well defined:
+counter-clockwise rotations are positive and clockwise are negative, in
+$\mathbb{R}^3$ the sign of an angle depends on which side we are viewing the
+angle from.
+:::
+
+### Angles in higher dimensions
+
+In fact, we can use dot product to define both angles and distances in higher
+dimensions.
+
+First, we can define the norm of a vector as $\norm{\vec{u}} =
+\sqrt{\vec{u}\cdot\vec{u}}$. Once we know how to find a norm of a vector, we
+can define the distance between two points $P$ and $Q$ as the norm of
+the vector from $P$ to $Q$.
+
+Second, we can define the angle $\theta$ between two non-zero vectors $\vec{u}$ and
+$\vec{v}$ as
+$$\theta = \cos^{-1}\left(\frac{\vec{u}\cdot\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}}\right)$$
+
+This is well defined: according to the Cauchy--Schwartz inequality,
+$$-1 \le \frac{\vec{u}\cdot\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}} \le 1$$
+which means that 
+$$\cos^{-1}\left(\frac{\vec{u}\cdot\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}}\right)$$
+is defined and between $0$ and $\pi$.
+
+### Orthogonal vectors
+
+We saw that there are two ways for $\vec{u}\cdot\vec{v}$ to be 0:
+
+1.   One or both of the vectors are _zero vectors_.
+2.   Both vectors are non-zero and the angle between the vectors is
+    $\frac{\pi}{2}$ or $-\frac{\pi}{2}$, in other words, the vectors are
+    _perpendicular_ to each other.
+
+To make things easier, we define the concept of __orthogonal__ vectors:
+
+We say that vectors $\vec{u}$ and $\vec{v}$ are _orthogonal to each other_, or
+that $\vec{u}$ is _orthogonal_ to $\vec{v}$, or that $\vec{v}$ is _orthogonal_
+to $\vec{u}$, if the dot product $\vec{u}\cdot\vec{v} = 0$.
+
+For non-zero vectors, _orthogonal_ is the same as _perpendicular_.  The zero
+vector is orthogonal to all vectors, including itself!
+
+### Try it yourself
+
+```{r}
+webwork("Library/Union/setMVvectors/vectors-7.pg", width=640, height=500)
+```
+
+```{r}
+webwork("Library/272/setStewart12_3/problem_1a.pg", width=640, height=500)
+```
+
+```{r}
+webwork("Library/Michigan/Chap13Sec3/Q31.pg", width=640, height=500)
+```
+
+```{r}
+webwork("Library/UMN/calculusStewartET/s_12_3_22.pg", width=640, height=500)
+```
