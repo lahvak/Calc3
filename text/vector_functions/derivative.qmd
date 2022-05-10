@@ -1,0 +1,46 @@
+---
+title: Derivatives of vector functions
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Derivatives and tangent vectors
+
+A derivative of a vector function $\vec{r}:\mathbb{R} \to \mathbb{R}^n$ is
+defined as
+
+$$\vec{r}'(t) = \lim_{h\to 0}\frac{\vec{r}(t+h) - \vec{r}(t)}{h}$$
+
+The resulting _vector_ is _tangent_ to the curve:
+
+```{r}
+illustr("../../asymptote/vector_functions/tangent.html", title = "Tangent vector to a curve", width=600, height=400)
+```
+
+There are more details in the following video:
+
+```{r}
+vembedr::embed_youtube("iAKfjNwCJmc")
+```
+
+### Try it yourself
+
+```{r}
+webwork(
+        "Library/Dartmouth/setStewartCh14S2/problem_1.pg",
+        width=640, height=500
+)
+```
+
+```{r}
+webwork(
+        "Library/BentleyUniversity/MathematicsOfComputerGraphics/setMoCG-Ch10/10-1-to-3-VectorValuedPolynomialsAndLogs.pg",
+        width=640, height=500
+)
+```

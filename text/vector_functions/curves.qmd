@@ -1,31 +1,15 @@
 ---
 title: Vector functions
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+{{< include ../_common.qmd >}}
 
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
 
 ## Vector functions
 
@@ -44,7 +28,7 @@ There are several ways to interpret this.  Two of them are:
 
 If the function is _continuous_, it will look like this:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("Q0WsJG_Uxik")
 ```
 
@@ -93,7 +77,7 @@ center at $(1,1)$, traveled counterclokwise _twice_ around, starting at the
 point $(2,1)$.
 
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/vector_functions/projectionxy.html", title = "Projection onto the xy-plane", width=400, height=400)
 ```
 
@@ -118,34 +102,34 @@ $$x = 1 + \cos(2\pi z) \text{ for } 0 \le z \le 2$$.
 
 Here we have $x$ as a function of $z$, a function which we can graph:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/vector_functions/projectionxz.html", title = "Projection onto the xz-plane", width=400, height=400)
 ```
 
 ### Projection to the $yz$-plane
 
-In a silimar way we can see that the projection onto the $yz$-plane will be the
+In a similar way we can see that the projection onto the $yz$-plane will be the
 graph of the function $y = 1 + \sin(2\pi z)$ for $0 \le z \le 2$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/vector_functions/projectionyz.html", title = "Projection onto the yz-plane", width=400, height=400)
 ```
 
 ### The graph of the vector function with the projections
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/vector_functions/projections.html", title = "Graph of the vector function with projections", width=2*285, height=2*256)
 ```
 
 ### More examples
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("ObGDHSH8XP0")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart13_1/problem_3.pg",
         width=640, height=500
@@ -167,7 +151,7 @@ The domain of the function is then the union of two intervals: $[-1,0) \cup (0,5
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Dartmouth/setStewartCh14S1/problem_1.pg",
         width=640, height=500
@@ -199,7 +183,7 @@ different direction, and so on.
     $t$.  The view is limited to a finite part of the space, in reality the curve
     stretches indefinitely down and up.
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../asymptote/vector_functions/discontinuity1.html", title = "Example of a discontinuous curve with a linear asymptote", width=285, height=256)
     ```
 
@@ -218,7 +202,7 @@ different direction, and so on.
     $t$.  The view is limited to a finite part of the space, in reality the curve
     stretches indefinitely down and right and up and right.
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../asymptote/vector_functions/discontinuity2.html", title = "Example of a discontinuous curve with a parabolic asymptote", width=285, height=256)
     ```
 
@@ -236,7 +220,7 @@ different direction, and so on.
     while the part for $t>1$ is blue.  The arrows show the direction of increasing
     $t$.
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../asymptote/vector_functions/discontinuity3.html", title = "Example of a discontinuous curve with a jump discontinuity", width=285, height=256)
     ```
 
@@ -245,20 +229,20 @@ examples that are easy to visualize.
 
 ### Limits
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("JFRKL5I8Vgw")
 ```
 
 #### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/13_Calculus_of_Vector-Valued_Functions/13.2_Calculus_of_Vector-Valued_Functions/13.2.1.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart13_1/problem_2.pg",
         width=640, height=500

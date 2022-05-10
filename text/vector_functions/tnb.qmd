@@ -1,52 +1,35 @@
 ---
 title: TNB Frame, Osculating Planes and Circles
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../_common.qmd >}}
 
 ## TNB Frame
 
-At ant point of a regularly parametrized curve, the unit _tangent_ vector, the
+At any point of a regularly parametrized curve, the unit _tangent_ vector, the
 unit _normal_ vector and the unit _binormal_ vector form a local coordinate
 frame called the TNB frame:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("dvOl7bUy9ns")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart13_3/problem_4.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Rochester/setVecFunction2Curvature/ur_vc_4_4.pg",
         width=640, height=500
@@ -61,7 +44,7 @@ zero, we can get even better approximation by a circle.  The circle that
 provides the _best approximation_ of the curve at a given point is called the
 _osculating circle_ of the curve at that point:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("0lar2hAz_zY")
 ```
 
@@ -70,13 +53,13 @@ vembedr::embed_youtube("0lar2hAz_zY")
 The following video shows an animation which visualizes a TNB frame and
 osculating circle moving along a curve:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("JZGFcwipHYY")
 ```
 
 The following illustration shows the curve from the above video with several of the TNB frames:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../asymptote/vector_functions/tnb_pic.html", title = "A curve with several TNB frames", width=600, height=400)
 ```
 

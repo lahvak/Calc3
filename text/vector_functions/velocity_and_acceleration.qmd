@@ -1,31 +1,14 @@
 ---
 title: Velocity and Acceleration
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../_common.qmd >}}
 
 ## Velocity and acceleration
 
@@ -48,7 +31,7 @@ can be interpreted as the _acceleration vector_.
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart13_4/problem_7.pg",
         width=640, height=500
@@ -69,7 +52,7 @@ and $\norm{\vec{r}'(t)} \neq 0$ for all $t\in (a,b)$.
 The following video explores relations between two regular parametrizations of
 the same curve.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("NSf84jrJP0I")
 ```
 
@@ -85,20 +68,20 @@ changing:
 The following video looks at how an acceleration vector can cause these two
 changes.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("K3iWUK2Wd_o")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Dartmouth/setStewartCh14S2/problem_3.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/ASU-topics/setCalculus/stef/stef13_4p2.pg",
         width=640, height=500
@@ -120,14 +103,14 @@ Most of the time, calculating the derivative of the unit tangent vector is
 hard.  In this video we will derive a formula for curvature that is usually
 easier to use:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("12ZG8j9f0Oo")
 ```
 
 ### Try it yourself
 
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart13_3/problem_6.pg",
         width=640, height=500
