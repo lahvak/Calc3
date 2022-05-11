@@ -92,8 +92,7 @@ webwork(
 
 In the previous video we saw that the curvature is defined as
 
-$$\kappa(t) = \frac{\norm{\text{normal component of }
-\vec{r}''(t)}}{\norm{\vec{r}'(t)}^2}$$
+$$\kappa(t) = \frac{\norm{\text{normal component of } \vec{r}''(t)}}{\norm{\vec{r}'(t)}^2}$$
 
 and can be calculated as 
 
