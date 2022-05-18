@@ -1,31 +1,14 @@
 ---
 title: Gradient vector, higher derivatives, ...
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../../_common.qmd >}}
 
 ## Review
 
@@ -69,7 +52,7 @@ _tangent plane_.
 For example, the following surface graph shows a function that has _all
 directional derivatives_ at the origin, but is not differentiable there:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/derivatives/nodiff1.html", title = "A surface graph of a function that has all directional derivatives at (0,0) but is nit differentiable there", width=500, height=500)
 ```
 
@@ -84,35 +67,34 @@ $$\vec{\nabla}f(x_1,x_2,\dots,x_n) = \v{
 }$$
 
 is very useful.  For example, _if $f$ is a differentiable function at $A$_,
-then for any unit vector $\vec{u}$ the _directional derivative_ of $f$ at $A$
+then for any __unit__ vector $\vec{u}$ the _directional derivative_ of $f$ at $A$
 in the direction $\vec{u}$ can be calculated as
 
-$$D_\vec{u} f(a_1,a_2,\dots,a_n) = \vec{\nabla}f(a_1,a_2,\dots,a_n)\cdot
-\vec{u}.$$
+$$D_\vec{u} f(a_1,a_2,\dots,a_n) = \vec{\nabla}f(a_1,a_2,\dots,a_n)\cdot \vec{u}.$$
 
 The next video talks a bit more about the gradient vector:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("7ecWqIYcvB0")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart14_6/problem_9.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-34-Gradients-etc.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap17Sec1/Q55.pg",
         width=640, height=500
@@ -121,20 +103,20 @@ webwork(
 
 ## The Chain Rule
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("l8twSna0AO0")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap14Sec6/Q06.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.6_The_Chain_Rule/14.6.13.pg",
         width=640, height=500
@@ -143,27 +125,27 @@ webwork(
 
 ## Higher order derivatives
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("Sby_4al4zzE")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart14_3/UR_VC_5_14.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.3_Partial_Derivatives/14.3.67.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap14Sec7/Q15.pg",
         width=640, height=500

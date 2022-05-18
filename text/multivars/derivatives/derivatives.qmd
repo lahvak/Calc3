@@ -1,31 +1,14 @@
 ---
 title: Derivatives of Functions of Several Variables
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../../_common.qmd >}}
 
 ## Directional derivatives
 
@@ -57,14 +40,7 @@ Suppose we have a line passing through the point $A$ with the velocity vector
 $\vec{u}$ (since this is a unit vector, the speed of the motion is 1).  The
 equation of the line will be
 
-$$\left\{
-\begin{aligned}
-x_1(t) &= a_1 + u_1 t\\
-x_2(t) &= a_2 + u_2 t\\
-&\vdots\\
-x_n(t) &= a_n + u_n t
-\end{aligned}
-\right.$$
+$$\left\{\begin{aligned} x_1(t) &= a_1 + u_1 t\\ x_2(t) &= a_2 + u_2 t\\ &\vdots\\ x_n(t) &= a_n + u_n t \end{aligned} \right.$$
 
 If we substitute the $x_i$s into the function $f$, we will get a real function
 of single variable $t$:
@@ -91,36 +67,28 @@ _Solution:_
 The equation of the line passing through the point $(1,1)$ in the direction $\v{\frac{\sqrt{3}}{2},\frac{1}{2}}$
 is
 
-\[\left\{
+$$\left\{
 \begin{aligned}
 x &= 1 + \frac{\sqrt{3}}{2}t\\
 y &= 1 + \frac{1}{2}t
 \end{aligned}
-\right.\]
+\right.$$
 
 Plug in $x = 1 + \frac{\sqrt{3}}{2}t$ and $y = 1 + \frac{1}{2}t$ into $f(x,y)$ to get a
 function of $t$:
-
-\[\begin{aligned}
-f(t) &= f\left(1 + \frac{\sqrt{3}}{2}t, 1 + \frac{1}{2}t\right)\\
-     &= \left(1 + \frac{\sqrt{3}}{2}t\right)^2 + 2\left(1 + \frac{1}{2}t\right)^3 - \left(1 + \frac{\sqrt{3}}{2}t\right)\left(1 + \frac{1}{2}t\right)
-\end{aligned}\]
+$$\begin{aligned} f(t) &= f\left(1 + \frac{\sqrt{3}}{2}t, 1 + \frac{1}{2}t\right)\\ &= \left(1 + \frac{\sqrt{3}}{2}t\right)^2 + 2\left(1 + \frac{1}{2}t\right)^3 - \left(1 + \frac{\sqrt{3}}{2}t\right)\left(1 + \frac{1}{2}t\right) \end{aligned}$$
 
 Then the required directional derivative is the derivative of this function at $t=0$.
-\[\begin{aligned}
-f'(t) &= 2\left(1 + \frac{\sqrt{3}}{2}t\right)\frac{\sqrt{3}}{2}\\ 
+$$\begin{aligned}f'(t) &= 2\left(1 + \frac{\sqrt{3}}{2}t\right)\frac{\sqrt{3}}{2}\\ 
 &\phantom{= {}} + 6\left(1 + \frac{1}{2}t\right)^2\frac{1}{2}\\
 &\phantom{= {}} - \frac{\sqrt{3}}{2}\left(1 + \frac{1}{2}t\right) - \left(1 + \frac{\sqrt{3}}{2}t\right)\frac{1}{2}
-\end{aligned}\]
+\end{aligned}$$
 
-\[\begin{aligned}
-f'(0) &= 2\frac{\sqrt{3}}{2} + 6\frac{1}{2} - \frac{\sqrt{3}}{2} - \frac{1}{2}\\
-&= \frac{\sqrt{3} + 5}{2}
-\end{aligned}\]
+$$\begin{aligned}f'(0) &= 2\frac{\sqrt{3}}{2} + 6\frac{1}{2} - \frac{\sqrt{3}}{2} - \frac{1}{2}\\ &= \frac{\sqrt{3} + 5}{2} \end{aligned}$$
 
 The directional derivative of $f$ in the direction $\v{\frac{\sqrt{3}}{2},\frac{1}{2}}$ is $\frac{\sqrt{3} + 5}{2}$.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("HiF3AjuYXoA")
 ```
 
@@ -196,26 +164,26 @@ $$\frac{\partial f}{\partial x_i} (x_1, x_2, \dots, x_n)$$
    \lim_{h\to 0}\frac{f(x,y,z+h) - f(x,y,z)}{h}$$
 
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/derivatives/partials.html", title = "Graph showing partial derivatives of a function of two variables.", width=500, height=500)
 ```
 
 ### Calculating partial derivatives
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("VkAGPgLntnM")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.3_Partial_Derivatives/14.3.42.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap14Sec2/Q08.pg",
         width=640, height=500
@@ -252,11 +220,11 @@ $$f(x,y) = x^2 + 2y^3 - xy$$
 
         The equation of the line is
 
-        \[\left\{\begin{aligned}
+        $$\left\{\begin{aligned}
         x &= 1 + t\\
         y &= 1\\
         z &= 2 + t
-        \end{aligned}\right.\]
+        \end{aligned}\right.$$
 
     1.  Find the equation of the _tangent line_ to the graph of $\vec{s}(t)$ at $t = 1$.
 
@@ -268,38 +236,38 @@ $$f(x,y) = x^2 + 2y^3 - xy$$
 
         The equation of the line is
 
-        \[\left\{\begin{aligned}
+        $$\left\{\begin{aligned}
         x &= 1\\
         y &= 1 + t\\
         z &= 2 + 5t
-        \end{aligned}\right.\]
+        \end{aligned}\right.$$
 
     1.  Find en equation of the plane that contains the two tangent lines.
 
         Both lines pass through the point $(1,1,2)$, so the plane will contain that point. To find its _normal vector_, 
         we can take the _cross product_ of the direction vectors of the two lines:
 
-        \[\vec{n} = \v{1, 0, 1}\times \v{0, 1, 5} = \v{-1, -5, 1}\]
+        $$\vec{n} = \v{1, 0, 1}\times \v{0, 1, 5} = \v{-1, -5, 1}$$
 
         The equation of the plane is then $-1(x - 1) - 5(y - 1) + 1(z - 2) = 0$. Simplifying and solving for $z$ gives us
 
-        \[z = x + 5y - 4\]
+        $$z = x + 5y - 4$$
 
     The following graph shows the graph of $f$, the graphs of the two vector functions, the tangent lines, and the plane that contains them:
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../../asymptote/multivar/derivatives/tangent1.html", title = "Plane that contains the two tangent lines.", width=500,  height=500)
     ```
 
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("uYI7VFMk0Bg")
 ```
 
 The following graph shows the tangent plane to a surface, together with traces
 that are graphs of the _partial functions_.
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/derivatives/tangent.html", title = "Tangent plane to a surface at a point", width=500, height=500)
 ```
 
@@ -308,14 +276,14 @@ illustr("../../../asymptote/multivar/derivatives/tangent.html", title = "Tangent
 
 The existence of _partial derivatives_ of $f$ at a point $A$ does not guarantee that $f$ is differentiable at $A$:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("WAtAvC9DQqE")
 ```
 
 The following graph shows the function $f(x,y) = \frac{xy}{x^2 + y^2}$ with a
 "tangent plane" at $(0,0)$ which is not actually tangent to the surface:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/derivatives/nodiff.html", title = "Graph of a non-differentiable function at (0,0)", width=500, height=500)
 ```
 
@@ -339,31 +307,27 @@ To find the directional derivative of $L$ in the direction of the unit vector $\
 at the point $(1,1)$, plug in $x = 1 + \frac{\sqrt{3}}{2}t$ and $y = 1 + \frac{1}{2}t$ into $f(x,y)$ to get a
 function of $t$:
 
-\[\begin{aligned}
-L(t) &= 1 + \frac{\sqrt{3}}{2}t + 5\left(1 + \frac{1}{2}t\right) - 4\\
-&= 1 + \frac{\sqrt{3}}{2}t + 5 + \frac{5}{2}t - 4\\
-&= \frac{\sqrt{3} + 5}{2}t + 2
-\end{aligned}\]
+$$\begin{aligned} L(t) &= 1 + \frac{\sqrt{3}}{2}t + 5\left(1 + \frac{1}{2}t\right) - 4\\ &= 1 + \frac{\sqrt{3}}{2}t + 5 + \frac{5}{2}t - 4\\ &= \frac{\sqrt{3} + 5}{2}t + 2 \end{aligned}$$
 
 The derivative of this function is $\frac{\sqrt{3} + 5}{2}$.
 
 Earlier we calculated the directional derivative of $f$ at the same point in the same direction,
 and it was the same.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("wL7_o8ZI2LM")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.5_The_Gradient_and_Directional_Derivatives/14.5.25.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap14Sec5/Q19.pg",
         width=640, height=500

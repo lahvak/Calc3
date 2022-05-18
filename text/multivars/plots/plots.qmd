@@ -1,35 +1,17 @@
 ---
 title: Visualizing Functions of Several Variables
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+{{< include ../../_common.qmd >}}
 
-```{r, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+```{r, message=FALSE, error=FALSE, warning=FALSE}
 library(tidyverse)
-```
-
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
 ```
 
 ## Density plots (heat maps)
@@ -39,7 +21,7 @@ visualized on some region in $\mathbf{R}^2$ by associating each value with a
 color, and then coloring the region according to the values of $f$. Usually
 some sort of color gradient is used for this.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("mXh6esmRvwk")
 ```
 
@@ -47,7 +29,7 @@ vembedr::embed_youtube("mXh6esmRvwk")
 
 A density plot of the function $f(x,y) = xye^{-x^2-y^2}$:
 
-```{r, echo=FALSE}
+```{r}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`f(x,y)` = x*y*exp(-x^2 - y^2)) %>%
     ggplot(aes(x,y)) + geom_raster(aes(fill=`f(x,y)`))
@@ -55,7 +37,7 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
 
 A density plot of the function $g(x,y) = x^2 + \sin\pi y$:
 
-```{r, echo=FALSE}
+```{r}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`g(x,y)` = x^2 + sin(pi*y)) %>%
     ggplot(aes(x,y)) + geom_raster(aes(fill=`g(x,y)`)) + 
@@ -64,7 +46,7 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
 
 A density plot of the function $h(x,y) = \cos(\pi x)\cos(\pi y)\sin(x^2+y^2)$:
 
-```{r, echo=FALSE}
+```{r}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`h(x,y)` = cos(pi*x)*cos(pi*y)*sin(x^2+y^2)) %>%
     ggplot(aes(x,y)) + geom_raster(aes(fill=`h(x,y)`)) + 
@@ -84,7 +66,7 @@ that the _graph_ of $f$ is the set
 
 $$\left\{(x,y)\in\mathbb{R}^2; x \in D \text{ and } y = f(x)\right\}$$
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/plots/graph_one_var.html", title = "Graph of a function of single variable.", width=300, height=300)
 ```
 
@@ -92,7 +74,7 @@ We can do the same thing for functions of two variables.  Now the inputs are
 points on a plane (the horizontal coordinate plane, usually called the
 $xy$-plane), while the outputs are points on the vertical ($z$) axis:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/plots/graph_two_vars.html", title = "Graph of a function of two variables.", width=400, height=600)
 ```
 
@@ -102,7 +84,7 @@ the _graph_ of a function $f:\mathbb{R}^2 \to \mathbb{R}$ with domain $D
 
 $$\left\{(x,y,z)\in\mathbb{R}^3; (x,y) \in D \text{ and } z = f(x,y)\right\}$$
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("t2In2KwsH90")
 ```
 
@@ -110,26 +92,26 @@ vembedr::embed_youtube("t2In2KwsH90")
 
 A surface plot of the function $f(x,y) = xye^{-x^2-y^2}$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/plots/graph_example_1.html", title = "Graph of a function of two variables.", width=600, height=400)
 ```
 
 A surface plot of the function $g(x,y) = x^2 + \sin\pi y$:
 
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/plots/graph_example_2.html", title = "Graph of a function of two variables.", width=600, height=400)
 ```
 
 A surface plot of the function $h(x,y) = \cos(\pi x)\cos(\pi y)\sin(x^2+y^2)$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/plots/graph_example_3.html", title = "Graph of a function of two variables.", width=600, height=400)
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/FortLewis/Calc3/12-2-Multivariable-graphs/HGM4-12-2-14c-Multivariable-functions-graphs/HGM4-12-2-14c-Multivariable-functions-graphs.pg",
         width=640, height=500
@@ -149,7 +131,7 @@ which is called the _level curve_ of $f$ at the level $c$.
 To get a _contour plot_, you choose a sequence of levels (usually equally spaced),
 and create a level curve of $f$ at each of these levels.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("uLfEEvXXluo")
 ```
 
@@ -157,7 +139,7 @@ vembedr::embed_youtube("uLfEEvXXluo")
 
 A contour plot of the function $f(x,y) = xye^{-x^2-y^2}$:
 
-```{r, echo=FALSE}
+```{r}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`f(x,y)` = x*y*exp(-x^2 - y^2)) %>%
     ggplot(aes(x,y)) + geom_contour(aes(z=`f(x,y)`, color=..level..))
@@ -165,7 +147,7 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
 
 A contour plot of the function $g(x,y) = x^2 + \sin\pi y$:
 
-```{r, echo=FALSE}
+```{r}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`g(x,y)` = x^2 + sin(pi*y)) %>%
     ggplot(aes(x,y)) + geom_contour(aes(z=`g(x,y)`, color=..level..)) + 
@@ -174,7 +156,7 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
 
 A contour plot of the function $h(x,y) = \cos(\pi x)\cos(\pi y)\sin(x^2+y^2)$:
 
-```{r, echo=FALSE}
+```{r}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`h(x,y)` = cos(pi*x)*cos(pi*y)*sin(x^2+y^2)) %>%
     ggplot(aes(x,y)) + geom_contour(aes(z=`h(x,y)`, color=..level..)) + 
@@ -183,7 +165,7 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
 
 Sometimes it is good to combine a contour plot with a density plot:
 
-```{r, echo=FALSE}
+```{r}
 expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
     mutate(`h(x,y)` = cos(pi*x)*cos(pi*y)*sin(x^2+y^2)) %>%
     ggplot(aes(x,y)) + geom_raster(aes(fill=`h(x,y)`)) +
@@ -193,7 +175,7 @@ expand.grid(x = seq(-2,2,length.out=200), y = seq(-2,2,length.out=200)) %>%
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/FortLewis/Calc3/12-3-Contour-diagrams/HGM4-12-3-18c-Contour-diagrams/HGM4-12-3-18c-Contour-diagrams.pg",
         width=640, height=500
@@ -215,7 +197,7 @@ the surfaces is cut out so it is possible to see "inside".
 The surface plot of the function $f(x,y,z) = 2x^2 + 3y^2 - z^2$.  Four level
 surfaces are drawn, at the levels $-\frac{1}{2}$, $0$, $\frac{1}{2}$ and $1$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/plots/level_surfaces_1.html", title = "Level surfaces of a function of three variables.", width=400, height=600)
 ```
 
