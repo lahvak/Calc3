@@ -1,0 +1,48 @@
+---
+title: "Flux Integrals over Surfaces"
+format: html
+layout: article
+reference-location: margin
+cap-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Surface Integrals
+
+Earlier we talked briefly about _flux integrals_ of vector field across a curve
+in $\mathbb{R}^2$. Just to remind you, such integral expresses the amount of
+fluid that flows across the curve in one time unit. Now we are going to extend
+this to _flux across surfaces in $\mathbb{R}^3$_.
+
+```{r echo=FALSE}
+vembedr::embed_youtube("-HVdHw0b6rk")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap19Sec1/Q21.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/19-1-Idea-of-flux/HGM4-19-1-01a-Idea-of-flux/HGM4-19-1-01a-Idea-of-flux.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap19Sec3/Q05.pg",
+        width=640, height=500
+)
+```
+

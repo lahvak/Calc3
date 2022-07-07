@@ -1,31 +1,14 @@
 ---
-title: "\"Line\" Integrals if Functions"
+title: "\"Line\" Integrals of Functions"
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../_common.qmd >}}
 
 ## Integrals in one variable (Riemann Integrals)
 
@@ -58,7 +41,8 @@ $$\int_C f(x,y)\;ds$$
 illustr("../../asymptote/line_integrals/linefun.html", title = "The line integral of f over the curve C", width=500, height=500)
 ```
 
-The $ds$ indicates that this is a _line integral with respect to the arc length_. There are also to other types of line integrals: with respect to $x$ and with respect to $y$.
+The $ds$ indicates that this is a _line integral with respect to the arc
+length_. There are also two other types of line integrals: with respect to $x$ and with respect to $y$.
 
 ### Line integral with respect to $x$
 
@@ -107,21 +91,21 @@ illustr("../../asymptote/line_integrals/dy.html", title = "A projection of a lin
 
 Suppose the curve $C$ is _parametrized_ by a _vector function_ $\vec{r}(t) = \v{x(t), y(t)}$, $a \le t \le b$, where $\vec{r}$ is a _differentiable_ vector function such that $\norm{\vec{r}'(t)} \neq 0$ for any $t \in (a,b)$. Then we can use the following _substitution_ to convert the _line integral_ into a _single variable_ integral over the interval $[a,b]$:
 
-$$\begin{aligned}
+\begin{aligned}
 x &= x(t)\\
 y &= y(t)\\
 dx &= x'(t)\;dt\\
 dy &= y'(t)\;dt\\
 ds &= \norm{\vec{r}'(t)}dt = \sqrt{(x'(t))^2 + (y'(t))^2}\;dt
-\end{aligned}$$
+\end{aligned}
 
 Then we get
 
-$$\begin{aligned}
+\begin{aligned}
 \int_C f(x,y)\; ds &= \int_a^b f\left(\vec{r}(t)\right)\norm{\vec{r}'(t)}dt = \int_a^b f\left(x(t), y(t)\right)\sqrt{(x'(t))^2 + (y'(t))^2}\;dt\\
 \int_C f(x,y)\;dx &= \int_a^b f\left(x(t), y(t)\right)x'(t)\;dt\\
 \int_C f(x,y)\;dy &= \int_a^b f\left(x(t), y(t)\right)y'(t)\;dt\\
-\end{aligned}$$
+\end{aligned}
 
 ### Examples
 
@@ -166,15 +150,15 @@ illustr("../../asymptote/line_integrals/ex2.html", title = "Line integral exampl
 
 Here
 
-$$\begin{aligned}
+\begin{aligned}
 x &= \sin(t)\\
 y &= 1 - \cos(t)\\
 dx &= \cos(t)\;dt
-\end{aligned}$$
+\end{aligned}
 
 and so
 
-$$\begin{aligned}
+\begin{aligned}
 \int_C x^2 + y^2\;dx &= \int_0^{\pi} (\sin^2(t) + 1 - 2\cos(t) + \cos^2(t))\cos(t)\;dt\\
 &= 2\int_0^\pi \cos(t) - \cos^2(t)\;dt\\
 &= 2\int_0^\pi \cos(t)\;dt - 2\int_0^\pi \cos^2(t)\;dt\\
@@ -182,7 +166,7 @@ $$\begin{aligned}
 &= 0 - \int_0^\pi \;dt - \int_0^\pi \cos(2t)\;dt\\
 &= 0 - \pi - 0\\
 &= -\pi
-\end{aligned}$$
+\end{aligned}
 
 ## Video on line integrals of functions
 
@@ -221,7 +205,7 @@ Given a function of _three variables_ $f:\mathbb{R}^3 \to \mathbb{R}$ and a curv
 
 Suppose the curve $C$ is _parametrized_ by a _vector function_ $\vec{r}(t) = \v{x(t), y(t), z(t)}$, $a \le t \le b$, where $\vec{r}$ is a _differentiable_ vector function such that $\norm{\vec{r}'(t)} \neq 0$ for any $t \in (a,b)$. Then we can use the following _substitution_ to convert the _line integral_ into a _single variable_ integral over the interval $[a,b]$:
 
-$$\begin{aligned}
+\begin{aligned}
 x &= x(t)\\
 y &= y(t)\\
 z &= z(t)\\
@@ -229,14 +213,14 @@ dx &= x'(t)\;dt\\
 dy &= y'(t)\;dt\\
 dz &= z'(t)\;dt\\
 ds &= \norm{\vec{r}'(t)}dt = \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2}\;dt
-\end{aligned}$$
+\end{aligned}
 
 Then we get
 
-$$\begin{aligned}
+\begin{aligned}
 \int_C f(x,y,z)\; ds &= \int_a^b f\left(\vec{r}(t)\right)\norm{\vec{r}'(t)}dt = \int_a^b f\left(x(t), y(t), z(t)\right)\sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2}\;dt\\
 \int_C f(x,y,z)\;dx &= \int_a^b f\left(x(t), y(t), z(t)\right)x'(t)\;dt\\
 \int_C f(x,y,z)\;dy &= \int_a^b f\left(x(t), y(t), z(t)\right)y'(t)\;dt\\
 \int_C f(x,y,z)\;dz &= \int_a^b f\left(x(t), y(t), z(t)\right)z'(t)\;dt\\
-\end{aligned}$$
+\end{aligned}
 

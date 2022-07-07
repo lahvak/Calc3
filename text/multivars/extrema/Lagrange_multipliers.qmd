@@ -1,35 +1,17 @@
 ---
 title: Lagrange Multipliers
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
+{{< include ../../_common.qmd >}}
 
-```{r, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+```{r, message=FALSE, error=FALSE, warning=FALSE}
 library(tidyverse)
-```
-
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
 ```
 
 ## Method of Lagrange Multipliers
@@ -42,7 +24,7 @@ and $(-\frac{1}{2}, \pm\frac{\sqrt{3}}{2})$, and with end-points $(\pm 1, 0)$.  
 
 The graph of the function looks like this:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/extrema/Max_Min-7.html", title = "An example on a disk", width=500, height=500)
 ```
 
@@ -51,20 +33,20 @@ _constrained optimization_: find the maximum and minimum of a function of severa
 a constraint given by an equation in the form $g(x_1, x_2, \dots, x_n) = c$ for some function $g$ and a constant $c$.
 
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("Qa7RlLacbtQ")
 ```
 
 The contour plot of the function $f(x,y) = 2x^3 - y^4$ together with the unit circle $x^2 + y^2 = 1$ is shown below.
 The points where a contour is _tangent_ to the unit circle are marked and labeled.
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/extrema/Max_Min-8.html", title = "A contour plot of the function f with the unit circle.", width=500, height=500)
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap15Sec3/Q05.pg",
         width=640, height=500
@@ -77,13 +59,13 @@ webwork(
 
 Find the absolute maxima and minima of $f(x,y) = 3x^2 + 2xy$ on the ellipse $4x^2 + y^2 = 5$.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("uXjWBD4gZNw")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Rochester/setVmultivariable7MaxMin/ur_vc_7_13.pg",
         width=640, height=500
@@ -94,13 +76,13 @@ webwork(
 
 Find the absolute maxima and minima of $f(x,y) = 3x^2 + 2y^2$ on the hyperbola $xy = 6$.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("cwoUQlnN3Kc")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/UMN/calculusStewartET/s_14_8_3.pg",
         width=640, height=500
@@ -109,15 +91,16 @@ webwork(
 
 ### Three variables
 
-Find the absolute maxima and minima of $f(x,y) = 3x^2 + 2y^2$ on the hyperbola $xy = 6$.
+Find the absolute maxima and minima of $f(x,y,z) = e^{xyz}$ subject to $2x^2 +
+y^2 + z^2 = 24$.
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("w1IUl5cpJq0")
 ```
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart14_8/problem_3.pg",
         width=640, height=500

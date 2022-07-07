@@ -1,0 +1,57 @@
+---
+title: "Conservative Vector Fields and the Fundamental Theorem"
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Conservative Vector Fields
+
+```{r echo=FALSE}
+vembedr::embed_youtube("T_A125ybBS8")
+```
+
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap18Sec4/Q02.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.3_Conservative_Vector_Fields/16.3.12.pg",
+        width=640, height=500
+)
+```
+
+## Fundamental Theorem of Calculus for Line Integrals
+
+```{r echo=FALSE}
+vembedr::embed_youtube("CpW29EeiME4")
+```
+
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/18-3-Gradient-fields/HGM4-18-3-28-Gradient-fields.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap18Sec3/Q15.pg",
+        width=640, height=500
+)
+```

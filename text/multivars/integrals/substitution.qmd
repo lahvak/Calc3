@@ -1,70 +1,53 @@
 ---
 title: Substitution for Multiple Integrals
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../../_common.qmd >}}
 
 ## Substitution (change of variable) in multiple integrals
 
 ### Explanation and derivation:
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("KlNcZcI4wpc")
 ```
 
 ### Summary, Jacobians
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("CTsRERGu_H4")
 ```
 
 #### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap16Sec7/Q01.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Hope/Multi2/11-04-MV-Int-change-var/Change-variables-01.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.23.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap16Sec7/Q05.pg",
         width=640, height=500
@@ -75,39 +58,39 @@ webwork(
 
 #### Polar coordinate transformation
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("3nTbXYz6HWA")
 ```
 
 #### Another example of substitution in 2 variables
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("lNi6s0b6HKc")
 ```
 
 #### An example of substitution in 3 variables (spherical coordinate transformation)
 
-```{r echo=FALSE}
+```{r}
 vembedr::embed_youtube("rOsUNGU2H9s")
 ```
 
 #### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap16Sec7/Q19.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.33.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap16Sec7/Q25.pg",
         width=640, height=500

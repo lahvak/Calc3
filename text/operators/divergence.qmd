@@ -1,0 +1,236 @@
+---
+title: "Divergence of a Vector Field"
+format: html
+layout: article
+reference-location: margin
+cap-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Flux of a field across a curve
+
+In this note it will be helpful to consider a vector field $\vec{F}(x,y) =
+\v{P(x,y), Q(x,y)}$ as a _velocity field_ of a two-dimensional fluid flow.
+
+Given such vector field $\vec{F}$ and a smooth curve $C$, we can ask _what is
+the total volume_^[In two dimensions, _volume_ is the same as _area_.]
+_of the fluid that crosses the curve from its left side to its
+right side during one time unit_?
+
+It will be easy to figure out in the case the curve is a _line segment_ and the
+field is _constant_. The following diagram shows what happens then:
+
+```{r,engine='tikz',fig.ext='svg',fig.width=5, engine.opts=list(dvisvgm.opts = "--font-format=woff")}
+#| fig-cap: "Flow of constant field across a line segment in one time unit"
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{angles}
+\usetikzlibrary{calc}
+\usetikzlibrary{backgrounds}
+\def\vec#1{\mathbf{#1}}
+\begin{tikzpicture}
+\begin{scope}[very thick,decoration={
+    markings,
+    mark=between positions 0.1 and 1 step 10mm with {\arrow{Stealth}}}
+    ] 
+    \draw[postaction={decorate}] (5,0) --node[below]{$C$} (0,3);
+\end{scope}
+\foreach \i in {0, 0.1, ..., 1.01}{
+    \draw[thin, ->] (5,0) ++(-5*\i, 3*\i) -- +(2,1);
+}
+\coordinate (A) at (0,3);
+\coordinate (B) at (5,0);
+\coordinate (C) at ($(B)+(1.8,3)$);
+\coordinate (D) at ($(B)+(2,1)$);
+\coordinate (E) at ($(A)+(2,1)$);
+\node[below right] at (D) {$\vec{F}$};
+\draw[very thick, red, ->] (B) -- ($(B)!(D)!(C)$)node[right]{$\operatorname{proj}_{\vec{F}}\vec{N}$};
+\draw[thick, dotted, ->] (B)pic[draw, solid, thin]{right angle = C--B--A} -- (C)node[above left]{$\vec{N}$};
+\begin{scope}[on background layer]
+    \fill[blue!30] (A) -- (B) -- (D) -- (E) -- cycle;
+\end{scope}
+\end{tikzpicture}
+```
+
+On the diagram^[Note that this diagram is _two-dimensional_: everything on this
+picture is in the _same plane_!], the light blue area shows the amount of fluid that crosses the
+line segment $C$ from left to right in one time unit. We can see that it is a
+_parallelogram_, and its area can be calculated as the product of the length of
+the curve $C$ and the "height" of the parallelogram. This height is equal to
+the length of the _projection of $\vec{F}$ onto a unit normal vector $\vec{N}$
+pointing to the right side of the curve, relative to the direction of travel
+along the curve_.
+
+In other words, the flux of the constant vector field $\vec{F}$ across the line
+segment $C$ of length $L$ is equal to
+
+$$L \comp_{\vec{N}} \vec{F} = L \frac{\vec{F}\cdot\vec{N}}{\norm{\vec{N}}} = L
+\vec{F}\cdot \vec{N}$$
+
+where $\vec{N}$ is the _unit normal vector_ to $C$ pointing to the _right side_
+of $C$ with respect to the direction of travel along $C$.
+
+### General field and curve
+
+Suppose now $C$ is a _smooth_ curve and $\vec{F}$ is a _continuous_ vector
+field defined at least on $C$. We can make the usual intuitive calculus
+argument to derive the formula for the _flux of $\vec{F}$ across $C$_:
+
+As always, we start by looking at a very tiny (possibly infinitesimal) piece of
+$C$. Since $C$ is _smooth_, each tiny piece of $C$ is very close to a straight
+line segment. Let's call the length of this tiny line segment $ds$. Since
+$\vec{F}$ is _continuous_, we can consider it almost _constant_ when looking at
+a very tiny piece of the curve. We can no apply the previously derived formula
+to this tiny line segment and (almost) constant field $\vec{F}$: the flux of
+$\vec{F}$ across this tiny line segment is approximately
+$\vec{F}\cdot\vec{N}\;ds$.
+
+We can do this for every "point" of the curve $C$, and add all the results
+together, to get the following __flux integral__^[Here we are only barely
+scratching the surface of this concept. Your textbook has more details about
+flux integrals. We will come back to this concept later when talking about flux
+integrals across surfaces in $\mathbb{R}^3$.]:
+
+$$\int_C \vec{F}\cdot\vec{N}\;ds$$
+
+where $\vec{N}$ is the _unit normal vector_ to $C$ pointing to the right side
+of $C$ with respect to the direction of travel along $C$.
+
+### Simple closed curves
+
+Suppose now that $C$ is a positively oriented simple closed curve whose
+interior region is $G$. Then $\vec{N}$ points __out__ away from $G$ towards the
+exterior of $C$, so the flux of a field $\vec{F}$ across $C$ is equal to the
+difference of the amount of fluid _leaving $G$_ and the amount of fluid
+_entering $G$_. If this number is positive, it means that the fluid is somehow
+_expanding_ or being created inside $G$, while if it is negative, the fluid is being
+_compressed_ or annihilated inside $G$.
+
+If for any simple closed curve the flux is 0, we say that the field $\vec{F}$
+is _incompressible_.
+
+This is kind of similar to the concept of _conservativeness_ except that
+instead of _circulation integrals_ we use _flux integrals_. For circulation, we
+were able to find a _local_ measure of circulation: $Q_x(x,y) - P_y(x,y)$, by
+looking at a circulation along a tiny rectangle. We can try the same strategy
+with flux.
+
+Let's calculate a flux integral of a vector field $\vec{F} = \v{P, Q}$ over a very very tiny rectangle
+centered at $(x_0,y_0)$, with sides of length $dx$ and $dy$. We will label the four
+sides of the rectangle as $S_1$, $S_2$, $S_3$ and $S_4$:
+
+```{r,engine='tikz',fig.ext='svg',fig.width=5, engine.opts=list(dvisvgm.opts = "--font-format=woff")}
+#| fig-cap: "A tiny rectangle with normal vectors"
+\usetikzlibrary{decorations.markings}
+\def\vec#1{\mathbf{#1}}
+\begin{tikzpicture}
+\fill (1.5, 1.5) circle[radius=1pt] node[below]{$(x_0,y_0)$};
+\begin{scope}[thick,decoration={
+    markings,
+    mark=at position 0.7 with {\arrow{>}}}
+    ] 
+    \draw[postaction={decorate}] (0,0) --node[above]{$S_1$} (3,0);
+    \draw[postaction={decorate}] (3,0) --node[left]{$S_2$} (3,3);
+    \draw[postaction={decorate}] (3,3) --node[below]{$S_3$} (0,3);
+    \draw[postaction={decorate}] (0,3) --node[right]{$S_4$} (0,0);
+\end{scope}
+\fill (0,0) circle[radius=1pt] node[below left]{$(x_0-\frac{dx}{2},y_0-\frac{dy}{2})$};
+\fill (3,0) circle[radius=1pt] node[below right]{$(x_0+\frac{dx}{2},y_0-\frac{dy}{2})$};
+\fill (3,3) circle[radius=1pt] node[above right]{$(x_0+\frac{dx}{2},y_0+\frac{dy}{2})$};
+\fill (0,3) circle[radius=1pt] node[above left]{$(x_0-\frac{dx}{2},y_0+\frac{dy}{2})$};
+\draw[thick, red, ->] (3,1.5) -- (4,1.5)node[right]{$\vec{N}_2 = \left\langle 1,0\right\rangle$};
+\draw[thick, red, ->] (0,1.5) -- (-1,1.5)node[left]{$\vec{N}_4 = \left\langle -1,0\right\rangle$};
+\draw[thick, red, ->] (1.5,3) -- (1.5,4)node[above]{$\vec{N}_3 = \left\langle 0,1\right\rangle$};
+\draw[thick, red, ->] (1.5,0) -- (1.5,-1)node[below]{$\vec{N}_1 = \left\langle 0,-1\right\rangle$};
+\end{tikzpicture}
+```
+
+Then the flux integral of $\vec{F}$ across the rectangle can be split into the sum of
+flux integrals over the four sides:
+
+$$\int_{S_1} \vec{F}(x,y)\cdot \vec{N}_1\;ds + \int_{S_2} \vec{F}(x,y)\cdot \vec{N}_2\;ds + \int_{S_3} \vec{F}(x,y)\cdot \vec{N}_3\;ds + \int_{S_4} \vec{F}(x,y)\cdot \vec{N}_4\;ds $$
+
+Plugging in the four normal vectors $\vec{N}_1 = \v{0,-1}$, $\vec{N}_2 =
+\v{1,0}$, $\vec{N}_3 = \v{0,1}$ and $\vec{N}_4 = \v{-1,0}$ and calculating the
+dot products will give us
+
+$$\int_{S_1} -Q(x,y)\;ds + \int_{S_2} P(x,y)\;ds + \int_{S_3} Q(x,y)\;ds + \int_{S_4} -P(x,y)\;ds$$
+
+Pulling the minus signs out of the integrals and changing the order will give
+us
+
+$$\int_{S_3} Q(x,y)\;ds - \int_{S_1} Q(x,y)\;ds + \int_{S_2} P(x,y)\;ds - \int_{S_4} P(x,y)\;ds$$
+
+When the rectangle is very small, we can approximate each of the integrals by
+the value in the middle of the segment times the length of the segment:
+
+$$Q\left(x_0, y_0 + \frac{dy}{2}\right)\;dx - Q\left(x_0, y_0 - \frac{dy}{2}\right)\;dx + P\left(x_0 + \frac{dx}{2}, y_0\right)\;dy - P\left(x_0 - \frac{dx}{2}, y_0\right)\;dy$$
+
+Then $Q\left(x_0, y_0 + \frac{dy}{2}\right) - Q\left(x_0, y_0 - \frac{dy}{2}\right)$
+can be approximated by $Q_y(x_0, y_0)\;dy$ and 
+$P\left(x_0 + \frac{dx}{2}, y_0\right) - P\left(x_0 - \frac{dx}{2}, y_0\right)$
+can be approximated by $P_x(x_0, y_0)\;dx$.
+
+Altogether, the flux across the tiny rectangle is approximately equal to
+
+$$\left(P_x(x_0, y_0) + Q_y(x_0, y_0)\right)\;dx\;dy$$
+
+This is very similar to the expression for local circulation along the tiny
+rectangle, which was 
+
+$$\left(Q_x(x_0, y_0) - P_y(x_0, y_0)\right)\;dx\;dy$$
+
+Notice that for the circulation, we had the derivative of the __second__
+component with respect to the __first__ variable __minus__ the derivative of
+the __first__ component with respect to the __second__ variable.
+
+For flux, we have the derivative of the __first__ component with respect to the
+__first__ variable __plus__ the derivative of the __second__ component with
+respect to the __second__ variable.
+
+## Divergence
+
+Given a vector field $\vec{F}(x,y) = \v{P(x,y), Q(x,y)}$, the (scalar) function 
+$$P_x(x, y) + Q_y(x, y)$$
+is called the __divergence__ function of the field $\vec{F}$, and is denoted as
+$\divg{F}$.
+
+This can be naturally extended to three (or, in fact, any number of)
+dimensions: given 
+$$\vec{F}(x,y,z) = \v{P(x,y,z), Q(x,y,z), R(x,y,z)}$$
+the divergence of $\vec{F}$ is defined as
+$$\divg{F}(x,y,z) = P_x(x,y,z) + Q_y(x,y,z) + R_z(x,y,z).$$
+
+### Examples
+
+```{r echo=FALSE}
+vembedr::embed_youtube("4PWZ6xL3E0E")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap20Sec1/Q07.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.3_Divergence_Theorem/17.3.3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/20-1-Idea-of-divergence/HGM4-20-1-09-Divergence.pg",
+        width=640, height=500
+)
+```

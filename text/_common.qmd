@@ -4,6 +4,11 @@ $$
 \newcommand{\v}[1]{\left\langle #1\right\rangle}
 \newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
 \newcommand{\abs}[1]{\left\lvert#1 \right\rvert}
+\newcommand{\divg}[1]{\operatorname{div}\vec{#1}}
+\newcommand{\curl}[1]{\operatorname{curl}\vec{#1}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\comp}{\operatorname{comp}}
+
 $$
 :::
 

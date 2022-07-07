@@ -1,31 +1,14 @@
 ---
 title: Integrals of Functions of Two Variables
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
 ---
 
-\renewcommand{\vec}[1]{\mathbf{#1}}
-\newcommand{\v}[1]{\left\langle #1\right\rangle}
-\newcommand{\norm}[1]{\left\lvert#1 \right\rvert}
-
-```{r, echo=FALSE}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
-
-illustr <- function(fname, title, width, height)
-{
-    copied <- file.copy(fname, ".", overwrite = TRUE)
-    htmltools::tags$iframe(title = title, src = basename(fname), width=width, height=height, frameborder="0")
-}
-```
+{{< include ../../_common.qmd >}}
 
 ## Double Integral
 
@@ -41,7 +24,7 @@ _negative_.
 
 The region $R$ can be a _rectangle_:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/integrals/rectangle.html", title = "Double integral over a rectangle", width=500, height=500)
 ```
 
@@ -53,16 +36,31 @@ closed curve: the boundary is a curve that can be parametrized by a vector funct
 3.  $\vec{r}$ is continuous on $[a,b]$.
 4.  $\vec{r}$ has a continuous and bounded derivative except at at most finitely many points on $[a,b]$.
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/integrals/floor.html", title = "A region bounded by a simple smooth closed curve.", width=500, height=500)
 ```
 
 A double integral of a function $f$ over such region will be the _signed_ volume of a solid like this:
 
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/integrals/general.html", title = "A region bounded by a simple smooth closed curve.", width=500, height=500)
 ```
+
+Formally a double _Riemann_ integral can be defined as a limit of a
+two-dimensional Riemann sum, similar way as a single variable Riemann integral
+is defined.
+
+Intuitively we can think about the "quantity" $dA$ as an _infinitesimal area_
+of a single point (you can think about it as an infinitely small rectangle with
+sides $dx$ and $dy$, then $dA = dx\;dy$). Then $f(x,y)\;dA$ represents a
+"volume" of an infinitely thin _rectangular prism_ whose base has area $dA$ and
+whose height is $f(x,y)$.  We then "add" these "volumes" for every point in the
+region $R$, representing the (two dimensional) "summation" over all the points in
+$R$ by the "double S" sign (for sum, or _die Summe_ in German), getting the
+integral notation
+
+$$\iint_R f(x,y)\;dA$$
 
 ## Partial Integrals
 
@@ -74,9 +72,22 @@ The integration variable is $x$, and $y$ is considered to be _a constant paramet
 It will be the _signed area_ of a region in the plane parallel to the $xz$-plane, passing through the point $(0,y,0)$, between
 the $xy$-plane and the graph of $f$, from $x=a_0$ to $x = a_1$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/integrals/partial_Y.html", title = "A partial integral with respect to x", width=500, height=500)
 ```
+
+__An example__: Calculate the partial integral $$\int_0^1 x^2y + xy^3\;dx$$
+
+```{r}
+vembedr::embed_youtube("4mhgK-ilpZQ")
+```
+
+__Another example__: Calculate the partial integral $$\int_{y^2}^y x^2 + xy - y^3\;dx$$
+
+```{r}
+vembedr::embed_youtube("V1Kr-lGxrhs")
+```
+
 
 Similarly, we can define a _partial integral_ of $f$ _with respect to $y$_ from $c_0$ to $c_1$:
 
@@ -86,8 +97,14 @@ This time the integration variable is $y$, and $x$ is considered to be _a consta
 It will be the _signed area_ of a region in the plane parallel to the $yz$-plane, passing through the point $(x,0,0)$, between
 the $xy$-plane and the graph of $f$, from $y=c_0$ to $y = c_1$:
 
-```{r, echo=FALSE}
+```{r}
 illustr("../../../asymptote/multivar/integrals/partial_X.html", title = "A partial integral with respect to y", width=500, height=500)
+```
+
+__Yet another example__: Calculate the partial integral $$\int_0^x x^2y + xy^3\;dy$$
+
+```{r}
+vembedr::embed_youtube("F1kWV8Q8RIY")
 ```
 
 ## Iterated integrals
@@ -103,9 +120,9 @@ We can write two _iterated integrals_:
     $$\int_c^d \int_a^b f(x,y)\;dx\;dy$$
 
     The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
-    to the _iterated integral_ with respect to $x$ for one of the $y$ values between $c$ and $d$:
+    to the _partial integral_ with respect to $x$ for one of the $y$ values between $c$ and $d$:
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../../asymptote/multivar/integrals/rectangle_Y.html", title = "A partial integral with respect to x together with the double integral", width=500, height=500)
     ```
 
@@ -115,9 +132,9 @@ We can write two _iterated integrals_:
     $$\int_a^b \int_c^d f(x,y)\;dy\;dx$$
 
     The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
-    to the _iterated integral_ with respect to $y$ for one of the $x$ values between $a$ and $b$:
+    to the _partial integral_ with respect to $y$ for one of the $x$ values between $a$ and $b$:
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../../asymptote/multivar/integrals/rectangle_X.html", title = "A partial integral with respect to y together with the double integral", width=500, height=500)
     ```
 
@@ -133,14 +150,14 @@ Things can get more complicated with a _non-rectangular region_ $R$. The problem
 
     This shows one of the slices in the for a specific value of $y$ in the region $R$:
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../../asymptote/multivar/integrals/floor_Y.html", title = "A slice for a particular value of y", width=500, height=500)
     ```
 
     The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
     to the _iterated integral_ with respect to $x$ for one of the $y$ values between $c$ and $d$:
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../../asymptote/multivar/integrals/general_Y.html", title = "A partial integral with respect to x together with the double integral", width=500, height=500)
     ```
 
@@ -151,37 +168,134 @@ Things can get more complicated with a _non-rectangular region_ $R$. The problem
 
     This shows one of the slices in the for a specific value of $x$ in the region $R$:
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../../asymptote/multivar/integrals/floor_X.html", title = "A slice for a particular value of x", width=500, height=500)
     ```
 
     The following illustration shows the solid corresponding to the _double integral_, and the region corresponding
     to the _iterated integral_ with respect to $y$ for one of the $x$ values between $a$ and $b$:
 
-    ```{r, echo=FALSE}
+    ```{r}
     illustr("../../../asymptote/multivar/integrals/general_X.html", title = "A partial integral with respect to y together with the double integral", width=500, height=500)
     ```
 
-Note that some regions can be easily sliced in only one of the two ways, and some of them cannot be easily sliced in either of the two ways, and must instead be divided into several smaller regions.
 
+Intuitively we can think about an iterated integral like
+$$\int_c^d \int_{a(y)}^{b(y)} f(x,y)\;dx\;dy$$
+in the following way:
+
+For any given $y$ such that at least one point $(x,y)$ is in $R$, the _partial integral_
+$$\int_{a(y)}^{b(y)} f(x,y)\;dx$$
+represents the area of a face that we get by slicing our solid vertically at
+$y$, in the direction perpendicular to the $y$-axis.. Multiplying this area by an _infinitesimal_ thickness $dy$, we get
+$$\left(\int_{a(y)}^{b(y)} f(x,y)\;dx\right)\;dy$$
+which represents the "volume" of an infinitely thin slice taken from the solid
+at the given $y$.
+
+We then take all these (inifinitely many) slices and add their volumes
+together:
+$$\int_c^d \left(\int_{a(y)}^{b(y)} f(x,y)\;dx\right)\;dy$$
+
+In a similar way we can interpret the integral
+$$\int_a^b \int_{c(x)}^{d(x)} f(x,y)\;dy\;dx$$
+as the sum of "volumes" of infinitely thin "slices" that are perpendicular to
+the $x$-axis:
+$$\int_a^b\left(\int_{c(x)}^{d(x)} f(x,y)\;dy\right)\;dx$$
+
+## Fubini's Theorem
+
+Now we have three different way how to calculate a volume of a solid like the
+ones in the examples above:
+
+1.  We can "slice" the solid into infinitely many infinitely thin vertical "french fries",
+    calculate the "volume" of each "fry", and add them all together. This will
+    give us a _double integral_.
+
+2.  We can slice the solid into infinitely many infinitely thin vertical
+    "salami slices" that are perpendicular to the $y$-axis, calculate the
+    "volume" of each "slice", and add them all together.  This will give us a
+    "$dx\;dy$ iterated integral.
+
+3.  We can slice the solid into infinitely many infinitely thin vertical
+    "salami slices" that are perpendicular to the $x$-axis, calculate the
+    "volume" of each "slice", and add them all together.  This will give us a
+    "$dy\;dx$ iterated integral.
+
+Since we are slicing the same solid, we would expect that these three processes
+will give us the same result. That is indeed the case, __provided the function
+$f$ and the region $R$ are _nice enough_.__
+
+__Theorem:__ Let $f$ be a function of two variables defined on a region $R$
+such that $f$ and $R$ are nice^[For some sufficient conditions, look up
+Fubini's theorem in your textbook.]
+Then the double integral of $f$ over the region $R$ and the two iterated
+integrals over the same region are equal:
+
+$$\iint_R f(x,y)\;dA = \int_c^d \int_{a(y)}^{b(y)} f(x,y)\;dx\;dy = \int_a^b \int_{c(x)}^{d(x)} f(x,y)\;dy\;dx$$
+
+## Examples
+
+### Integrals over rectangular regions
+
+First we will calculate $$\iint_R xy^2 - x^2 + y\; dA$$ where $R$ is the
+rectangle with corners $(0,0)$, $(2,0)$, $(2,1)$ and $(0,1)$:
+
+```{r}
+vembedr::embed_youtube("0pWYwHjxZio")
+```
+
+In the next example we will calculate $$\iint_R y^2\cos(x)\; dA$$
+where $R$ is the rectangle given by inequalities $0 \le x \le \pi/2$ and $1 \le
+y \le 2$:
+
+```{r}
+vembedr::embed_youtube("VJD3zorvZiY")
+```
+
+### Integrals over general regions
+
+First we will calculate $$\iint_R xy^2 - x^2 + y\; dA$$ where $R$ is the
+triangle with corners $(0,0)$, $(2,0)$, and $(0,1)$:
+
+```{r}
+vembedr::embed_youtube("oD4dWb95ca0")
+```
+
+Next we will calculate the same integral, but slicing horizontally instead of
+vertically.
+
+```{r}
+vembedr::embed_youtube("pyLc4iiR6qk")
+```
+
+As the last example, we will calculate $$\iint_R xy\; \dA$$ where
+$R$ is the region bounded by the curves $x = y^2$ and $x - 2y = 3$.
+
+```{r}
+vembedr::embed_youtube("QnAdrbn_ZGU")
+```
+
+Note that some regions can be easily sliced in only one of the two ways, and
+some of them cannot be easily sliced in either of the two ways, and must
+instead be divided into several smaller regions.
 
 ### Try it yourself
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/272/setStewart15_2/problem_5.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/Michigan/Chap16Sec2/Q17.pg",
         width=640, height=500
 )
 ```
 
-```{r, echo=FALSE}
+```{r}
 webwork(
         "Library/ASU-topics/setCalculus/stef/stef15_3p5.pg",
         width=640, height=500

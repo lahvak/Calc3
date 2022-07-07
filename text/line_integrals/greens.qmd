@@ -1,0 +1,283 @@
+---
+title: "Green's Theorem"
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+{{< include ../_common.qmd >}}
+
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Another test for conservativeness
+
+Given a differentiable function $f\colon \mathbb{R}^2 \to \mathbb{R}$, its
+_gradient_ is a _conservative_ vector field
+$$\vec{F}(x,y) = \v{P(x,y), Q(x,y)} = \vec{\nabla}f(x,y) = \v{f_x(x,y),f_y(x,y)}$$
+
+According to _Clairaut's Theorem_, if $f$ has _continuous second partial
+derivatives_, then the _mixed second partial derivatives_ $f_{xy}$ and $f_{yx}$
+are equal.
+
+Since for a conservative vector field $\vec{F} = \v{P,Q}$, the components are
+$P = f_x$ and $Q = f_y$, the _second partial derivatives_ of $f$ are the _first
+partial derivatives_ of $P$ and $Q$, and the _mixed second partial derivatives_ of $f$ are
+
+\begin{aligned}
+f_{xy} &= P_y\\
+f_{yx} &= Q_x
+\end{aligned}
+
+In other words, if we have a vector field $\vec{F} = \v{P, Q}$ such that both
+$P$ and $Q$ have _continuous partial derivatives_, and $P_y \neq Q_x$, the
+field $\vec{F}$ __cannot be conservative__! That gives us a new easier way to
+detect _non-conservative_ vector fields without having to attempt to find a
+potential function!
+
+```{r echo=FALSE}
+vembedr::embed_youtube("QBvLyMI_h70")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/ASU-topics/setCalculus/stef16_3p1.pg",
+        width=640, height=500
+)
+```
+
+
+### Some questions
+
+There are some obvious questions we can ask about this:
+
+1.  What's actually going on?  What does the difference between $P_y$ and $Q_x$
+    have to do with conservativeness of the vector field?
+
+2.  Does it work the other way? Can we say that if $P_y(x,y) = Q_x(x,y)$ then
+    the vector field is conservative?
+
+3.  Can we extend this to 3 variables?
+
+Let's first graph the two examples of non-conservative vector fields, maybe it
+will give us some idea of what is going on:
+
+*   The field $\vec{F}(x,y) = \v{-y, x}$:
+
+    ```{r}
+    expand.grid(x = seq(-1,1,length.out=20), y = seq(-1,1,length.out=20)) %>%
+        mutate(dx = -y, dy = x) %>%
+        ggplot(aes(x,y)) + geom_segment(aes(xend = x+0.08*dx, yend =
+        y+0.08*dy), arrow = arrow(length=unit(0.1,"cm"))) + coord_fixed() +
+        xlim(-1,1) + ylim(-1,1)
+    ```
+
+    We can see clearly that this is not a conservative vector field: any
+    integral over a circle centered at $(0,0)$ is going to be positive! This
+    field seems to represent some sort of _rotation_ around the origin.
+
+*   The field $\vec{F}(x,y) = \v{e^x\cos y, e^x\sin y}$:
+
+    ```{r}
+    expand.grid(x = seq(-1.5,1.5,length.out=20), y = seq(0,3,length.out=20)) %>%
+        mutate(dx = exp(x)*cos(y), dy = exp(x)*sin(y)) %>%
+        ggplot(aes(x,y)) + geom_segment(aes(xend = x+0.08*dx, yend =
+        y+0.08*dy), arrow = arrow(length=unit(0.1,"cm"))) + coord_fixed() +
+        xlim(-1.5,1.5) + ylim(0,3)
+    ```
+
+    Again, we can see why this is non-conservative: while most arrows point
+    generally upwards, the arrows on the right are much longer than the arrows
+    on the left. If you insert any object into this force field somewhere near
+    the center of the plot, the upward forces on the right side of the object
+    will be much bigger than the upward forces on the left side of the object,
+    causing the object to rotate counter-clockwise. An integral over any circle
+    with center near the center of the plot window will be positive.
+
+We want to better understand what does the equality of the partial derivatives
+of the field components have to do with conservativeness. Since derivatives are
+"local" properties, it may help to look at things at a really tiny scale. Let's
+calculate a line integral of a vector field over a very very tiny rectangle
+centered at $(x_0,y_0)$, with sides of length $dx$ and $dy$. We will label the four
+sides of the rectangle as $S_1$, $S_2$, $S_3$ and $S_4$:
+
+```{r,engine='tikz',fig.ext='svg',fig.width=5, engine.opts=list(dvisvgm.opts = "--font-format=woff")}
+\usetikzlibrary{decorations.markings}
+\begin{tikzpicture}
+\fill (1.5, 1.5) circle[radius=1pt] node[below]{$(x_0,y_0)$};
+\begin{scope}[thick,decoration={
+    markings,
+    mark=at position 0.7 with {\arrow{>}}}
+    ] 
+    \draw[postaction={decorate}] (0,0) --node[below]{$S_1$} (3,0);
+    \draw[postaction={decorate}] (3,0) --node[right]{$S_2$} (3,3);
+    \draw[postaction={decorate}] (3,3) --node[above]{$S_3$} (0,3);
+    \draw[postaction={decorate}] (0,3) --node[left]{$S_4$} (0,0);
+\end{scope}
+\fill (0,0) circle[radius=1pt] node[below left]{$(x_0-\frac{dx}{2},y_0-\frac{dy}{2})$};
+\fill (3,0) circle[radius=1pt] node[below right]{$(x_0+\frac{dx}{2},y_0-\frac{dy}{2})$};
+\fill (3,3) circle[radius=1pt] node[above right]{$(x_0+\frac{dx}{2},y_0+\frac{dy}{2})$};
+\fill (0,3) circle[radius=1pt] node[above left]{$(x_0-\frac{dx}{2},y_0+\frac{dy}{2})$};
+\end{tikzpicture}
+```
+
+Then the integral of $\vec{F}$ over the rectangle can be split into the sum of
+the integrals over the four sides:
+
+$$ \int_{S_1} \vec{F}(x,y)\cdot \vec{dr} + \int_{S_2} \vec{F}(x,y)\cdot \vec{dr} + \int_{S_3} \vec{F}(x,y)\cdot \vec{dr} + \int_{S_4} \vec{F}(x,y)\cdot \vec{dr} $$
+
+Reversing the direction of the integrals over $S_3$ and $S_4$ will give us
+
+$$ \int_{S_1} \vec{F}(x,y)\cdot \vec{dr} + \int_{S_2} \vec{F}(x,y)\cdot \vec{dr} - \int_{-S_3} \vec{F}(x,y)\cdot \vec{dr} - \int_{-S_4} \vec{F}(x,y)\cdot \vec{dr} $$
+
+Let's approximate the four integrals:
+
+*   We can parametrize the $S_1$ curve as $x = x_0 + t$, 
+    $y = y_0 - \frac{dy}{2}$ for $-\frac{dx}{2} \le t \le \frac{dx}{2}$.  
+    Then $dx = dt$ and $dy = 0$, and so
+    $$\int_{S_1} \vec{F}(x,y)\cdot\vec{dr} = \int_{-\frac{dx}{2}}^{\frac{dx}{2}} P\left(x_0 + t, y_0 - \frac{dy}{2}\right)\;dt$$
+
+    If $dx$ is very small, the last integral is approximately equal to 
+    $$P\left(x_0, y_0 - \frac{dy}{2}\right)\;dx$$
+
+*   We can parametrize the $-S_3$ curve as $x = x_0 + t$, 
+    $y = y_0 + \frac{dy}{2}$ for $-\frac{dx}{2} \le t \le \frac{dx}{2}$.  
+    Then $dx = dt$ and $dy = 0$, and so
+    $$\int_{-S_3} \vec{F}(x,y)\cdot\vec{dr} = \int_{-\frac{dx}{2}}^{\frac{dx}{2}} P\left(x_0 + t, y_0 + \frac{dy}{2}\right)\;dt$$
+
+    If $dx$ is very small, the last integral is approximately equal to 
+    $$P\left(x_0, y_0 + \frac{dy}{2}\right)\;dx$$
+
+*   We can parametrize the $S_2$ curve as $x = x_0 + \frac{dx}{2}$, 
+    $y = y_0 + t$ for $-\frac{dy}{2} \le t \le \frac{dy}{2}$.  
+    Then $dx = 0$ and $dy = dt$, and so
+    $$\int_{S_2} \vec{F}(x,y)\cdot\vec{dr} = \int_{-\frac{dy}{2}}^{\frac{dy}{2}} Q\left(x_0 + \frac{dx}{2}, y_0 + t\right)\;dt$$
+
+    If $dy$ is very small, the last integral is approximately equal to 
+    $$Q\left(x_0 + \frac{dy}{2}, y_0\right)\;dy$$
+
+*   We can parametrize the $-S_4$ curve as $x = x_0 - \frac{dx}{2}$, 
+    $y = y_0 + t$ for $-\frac{dy}{2} \le t \le \frac{dy}{2}$.  
+    Then $dx = 0$ and $dy = dt$, and so
+    $$\int_{S_2} \vec{F}(x,y)\cdot\vec{dr} = \int_{-\frac{dy}{2}}^{\frac{dy}{2}} Q\left(x_0 - \frac{dx}{2}, y_0 + t\right)\;dt$$
+
+    If $dy$ is very small, the last integral is approximately equal to 
+    $$Q\left(x_0 - \frac{dy}{2}, y_0\right)\;dy$$
+
+Looking at the two _horizontal sides_: if $dx$ is very small,
+
+\begin{aligned}
+\int_{S_1} \vec{F}(x,y)\cdot \vec{dr} - \int_{-S_3} \vec{F}(x,y)\cdot \vec{dr}
+&\approx P\left(x_0, y_0 - \frac{dy}{2}\right)\;dx - P\left(x_0, y_0 + \frac{dy}{2}\right)\;dx \\
+&= \left(P\left(x_0, y_0 - \frac{dy}{2}\right) - P\left(x_0, y_0 + \frac{dy}{2}\right)\right)\;dx \\
+&= \left(\frac{P\left(x_0, y_0 - \frac{dy}{2}\right) - P\left(x_0, y_0 + \frac{dy}{2}\right)}{dy}\right)\;dx\;dy
+\end{aligned}
+
+When $dy$ is very small, 
+$$\frac{P\left(x_0, y_0 - \frac{dy}{2}\right) - P\left(x_0, y_0 + \frac{dy}{2}\right)}{dy} \approx -P_y(x_0, y_0)$$
+
+If both $dx$ and $dy$ are very small, then
+$$\int_{S_1} \vec{F}(x,y)\cdot \vec{dr} - \int_{-S_3} \vec{F}(x,y)\cdot \vec{dr} \approx -P_y(x_0, y_0)\;dx\;dy$$
+
+Let's now look at the two _vertical sides_: if $dy$ is very small,
+
+\begin{aligned}
+\int_{S_2} \vec{F}(x,y)\cdot \vec{dr} - \int_{-S_4} \vec{F}(x,y)\cdot \vec{dr}
+&\approx Q\left(x_0 + \frac{dx}{2}, y_0\right)\;dy - Q\left(x_0 + \frac{dx}{2}\right)\;dy \\
+&= \left(Q\left(x_0 + \frac{dx}{2}, y_0\right) - Q\left(x_0 - \frac{dx}{2}, y_0\right)\right)\;dy \\
+&= \left(\frac{Q\left(x_0 + \frac{dx}{2}, y_0\right) - Q\left(x_0 - \frac{dx}{2}, y_0\right)}{dx}\right)\;dx\;dy
+\end{aligned}
+
+When $dx$ is very small, 
+$$\frac{Q\left(x_0 + \frac{dx}{2}, y_0\right) - Q\left(x_0 - \frac{dx}{2}\right)}{dx} \approx Q_x(x_0, y_0)$$
+
+If both $dx$ and $dy$ are very small, then
+$$\int_{S_2} \vec{F}(x,y)\cdot \vec{dr} - \int_{-S_4} \vec{F}(x,y)\cdot \vec{dr} \approx Q_x(x_0, y_0)\;dx\;dy$$
+
+Putting all this together: when both $dx$ and $dy$ are very small, then the
+integral of $\vec{F}(x,y)$ over the boundary of the small rectangle centered at
+$(x_0, y_0)$ with sides $dx$ and $dy$ is approximately equal to
+$$\left(Q_x(x_0, y_0) - P_y(x_0, y_0)\right)\;dx\;dy$$
+This approximation gets better the smaller $dx$ and $dy$ are^[This argument can
+be actually made precise, without the need to refer to approximations, by using
+the Mean Value Theorem for derivatives and the Mean Value Theorem for definite
+integrals. It makes the whole derivation much more complicated, though.].
+
+## Simple Curves and Circulation
+
+```{r echo=FALSE}
+vembedr::embed_youtube("9sJ8YGSvU60")
+```
+
+## Green's Theorem
+
+We saw that the quantity $$\left(Q_x(x,y) - P_y(x,y)\right)\;dx\;dy$$
+can be interpreted as a "local circulation" over an infinitesimal rectangle
+centered at $(x,y)$ with sides $dx$ and $dy$. We also was that circulation is
+"additive" in the sense that circulation over two simple curves that are
+adjacent to each other can be added. Intuitively this leads one to think that
+perhaps "summing" all local circulations at all interior points of a simple
+curve should give us a number that is equal to the circulation over the curve
+itself. Formally, this is expressed as the __Green's Theorem__^[The form of
+Green's Theorem presented here is known as the _Circulation form_ or _Tangential
+form_. There is also a form known as _Flux form_ or _Normal form_. We are not
+covering it in this class, but you can find it in your textbook.]:
+
+_Suppose $G$ is a region in a plane whose boundary $\partial G$ is a piecewise
+smooth simple closed curve. Let $\vec{F}(x,y) = \v{P(x,y), Q(x,y)}$ be a vector
+field defined on $G$ whose components have continuous partial derivatives on
+$G$. Then_
+$$\oint_{\partial G} \vec{F}(x,y)\cdot\vec{dr} = \iint_G \left(Q_x(x,y) - P_y(x,y)\right)\;dA$$
+
+Above we gave an intuitive justification for the Green's Theorem. The formal
+proof is beyond the scope of this class. 
+
+Note that this theorem is really a two-dimensional form of the Fundamental
+Theorem of Calculus. It says that an integral of some specific type of
+_derivative_ of a vector field $\vec{F}$ over a region $G$ is equal to the
+integral of the vector field itself over the _boundary_ of the region $G$.
+
+In the one-dimensional case, the "vector field" is just a real function of one
+variable, the "region" is just an interval, and its boundary consists of just
+two points.
+
+### Applications of Green's Theorem
+
+```{r echo=FALSE}
+vembedr::embed_youtube("IA3UINSjWJg")
+```
+
+One more important consequence of Green's Theorem is that the answer to our
+question 2 above is affirmative: If $\vec{F} = \v{P(x,y), Q(x,y)}$ is a vector field whose
+components have continuous partial derivatives, then $\vec{F}$ is conservative
+_if and only if_ $Q_x(x,y) = P_y(x,y)$.
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap18Sec4/Q15.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.1_Greens_Theorem/17.1.3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart16_4/ur_vc_12_8.pg",
+        width=640, height=500
+)
+```

@@ -1,0 +1,10 @@
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../_common.qmd >}}
+

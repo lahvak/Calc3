@@ -1,0 +1,169 @@
+---
+title: "Operator Notation, Divergence and Curl"
+format: html
+layout: article
+reference-location: margin
+cap-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Operator notation
+
+In the context of calculus, an _operator_ is a function that takes functions as
+inputs and produce either a function or a number as an output.
+
+Some examples:
+
+*   _The identity operator_ $I$: it receives a function and produces the exact
+    same function as output.
+*   _First derivative of a real function of one variable_: takes a differentiable
+    function and produces a function.
+*   _Integral over a given interval_: takes an integrable function and produces
+    a number.
+*   _An indefinite integral with a fixed lower limit_: takes an integrable
+    function and produces a function.
+*   _Partial derivative of a function of two variables with respect to $x$_:
+    takes a function of two variables and produces a function of two variables.
+*   _Gradient of a function of two variables_: takes a function of two
+    variables and produces a two-dimensional vector field.
+*   _Curvature_: takes a vector function of single variable and produces a real
+    function of single variable.
+
+We usually denote operators using uppercase letters, Greek letters, or special
+symbols. Applying an operator to a function is usually denoted _without
+parentheses_, unless order of operations must be specified, and is considered a _form of multiplication_.
+
+For example, a simple first derivative operator would be defined as
+
+$$D f = f'$$
+
+Then $D \sin$ would be $\cos$ and so on.
+
+Operators can generally be _added_ and _multiplied by a scalar_. Given two
+operators, $A$ and $B$, the operator $2A + 3B$ would be defined the following
+way:
+
+$$(2A + 3B)f = 2(Af) + 3(Bf)$$
+
+where the addition and scalar multiplication on the right side of the equality
+is a regular addition and scalar multiplication of functions.
+
+In contrast to that, _multiplication_ or operators usually means
+__composition__, so $(AB)f = A(Bf)$. For example, taking the first derivative
+operator $D$ defined above and multiplying it by itself would give us a
+derivative of derivative, which is the _second derivative_. Note that while
+composition in general is _not commutative_, when composing an operator with
+itself, the order clearly does not matter, so the multiplication of $D$ by $D$
+can be abbreviated as $D^2$. 
+
+For example, the operator $D^2 + 2D + 5I$ would take a second derivative of a
+function, add to it 2 times the first derivative of the same function, and add
+5 times the same function to that.  In other words,
+$$(D^2 + 2D + 5I)f = f'' + 2f' + 5f$$
+
+### Partial derivative operators
+
+When working with functions from $\mathbb{R}^2$ to $\mathbb{R}$, we have two
+_partial derivative operators_:
+
+*   Partial derivative with respect to $x$, denoted either as
+    $\frac{\partial}{\partial x}$ or $D_x$.
+*   Partial derivative with respect to $y$, denoted either as
+    $\frac{\partial}{\partial y}$ or $D_y$.
+
+In $\mathbb{R}^3$, we also have the partial derivative with respect to $z$, denoted either as
+$\frac{\partial}{\partial z}$ or $D_z$.
+
+This can of course be extended to any number of variables.
+
+### Vectors of operators
+
+We can form a symbolic vector whose components are operators. Applying such
+operator to a function would work similarly to scalar multiplication, except
+that contrary to the usual convention, the "scalar" would be on the right side
+of the vector instead of the left side.  The result of such operator would then
+be a _vector function_.  For example, an operator $\vec{V} = \v{D, D^2,
+D^3}$, when applied to a function $f$, would produce a vector function whose first
+component would be $f'$, second component $f''$ and third component $f'''$.
+
+### Gradient operator
+
+An important example of an operator vector is the _gradient operator_. In
+$\mathbb{R}^2$, it is defined as
+$$\vec{\nabla} = \v{\frac{\partial}{\partial x}, \frac{\partial}{\partial y}}$$
+In $\mathbb{R}^3$, it is
+$$\vec{\nabla} = \v{\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}}$$
+
+### Example: the Laplace operator
+
+A very important operator in mathematical physics is the _Laplace operator_
+$\Delta$,
+also known as _Laplacian_. It can be defined in a number of different ways, one
+of them being the _dot product of the gradient operator with itself_!
+
+$$\Delta = \vec{\nabla}\cdot\vec{\nabla}$$
+
+In fact, the Laplace operator is sometimes also denoted as $\nabla^2$.
+
+How does it work? Since $\vec{\nabla} = \v{\frac{\partial}{\partial x},
+\frac{\partial}{\partial y}}$, and since _dot product_ works by multiplying the
+corresponding components and adding all the products together,
+
+\begin{align}
+\Delta &= \vec{\nabla}\cdot\vec{\nabla}\\
+&= \v{\frac{\partial}{\partial x}, \frac{\partial}{\partial y}}\cdot\v{\frac{\partial}{\partial x}, \frac{\partial}{\partial y}}\\
+&= \frac{\partial}{\partial x}\frac{\partial}{\partial x} + \frac{\partial}{\partial y}\frac{\partial}{\partial y}\\
+&= \frac{\partial^2}{(\partial x)^2} + \frac{\partial^2}{(\partial y)^2}
+\end{align}
+
+So the Laplace operator _takes the second pure partial derivatives and adds them
+together_:
+
+$$\Delta f(x,y) = f_{xx}(x,y) + f_{yy}(x,y)$$
+
+The same can be done in $\mathbb{R}^3$ (or in any number of dimensions):
+$$\Delta f(x,y,z) = f_{xx}(x,y,z) + f_{yy}(x,y,z) + f_{zz}(x,y,z)$$
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/272/setStewart16_5/problem_3.pg",
+        width=640, height=500
+)
+```
+
+## Divergence and Curl Operators
+
+```{r echo=FALSE}
+vembedr::embed_youtube("CtkIHuyiAKs")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap20Sec5/Q01.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Dartmouth/setMTWCh4S4/problem_5.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Rochester/setVectorCalculus2/ur_vc_12_10.pg",
+        width=640, height=500
+)
+```
+

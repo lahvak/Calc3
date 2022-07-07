@@ -1,0 +1,72 @@
+---
+title: Changing the Order of Integration
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../../_common.qmd >}}
+
+## Fubini's Theorem
+
+When discussing double integrals and iterated integrals, we learned about
+the following theorem:
+
+__Theorem:__ Let $f$ be a function of two variables defined on a region $R$
+such that $f$ and $R$ are nice.
+Then the double integral of $f$ over the region $R$ and the two iterated
+integrals over the same region are equal:
+
+$$\iint_R f(x,y)\;dA = \int_c^d \int_{a(y)}^{b(y)} f(x,y)\;dx\;dy = \int_a^b \int_{c(x)}^{d(x)} f(x,y)\;dy\;dx$$
+
+So far we have used this theorem to _evaluate double integrals_ by turning them
+into iterated integrals. We have also seen that for some regions $R$, we can
+rewrite the double integrals as an iterated integral two ways, both $dx\;dy$
+and $dy\;dx$. We also saw that depending on the function $f$ and the region
+$R$, _one of these two iterated integrals is often much easier to calculate_.
+
+That can be used to calculate some difficult iterated integrals. Suppose you
+have an iterated integral that is hard to calculate. It is possible that by
+rewriting the iterated integral as a _double integral_, and then rewriting the
+double integral as an iterated integral with the opposite order of integration
+from the original iterated integral, the resulting iterated integral could be
+easier to calculate.
+
+## Examples of changing order of integration
+
+Let's look at some examples:
+
+### Example 1
+
+Calculate $$\int_0^3\int_{x^2/3}^x xy\;dy\;dx$$
+
+```{r}
+vembedr::embed_youtube("kzs4vrOpF78")
+```
+
+### Example 2
+
+Calculate $$\int_0^{2\sqrt{\pi}}\int_{y/2}^{\sqrt{\pi}} \cos\left(x^2\right)\;dx\;dy$$
+
+```{r}
+vembedr::embed_youtube("uRwPxXzD4Rk")
+```
+
+### Try it yourself
+
+```{r}
+webwork(
+        "Library/FortLewis/Calc3/16-2-Iterated-integrals/HGM4-16-2-38-Iterated-integrals.pg",
+        width=640, height=600
+)
+```
+
+```{r}
+webwork(
+        "Library/Michigan/Chap16Sec2/Q35.pg",
+        width=640, height=500
+)
+```

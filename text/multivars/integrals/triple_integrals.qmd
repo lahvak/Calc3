@@ -1,0 +1,72 @@
+---
+title: Triple Integrals
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../../_common.qmd >}}
+
+## Triple Integrals
+
+Given a function $f:\mathbb{R}^3 \to \mathbb{R}$ defined on a solid $S \subset \mathbb{R}^3$, we
+define the _triple integral_ of $f$ over the solid $S$
+
+$$\iiint_S f(x,y,z)\;dV$$
+
+```{r}
+vembedr::embed_youtube("P_eyIkn29dE")
+```
+
+## Examples
+
+### Example 1
+
+Calculate $$\iiint_S z\;dV$$ where $S$ is the solid bounded by the $xy$-plane
+and the paraboloid $x^2 + y^2 + z = 4$:
+
+```{r}
+vembedr::embed_youtube("YTXyJsECXoo")
+```
+
+### Example 2
+
+Calculate $$\iiint_S xy^2 + z\;dV$$ where $S$ is the solid bounded by the three
+coordinate planes and the plane $2x + 2y + z = 2$:
+
+```{r}
+vembedr::embed_youtube("U_5tY96ktxs")
+```
+
+### Try it yourself
+
+```{r}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.3_Triple_Integrals/15.3.6.pg",
+        width=640, height=400
+)
+```
+
+```{r}
+webwork(
+        "Library/Michigan/Chap16Sec3/Q23.pg",
+        width=640, height=600
+)
+```
+
+```{r}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.3_Triple_Integrals/15.3.9.pg",
+        width=640, height=400
+)
+```
+
+```{r}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.3_Triple_Integrals/15.3.17.pg",
+        width=640, height=400
+)
+```

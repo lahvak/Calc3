@@ -1,0 +1,58 @@
+---
+title: "Divergence Theorem"
+format: html
+layout: article
+reference-location: margin
+cap-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Divergence theorem
+
+So far you was the following versions of the same theorem:
+
+*   The Fundamental Theorem of Calculus, part 2
+*   The Fundamental Theorem for Line Integrals
+*   The Green's Theorem and it's curved version, Stokes' Theorem
+
+Now we will add one more version, this one tree dimensional:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("7SqyCP-V51g")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/20-2-Divergence-theorem/HGM5-20-2-33-Divergence-theorem.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap20Sec2/Q03.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap20Sec2/Q07.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap20Sec2/Q11.pg",
+        width=640, height=500
+)
+```
+

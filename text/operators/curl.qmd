@@ -1,0 +1,52 @@
+---
+title: "Curl of a Vector Field"
+format: html
+layout: article
+reference-location: margin
+cap-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Curl of a vector field in $\mathbb{R}^3$
+
+Previously we defined a _divergence_ of a vector field in $\mathbb{R}^2$ that
+measures a local _expansion_ of the field. We then easily extended the formula
+to $\mathbb{R}^3$.
+
+Even earlier, we found a formula for calculating a local _circulation_ of a
+vector field in $\mathbb{R}^2$. However, there does not seem to be any easy
+obvious way how to extend that to $\mathbb{R}^3$. Here we will attempt to do
+just that:
+
+```{r echo=FALSE}
+vembedr::embed_youtube("xmu6wCn4q6g")
+```
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap20Sec3/Q02.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.2_Stokes_Theorem/17.2.3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/Michigan/Chap20Sec3/Q19.pg",
+        width=640, height=500
+)
+```
+

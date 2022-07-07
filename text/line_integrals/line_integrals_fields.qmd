@@ -1,0 +1,155 @@
+---
+title: "\"Line\" Integrals of Vector Fields"
+format: html
+layout: article
+reference-location: margin
+knitr:
+  opts_chunk: 
+    echo: false
+---
+
+{{< include ../_common.qmd >}}
+
+## Vector Fields
+
+So far we have discussed the following types of functions:
+
+In Calc 1 (actualy in an Algebra class or a Pre-calculaus class) you learned
+about real functions of a single variable.  These take one real number as input
+(_single_ variable) and return a single real number (_real_ function).
+Symbolically, this is written as $f\colon \mathbb{R} \to \mathbb{R}$.
+
+Earlier in Calc 3, we have learned about _vector_ functions of a single
+variable: these take a single real number as input and return a vector as
+output. Symbolically we can write this as $\vec{r}\colon \mathbb{R} \to
+\mathbb{R}^n$.
+
+Also in Calc 3, we saw real functions of several variables. These take a point
+or vector as input, and return a single real number. Symbolically,
+$f\colon\mathbb{R}^n \to \mathbb{R}$.
+
+Now we are going to combine the last two ideas together and start looking at
+_vector_ functions of _several variables_. For start, we will look at one
+simpler case where the dimension of the input is the same as the dimension of
+the output: functions from $\mathbb{R}^n$ to $\mathbb{R}^n$.
+
+A function from $\mathbb{R}^n$ to $\mathbb{R}^n$ can be interpreted in
+different ways, some of which we will see later. For now, we will think about
+such functions as __vector fields__: the input is interpreted as a __point__ in
+$\mathbb{R}^n$, while the output is a __vector__.  In other words, each point
+is the domain of the function has a vector associated with it.
+
+### Examples
+
+Some examples of phenomena that can be modeled as vector fields:
+
+*  __Flow of a fluid__: We saw that a vector function of one variable can be
+    used to model a motion of a single object in a plane or space. In similar
+    way we can model a flow of a liquid or gas on a plane or in a space: at
+    each point, the flowing fluid has a velocity that determines the speed and
+    direction of the flow.  This velocity can be described by a vector. If the
+    flow is constant in time, this will give us a vector field.  If the flow
+    changes with time, there will be an additional variable that represents
+    time, and instead of a single vector field, we will get a parametrized
+    family of vector fields. For each specific value of the time parameter, we
+    would have a single vector field.
+
+*  __A force field__: In the past we used vectors to model forces acting on
+    objects. Vector fields can be used to model situations where there is a
+    force at every point of a plane or space, like gravitational or
+    electromagnetic force.
+
+*   __Gradient of a function__: we have already seen one example of a vector
+    field: the _gradient vector_ of a function of several variables. At every
+    point of the domain of $f$, the vector $\vec{\nabla} f$ points in the
+    direction of the steepest increase of $f$, and its magnitude gives us the
+    rate of change of $f$ in that direction.
+
+### Components of a vector field
+
+A vector field $\vec{F}: \mathbb{R}^3 \to \mathbb{R}^3$ gives us a vector for
+each point $(x,y,z)$ in the domain of $\vec{F}$. This vector can be written in
+components: $$\vec{F} = \v{P, Q, R} = P\vec{i} + Q\vec{j} + R\vec{k}.$$
+The components $P$, $Q$ and $R$ _depend on the point $(x,y,z)$_, and are
+therefore functions from $\mathbb{R}^3$ to $\mathbb{R}$, in other words, _real
+functions of three variables_. We can write it this way:
+$$\vec{F}(x,y,z) = \v{P(x,y,z), Q(x,y,z), R(x,y,z)} = P(x,y,z)\vec{i} + Q(x,y,z)\vec{j} + R(x,y,z)\vec{k}$$
+
+The functions $P$, $Q$ and $R$ are called the _component functions_ of the
+field $\vec{F}$.
+
+### Differentiation of vector fields
+
+Just like with vector functions, limits and therefore derivatives of vector
+fields are done by taking limits and derivatives of the component functions.
+Since vector fields and their component functions are functions of several
+variables, the derivatives will be _directional derivatives_ and, in
+particular, _partial derivatives_. When all component function of a vector
+field are _differentiable_ at a point, we say that the vector field is
+_differentiable_ at the point.
+
+#### Example:
+
+Find the partial derivatives of the vector field $$\vec{F}(x,y) = \v{x^4y^3,
+x^2 + y^5}$$
+
+Here the _component functions_ are $P(x,y) = x^4y^3$ and $Q(x,y) = x^2 + y^5$.
+
+*  Partial derivative with respect to $x$: 
+    $$\vec{F}_x(x,y) = \v{P_x(x,y), Q_x(x,y)} = \v{4x^3y^3, 2x}$$
+*  Partial derivative with respect to $y$: 
+    $$\vec{F}_y(x,y) = \v{P_y(x,y), Q_y(x,y)} = \v{3x^4y^2, 5y^4}$$
+
+Later we will learn about some more interesting _differential operators_ on
+vector fields.
+
+## Line integrals of vector fields
+
+```{r echo=FALSE}
+vembedr::embed_youtube("yjNpDaENU7g")
+```
+
+
+### Try it yourself
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/17-3-Vector-fields/HGM4-17-3-16a-Vector-fields.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/17-3-Vector-fields/HGM5-17-3-27-Vector-fields.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/17-3-Vector-fields/HGM4-17-3-00-Vector-fields.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.1_Vector_Fields/16.1.3.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/FortLewis/Calc3/18-1-Idea-of-line-integrals/HGM4-18-1-02-Line-integrals.pg",
+        width=640, height=500
+)
+```
+
+```{r, echo=FALSE}
+webwork(
+        "Library/UBC/calculusStewart/lineIntegrals21.pg",
+        width=640, height=500
+)
+```
