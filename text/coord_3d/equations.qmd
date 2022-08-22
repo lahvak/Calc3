@@ -78,7 +78,7 @@ illustr("../../asymptote/equations/plane.html", title = "Vertical plane through 
 ### Plotting equations using Sage
 
 ```{r}
-#vembedr::embed_youtube("Ld0iOipaKos")
+vembedr::embed_youtube("Ld0iOipaKos")
 ```
 
 ### Try it yourself

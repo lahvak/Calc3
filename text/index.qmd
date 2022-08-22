@@ -1,0 +1,8 @@
+---
+title: "Calc III Notes"
+author: "Jan Hlavacek"
+---
+
+This is a set of notes from my Calculus III classes at SVSU. You can find bunch
+of explanations, illustrations, examples, classroom videos and practice
+problems.

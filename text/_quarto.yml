@@ -1,0 +1,88 @@
+project:
+  type: website
+
+website:
+  title: "Calc III Notes"
+  site-url: "https://stuff.lahvak.space/Calc3/Notes/"
+  page-navigation: true
+  reader-mode: true
+  page-footer: 
+      left: "Copyright 2022, Jan Hlavacek" 
+      right: 
+        - icon: github
+          href: https://github.com/lahvak/Calc3
+  repo-url: https://github.com/lahvak/Calc3
+  repo-subdir: text
+  repo-actions: [edit, issue]
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - section: Coordinates in 3D space
+        contents:
+          - coord_3d/coords.qmd
+          - coord_3d/distance.qmd
+          - coord_3d/equations.qmd
+      - section: Vectors
+        contents:
+          - vectors/vectors.qmd
+          - vectors/dot.qmd
+          - vectors/dot_uses.qmd
+          - vectors/cross.qmd
+      - section: Equations of Lines and Planes
+        contents:
+          - lines_and_planes/lines.qmd
+          - lines_and_planes/planes.qmd
+          - lines_and_planes/lines_and_planes.qmd
+      - section: Vector Functions
+        contents:
+          - vector_functions/curves.qmd
+          - vector_functions/derivative.qmd
+          - vector_functions/velocity_and_acceleration.qmd
+          - vector_functions/arclength.qmd
+          - vector_functions/tnb.qmd
+      - section: Functions of Several Variables
+        contents:
+          - multivars/intro/intro.qmd
+          - multivars/plots/plots.qmd
+          - multivars/limits/limits.qmd
+      - section: Derivatives of Functions of Several Variables
+        contents:
+          - multivars/derivatives/derivatives.qmd
+          - multivars/derivatives/derivatives_cont.qmd
+      - section: Optimization in Multiple Variables
+        contents:
+          - multivars/extrema/absolute_extrema.qmd
+          - multivars/extrema/second_derivative_test.qmd
+          - multivars/extrema/Lagrange_multipliers.qmd
+      - section: Multiple Integrals
+        contents:
+          - multivars/integrals/double_integrals.qmd
+          - multivars/integrals/order_of_integration.qmd
+          - multivars/integrals/triple_integrals.qmd
+          - multivars/integrals/substitution.qmd
+      - section: Vector Fields and Line Integrals
+        contents:
+          - line_integrals/line_integrals_functions.qmd
+          - line_integrals/line_integrals_fields.qmd
+          - line_integrals/conservative.qmd
+          - line_integrals/greens.qmd
+      - section: Operators
+        contents:
+          - operators/operators.qmd
+          - operators/curl.qmd
+          - operators/divergence.qmd
+      - section: Surfaces and Surface Integrals
+        contents:
+          - surfaces/parametric_surfaces.qmd
+          - surfaces/flux_integrals.qmd
+          - surfaces/divergence_theorem.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+
