@@ -90,6 +90,7 @@ illustr("../../asymptote/3dcoords/coordplanesbox.html", title = "Coordinate box 
 ### Try it yourself
 
 ```{r}
+#| results: asis
 webwork("Library/272/setStewart12_1/problem_1.pg", width=640, height=500)
 ```
 

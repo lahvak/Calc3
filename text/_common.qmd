@@ -13,18 +13,8 @@ $$
 :::
 
 ```{r}
-webwork <- function(path, width, height)
-{
-    htmltools::tags$iframe(title = "Exercise", 
-                           src=paste0("https://webwork.svsu.edu/webwork2/html2xml?
-&answersSubmitted=0
-&sourceFilePath=", path, "&problemSeed=123
-&displayMode=MathJax
-&courseID=daemon_course
-&userID=daemon
-&course_password=daemon
-&outputformat=simple"), width=width, height=height, frameborder="0")
-}
+webwork <- function(path, width, height){
+    htmltools::HTML(paste0('<iframe title = "Exercise" src="https://webwork.svsu.edu/webwork2/render_rpc?&answersSubmitted=0&sourceFilePath=', path, '&problemSeed=123&displayMode=MathJax&courseID=daemon_course&user=daemon&passwd=daemon&outputformat=simple&disableCookies=1" width=', width, ' height=', height, ' frameborder="0"></iframe>')) }
 
 illustr <- function(fname, title, width, height)
 {
