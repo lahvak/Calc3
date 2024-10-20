@@ -1,0 +1,7 @@
+#!/bin/zsh
+for i in {1..480};
+do 
+    echo $i;
+    gm convert -background white -colorspace RGB -type TrueColor -density 800x800 -geometry 1920x1080 $1.pdf\[$i\]  $1_${(l:3::0:)i}.png;
+done
+mencoder "mf://$1*.png" -mf fps=24 -ovc lavc -lavcopTs vcodec=mpeg4:vbitrate=10125000 -o $1.avi

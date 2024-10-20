@@ -1,0 +1,3 @@
+#!/bin/zsh
+gm convert -background white -colorspace RGB -type TrueColor +adjoin -density 200 -geometry 800x450 $1.pdf  $1_%03d.miff
+for file in $1_[0-9][0-9][0-9].miff(:r); do gm convert -type TrueColorMatte $file.miff $file.png; done
